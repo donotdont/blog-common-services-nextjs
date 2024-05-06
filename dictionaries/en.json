@@ -1,0 +1,35 @@
+{
+	"language-selected": "EN",
+	"locale": {
+		"en": "English",
+		"fr": "French"
+	},
+	"server-component": {
+		"welcome": "Welcome"
+	},
+	"counter": {
+		"increment": "Increment",
+		"decrement": "Decrement"
+	},
+	"title": "React i18n EN",
+	"language": "Language",
+	"Recent": "Recent",
+	"Popular": "Popular",
+	"All rights reserved": "All rights reserved",
+	"homemade with love and powered by": "homemade with love and powered by",
+	"Category {{categoryName}}": "Category : {{categoryName}}",
+	"Search {{searchName}}": "Search : {{searchName}}",
+	"by": "by",
+	"Company": "Company",
+	"Category": "Category",
+	"Send": "Send",
+	"Your Name": "Your Name",
+	"Your Email": "Your Email",
+	"Subject": "Subject",
+	"Your Message": "Your Message",
+	"Page not found": "Page not found",
+	"Looks like you've followed a broken link or entered a URL that doesn't exist on this site": "Looks like you've followed a broken link or entered a URL that doesn't exist on this site",
+	"Back to our site": "Back to our site",
+	"Thank you for your message, It has been sent": "Thank you for your message, It has been sent",
+	"There was an error trying to send your message, Please try again later": "There was an error trying to send your message, Please try again later"
+}
