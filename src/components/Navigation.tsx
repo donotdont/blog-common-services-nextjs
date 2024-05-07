@@ -1,11 +1,13 @@
 "use client";
 import * as React from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 
 //import { useLocale, useTranslations } from 'next-intl';
 import LocaleMenuSwitcher from './LocaleMenuSwitcher';
 
 /* MUI */
+import styled from '@emotion/styled';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -22,7 +24,9 @@ import AdbIcon from '@mui/icons-material/Adb';
 import Badge from '@mui/material/Badge';
 import { Language } from '@mui/icons-material';
 
-const pages = ['Products', 'Store', 'Documentation'];
+import SearchModal from './SearchModal';
+
+const pages = ["product", "store", "documentation"];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 type Props = {
@@ -108,7 +112,9 @@ export default function Navigation({ dictionary }: Props) {
                             >
                                 {pages.map((page) => (
                                     <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                        <Typography textAlign="center">{page}</Typography>
+                                        <Link href={t['menubar'][page]['path']} target="_blank">
+                                            <Typography textAlign="center">{t['menubar'][page]['name']}</Typography>
+                                        </Link>
                                     </MenuItem>
                                 ))}
                             </Menu>
@@ -137,14 +143,26 @@ export default function Navigation({ dictionary }: Props) {
                         </Typography>
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                             {pages.map((page) => (
-                                <Button
-                                    key={page}
-                                    onClick={handleCloseNavMenu}
-                                    sx={{ my: 2, display: 'block' }}
-                                >
-                                    {page}
-                                </Button>
+                                <Link href={t['menubar'][page]['path']} key={page} target="_blank">
+                                    <Button
+                                        onClick={handleCloseNavMenu}
+                                        sx={{ my: 2, display: 'block' }}
+                                    >
+                                        {t['menubar'][page]['name']}
+                                    </Button>
+                                </Link>
                             ))}
+                        </Box>
+
+
+                        <Box sx={{ flexGrow: 0, paddingRight: 2 }}>
+                            {/*<Button variant="outlined" startIcon={<SearchIcon fontSize="small" sx={{ flexGrow: 1, display: { xs: 'none', sm: 'none', md: 'block' } }} />} endIcon={<Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'none', md: 'block' } }}><ShotcutSearch>Ctrl+K</ShotcutSearch></Box>} aria-label="search" size="small" sx={{ minWidth: '18px', minHeight: '24px' }}>
+                                        <Typography variant="span" component="div" sx={{ flexGrow: 1, display: { xs: 'none', sm: 'none', md: 'block' } }}>
+                                            {t['search']}
+                                        </Typography>
+                                        <SearchIcon fontSize="small" sx={{ flexGrow: 1, display: { xs: 'block', sm: 'block', md: 'none' } }} />
+                                </Button>*/}
+                            <SearchModal dictionary={dictionary} />
                         </Box>
 
                         <Box sx={{ flexGrow: 0 }}>
@@ -172,16 +190,6 @@ export default function Navigation({ dictionary }: Props) {
                                 open={Boolean(anchorElUser)}
                                 onClose={handleCloseUserMenu}
                             >
-                                {/*settings.map((setting) => (
-                                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                        <Typography textAlign="center">{setting}</Typography>
-                                    </MenuItem>
-                                ))*/}
-                                {/*{locales.map((cur) => (
-                                    <MenuItem onClick={handleCloseUserMenu} key={cur} value={cur}>
-                                        <Typography textAlign="center">{t('locale', { locale: cur })}</Typography>
-                                    </MenuItem>
-                                ))}*/}
                                 <LocaleMenuSwitcher dictionary={dictionary} handleCloseUserMenu={handleCloseUserMenu} />
                             </Menu>
                         </Box>

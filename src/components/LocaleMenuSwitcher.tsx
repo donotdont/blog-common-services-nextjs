@@ -61,13 +61,15 @@ export default function LocaleMenuSwitcher({ dictionary, handleCloseUserMenu }: 
         <>
             {i18n && i18n.locales.map((locale) => {
 
-                return (<MenuItem key={locale} data-value={locale}>
+                return (
                     <Link href={redirectedPathName(locale)}>
-                        <Typography textAlign="center">
-                            {t['locale'][locale]}
-                        </Typography>
+                        <MenuItem key={locale} data-value={locale}>
+                            <Typography textAlign="center">
+                                {t['locale'][locale]}
+                            </Typography>
+                        </MenuItem>
                     </Link>
-                </MenuItem>)
+                )
             })
             }
         </>

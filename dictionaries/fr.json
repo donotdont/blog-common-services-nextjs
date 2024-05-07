@@ -4,6 +4,20 @@
 		"en": "Anglais",
 		"fr": "Français"
 	},
+	"menubar": {
+		"product": {
+			"name": "Produit",
+			"path": "https://common-services.com/fr"
+		},
+		"store": {
+			"name": "Magasin",
+			"path": "https://store.common-services.com/fr"
+		},
+		"documentation": {
+			"name": "Documentation",
+			"path": "https://documentation.common-services.com"
+		}
+	},
 	"server-component": {
 		"welcome": "Bienvenu"
 	},
@@ -11,6 +25,7 @@
 		"increment": "Incrément",
 		"decrement": "Décrémenter"
 	},
+	"search": "Chercher...",
 	"title": "React i18n FR",
 	"language": "la langue",
 	"Recent": "Récent",
