@@ -30,6 +30,7 @@ import Moment from 'react-moment';
 import 'moment/locale/fr';
 import ButtonBase from '@mui/material/ButtonBase';
 import CardActionArea from '@mui/material/CardActionArea';
+import SocialMedia from './SocialMedia';
 
 //import { getClient } from "./../ApolloClient";
 
@@ -102,10 +103,10 @@ export default function BlogPostCard({ dictionary }: Props) {
     return (
       <>
         {/*JSON.stringify(data.postsConnection.values)*/}
-        {data && data.postsConnection && data.postsConnection.values.map((post) => {
+        {data && data.postsConnection && data.postsConnection.values.map((post, keyPost) => {
           //console.log(post);
           return (
-            <Grid item md={4}>
+            <Grid item md={4} key={keyPost}>
               <Card>
                 <CardHeader
                   avatar={
@@ -131,23 +132,12 @@ export default function BlogPostCard({ dictionary }: Props) {
                     />
                     <CardContent>
                       <Typography variant="subtitle1" color="text.primary">{post.title}</Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        This impressive paella is a perfect party dish and a fun meal to cook
-                        together with your guests. Add 1 cup of frozen peas along with the mussels,
-                        if you like.
-                      </Typography>
+                      <Typography variant="body2" color="text.secondary">{post.summary}</Typography>
                     </CardContent>
                   </CardActionArea>
                 </Link>
 
-                <CardActions disableSpacing>
-                  <IconButton aria-label="add to favorites">
-                    <FavoriteIcon />
-                  </IconButton>
-                  <IconButton aria-label="share">
-                    <ShareIcon />
-                  </IconButton>
-                </CardActions>
+                <SocialMedia dictionary={t} post={post} size={32} />
               </Card>
             </Grid>
           )
@@ -158,7 +148,7 @@ export default function BlogPostCard({ dictionary }: Props) {
   }
 
   function SuspenseQueryPosts({ children }: React.PropsWithChildren) {
-    const result = useSuspenseQuery(postsQuery, { fetchPolicy: "no-cache" }); //cache-first
+    const result = useSuspenseQuery(postsQuery, { fetchPolicy: "cache-first" }); //no-cache cache-first
     return (
       <>
         <Result source="useSuspenseQuery(postsQuery)" data={result.data} />

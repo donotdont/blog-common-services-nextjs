@@ -106,6 +106,7 @@ import "./globals.css";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import { Grid, Paper, Stack } from "@mui/material";
+import Footer from "@/components/Footer";
 
 export default async function IndexPage({
   params: { lang },
@@ -136,12 +137,14 @@ export default async function IndexPage({
           </Grid>
         </Grid>
       </Container>
-      <p>Current locale: {lang}</p>
+
+    <Footer dictionary={dictionary} size={32}  />
+      {/*<p>Current locale: {lang}</p>
       <p>
         This text is rendered on the server:{" "}
         {dictionary["server-component"].welcome}
       </p>
-      <Counter dictionary={dictionary.counter} />
+  <Counter dictionary={dictionary.counter} />*/}
     </div>
   );
 }
