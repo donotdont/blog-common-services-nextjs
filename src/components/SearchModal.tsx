@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -78,10 +79,32 @@ export default function SearchModal({ dictionary }: Props) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    const keyDownHandler = React.useCallback((event: KeyboardEvent) => {
+        //console.log(`Pressed keyCode ${event ?? event.key}`,event ?? event.key);
+        if (event && ((event.key === 'k' || event.key === 'K') && event.ctrlKey == true)) {
+          // Do code here
+          handleOpen();
+          event.preventDefault();
+        }
+      }, []);
+      useEffect(() => {
+        document.addEventListener("keydown", keyDownHandler);
+    
+        return () => document.removeEventListener("keydown", keyDownHandler);
+      }, []);
+
     return (
         <>
             {/*<Button onClick={handleOpen}>Open modal</Button>*/}
-            <Button onClick={handleOpen} variant="outlined" startIcon={<SearchIcon fontSize="small" sx={{ flexGrow: 1, display: { xs: 'none', sm: 'none', md: 'block' } }} />} endIcon={<Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'none', md: 'block' } }}><ShotcutSearch>Ctrl+K</ShotcutSearch></Box>} aria-label="search" size="small" sx={{ minWidth: '18px', minHeight: '24px' }}>
+            <Button
+                onClick={handleOpen}
+                variant="outlined"
+                startIcon={<SearchIcon fontSize="small"
+                    sx={{ flexGrow: 1, display: { xs: 'none', sm: 'none', md: 'block' } }} />}
+                endIcon={<Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'none', md: 'block' } }}><ShotcutSearch>Ctrl+K</ShotcutSearch></Box>}
+                aria-label="search"
+                size="small" sx={{ minWidth: '18px', minHeight: '24px' }}>
                 <Typography variant="span" component="div" sx={{ flexGrow: 1, display: { xs: 'none', sm: 'none', md: 'block' } }}>
                     {t['search']}
                 </Typography>
@@ -159,7 +182,7 @@ export default function SearchModal({ dictionary }: Props) {
                                 </ListItemIcon>
                                 <ListItemText>Copy</ListItemText>
                                 <Typography variant="body2" color="text.secondary">
-                                <Chip label="Amazon" size="small" variant="outlined" />
+                                    <Chip label="Amazon" size="small" variant="outlined" />
                                 </Typography>
                             </MenuItem>
                             <MenuItem>
@@ -168,7 +191,7 @@ export default function SearchModal({ dictionary }: Props) {
                                 </ListItemIcon>
                                 <ListItemText>Paste</ListItemText>
                                 <Typography variant="body2" color="text.secondary">
-                                <Chip label="Amazon" size="small" variant="outlined" />
+                                    <Chip label="Amazon" size="small" variant="outlined" />
                                 </Typography>
                             </MenuItem>
                             {/*<Divider />

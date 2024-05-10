@@ -1,7 +1,7 @@
 /* MUI Theme */
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 import { ThemeProvider } from '@mui/material/styles';
-import theme from './../theme';
+import theme from '../../theme';
 
 /* i18n */
 import { i18n, type Locale } from "../../../i18n-config";

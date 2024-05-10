@@ -7,6 +7,7 @@ import Image from 'next/image';
 import LocaleMenuSwitcher from './LocaleMenuSwitcher';
 
 /* MUI */
+import clsx from "clsx";
 import styled from '@emotion/styled';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -25,17 +26,27 @@ import Badge from '@mui/material/Badge';
 import { Language } from '@mui/icons-material';
 
 import SearchModal from './SearchModal';
+import useScrollTrigger from '@mui/material/useScrollTrigger';
 
 const pages = ["product", "store", "documentation"];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-type Props = {
+interface Props {
+    window?: () => Window;
+    children: React.ReactElement;
     dictionary: string;
 }
 
-export default function Navigation({ dictionary }: Props) {
+export default function Navigation(props: Props) {
+    const { children, window, dictionary } = props;
     //const locale = useLocale();
     //const t = useTranslations('Navigation');
+    //const trigger = useScrollTrigger();
+    const trigger = useScrollTrigger({
+        target: window ? window() : undefined,
+        disableHysteresis: true,
+        threshold: 100,
+    });
     const t = dictionary;
 
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -58,13 +69,18 @@ export default function Navigation({ dictionary }: Props) {
 
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static" sx={{ background: '#ffffff' }}>
+            <AppBar position="fixed" sx={{
+                background: '#ffffff',
+                backgroundColor: trigger ? "rgb(255, 255, 255, 0.75)" : '#ffffff',
+                backdropFilter: trigger ?? "blur(5px)"
+            }}
+            >
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
                         <Typography
                             variant="h6"
                             component="a"
-                            href="#"
+                            href="/"
                             sx={{
                                 mr: 2,
                                 display: { xs: 'none', md: 'flex' },
@@ -77,9 +93,10 @@ export default function Navigation({ dictionary }: Props) {
                         >
                             <Image src="./common-services.svg"
                                 alt="Common-Services Logo"
-                                width={419}
+                                width={330}
                                 height={45}
-                                priority />
+                                priority
+                            />
                         </Typography>
 
                         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -137,7 +154,7 @@ export default function Navigation({ dictionary }: Props) {
                         >
                             <Image src="./common-services.svg"
                                 alt="Common-Services Logo"
-                                width={419}
+                                width={300}
                                 height={45}
                                 priority />
                         </Typography>

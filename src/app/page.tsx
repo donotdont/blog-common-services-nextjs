@@ -99,9 +99,14 @@ import { getDictionary } from "../../get-dictionary";
 import { Locale } from "../../i18n-config";
 import Counter from "./[lang]/components/counter";
 import LocaleSwitcher from "./[lang]/components/locale-switcher";
+import BlogPostCard from "@/components/BlogPostCard";
 import Navigation from "@/components/Navigation";
 
 import "./globals.css";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import { Grid, Paper, Stack } from "@mui/material";
+
 export default async function IndexPage({
   params: { lang },
 }: {
@@ -113,6 +118,24 @@ export default async function IndexPage({
     <div>
       <Navigation dictionary={dictionary} />
       <LocaleSwitcher />
+      <Container maxWidth="xl" sx={{ marginTop: '24px' }}>
+        <Grid
+          container
+          spacing={2}
+          direction="row"
+          justifyContent="center"
+          alignItems="flex-start"
+        >
+          <Grid item md={9}>
+            <Grid container direction="row" justifyContent="center" alignItems="stretch" spacing={4} >
+              <BlogPostCard dictionary={dictionary} />
+            </Grid>
+          </Grid>
+          <Grid item md={3}>
+            md=3
+          </Grid>
+        </Grid>
+      </Container>
       <p>Current locale: {lang}</p>
       <p>
         This text is rendered on the server:{" "}

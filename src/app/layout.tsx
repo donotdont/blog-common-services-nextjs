@@ -24,7 +24,6 @@ export default function RootLayout({
 /* MUI Theme */
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 import { ThemeProvider } from '@mui/material/styles';
-import theme from './theme';
 
 /* i18n */
 import { i18n, type Locale } from "../../i18n-config";
@@ -34,8 +33,13 @@ export async function generateStaticParams() {
 }
 
 import { Roboto } from "next/font/google";
+import theme from '@/theme';
 
 const roboto = Roboto({ subsets: ["latin"], weight: ["100", "300", "400", "500", "700", "900"] });
+
+/* Cookie */
+import { cookies } from "next/headers";
+import { ApolloWrapper } from '@/components/ApolloWrapper';
 
 export default function Root({
   children,
@@ -44,12 +48,16 @@ export default function Root({
   children: React.ReactNode;
   params: { lang: Locale };
 }) {
+  const cookieStore = cookies();
+  const delay = Number(cookieStore.get("apollo-x-custom-delay")?.value ?? 1000);
   return (
     <html lang={params.lang}>
       <body className={roboto.className}>
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
-            {children}
+            <ApolloWrapper>
+              {children}
+            </ApolloWrapper>
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>
@@ -58,6 +66,6 @@ export default function Root({
 }
 
 export const metadata = {
-  title: "i18n within app directory - Vercel Examples",
-  description: "How to do i18n in Next.js 13 within app directory",
+  title: "Blog Common-Services",
+  description: "Modules, extensions, addons, plugins for Prestashop, Oscommerce, Open Cart, Magento, Shopify.",
 };
