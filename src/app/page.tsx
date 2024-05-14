@@ -107,6 +107,7 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import { Grid, Paper, Stack } from "@mui/material";
 import Footer from "@/components/Footer";
+import Sidebar from "@/components/Sidebar";
 
 export default async function IndexPage({
   params: { lang },
@@ -133,7 +134,7 @@ export default async function IndexPage({
             </Grid>
           </Grid>
           <Grid item md={3}>
-            md=3
+            <Sidebar dictionary={dictionary} />
           </Grid>
         </Grid>
       </Container>

@@ -31,6 +31,8 @@ import 'moment/locale/fr';
 import ButtonBase from '@mui/material/ButtonBase';
 import CardActionArea from '@mui/material/CardActionArea';
 import SocialMedia from './SocialMedia';
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
 
 //import { getClient } from "./../ApolloClient";
 
@@ -137,7 +139,29 @@ export default function BlogPostCard({ dictionary }: Props) {
                   </CardActionArea>
                 </Link>
 
-                <SocialMedia dictionary={t} post={post} size={32} />
+                {post.categories && post.categories.length > 0 && (
+                  <CardActions>
+                    <Stack direction="row" spacing={1}>
+
+                      {post.categories.map((category, KeyCategory) => (
+                        <Chip
+                          key={KeyCategory}
+                          label={category.name}
+                          component="a"
+                          href={"/category/" + category.slug}
+                          variant="outlined"
+                          size="small"
+                          clickable
+                        />
+                      ))}
+
+                    </Stack>
+                  </CardActions>
+                )}
+
+
+                <CardActions><SocialMedia dictionary={t} post={post} size={32} /></CardActions>
+
               </Card>
             </Grid>
           )
