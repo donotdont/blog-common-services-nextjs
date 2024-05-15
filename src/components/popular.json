@@ -1,0 +1,101 @@
+{
+    "en":[
+       {
+         "published": "2018-08-28T12:00:00.000Z",
+         "title": "Products classification by learning machine",
+         "slugurl": "products-classification-by-learning-machine"
+       },
+       {
+         "published": "2018-04-24T12:00:00.000Z",
+         "title": "What’s new in Amazon version 4.3",
+         "slugurl": "whats-new-in-amazon-version-4-3"
+       },
+       {
+         "published": "2016-08-16T12:00:00.000Z",
+         "title": "Jet Marketplace for Prestashop",
+         "slugurl": "jet-marketplace-for-prestashop"
+       },
+       {
+         "published": "2016-08-10T12:00:00.000Z",
+         "title": "Mirakl Module for Prestashop",
+         "slugurl": "mirakl-module-for-prestashop"
+       },
+       {
+         "published": "2015-07-07T12:00:00.000Z",
+         "title": "New in Amazon version 4.1 Module",
+         "slugurl": "new-in-amazon-version-4-1-module"
+       },
+       {
+         "published": "2015-05-28T12:00:00.000Z",
+         "title": "New in Amazon version 4 Module",
+         "slugurl": "new-amazon-version-4-module"
+       },
+       {
+         "published": "2015-03-31T12:00:00.000Z",
+         "title": "Spartoo Marketplace Module for Prestashop",
+         "slugurl": "spartoo-marketplace-module-prestashop"
+       },
+       {
+         "published": "2019-07-09T12:00:00.000Z",
+         "title": "Application Colissimo Shopify",
+         "slugurl": "app-colissimo-shopify"
+       },
+       {
+         "published": "2019-08-29T12:00:00.000Z",
+         "title": "SoNice Pro pour PrestaShop",
+         "slugurl": "sonicepro"
+       },
+       {
+         "published": "2020-06-17T12:00:00.000Z",
+         "title": "Our Shopify apps",
+         "slugurl": "our-shopify-apps"
+       }
+     ],
+    "fr":[
+       {
+         "published": "2018-10-18T12:00:00.000Z",
+         "title": "Partenariat Store Commander / Common-Services",
+         "slugurl": "partenariat-store-commander-common-services"
+       },
+       {
+         "published": "2018-06-25T12:00:00.000Z",
+         "title": "Module La Poste Suivi pour PrestaShop 1.6+",
+         "slugurl": "module-la-poste-suivi"
+       },
+       {
+         "published": "2018-05-27T12:00:00.000Z",
+         "title": "Nouveautés des modules Colissimo",
+         "slugurl": "nouveautes-des-modules-colissimo"
+       },
+       {
+         "published": "2018-04-15T12:00:00.000Z",
+         "title": "Nouveautés du module Amazon version 4.3",
+         "slugurl": "nouveautes-du-module-amazon-version-4-3"
+       },
+       {
+         "published": "2016-07-12T12:00:00.000Z",
+         "title": "Module Mirakl pour Prestashop",
+         "slugurl": "module-mirakl-pour-prestashop"
+       },
+       {
+         "published": "2013-12-24T12:00:00.000Z",
+         "title": "Amazon Marketplace – Frais de port basés sur le poids",
+         "slugurl": "amazon-marketplace-frais-de-port-bases-sur-le-poids"
+       },
+       {
+         "published": "2013-10-21T12:00:00.000Z",
+         "title": "Codes barre (EAN/UPC/GTIN) dans le e-commerce et Places de Marché",
+         "slugurl": "prestashop-ean-barcodes-marketplaces"
+       },
+       {
+         "published": "2020-06-17T12:00:00.000Z",
+         "title": "Nos applications Shopify",
+         "slugurl": "nos-applications-shopify"
+       },
+       {
+         "published": "2020-08-13T12:00:00.000Z",
+         "title": "Module Amazon pour PrestaShop et mise à jour de l'API Amazon MWS",
+         "slugurl": "changement-amazon-mws"
+       }
+     ]
+ }

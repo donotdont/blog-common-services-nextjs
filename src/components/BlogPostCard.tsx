@@ -19,11 +19,11 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import Grid from '@mui/material/Grid';
 
 /* GraphQL */
 import { gql, TypedDocumentNode } from "@apollo/client";
 import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
-import Grid from '@mui/material/Grid';
 
 /* Time */
 import Moment from 'react-moment';
@@ -33,6 +33,7 @@ import CardActionArea from '@mui/material/CardActionArea';
 import SocialMedia from './SocialMedia';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
+import BlogPostCardSkeleton from './BlogPostCardSkeleton';
 
 //import { getClient } from "./../ApolloClient";
 
@@ -92,6 +93,10 @@ export default function BlogPostCard({ dictionary }: Props) {
     return (<Moment format="D MMMM YYYY" titleFormat="DD MMMM YYYY" locale={t['language-selected'].toLowerCase()} withTitle>{post.published}</Moment>)
   }
 
+  function removeAtEN(name) {
+    return (t['language-selected'] == "FR") ? name.replace(/ @fr/g, '') : name.replace(/ @en/g, '');
+  }
+
   function Result({ source, data }: { source: string; data: unknown }) {
     /*return (
       <div>
@@ -105,6 +110,7 @@ export default function BlogPostCard({ dictionary }: Props) {
     return (
       <>
         {/*JSON.stringify(data.postsConnection.values)*/}
+        {/*<BlogPostCardSkeleton />*/}
         {data && data.postsConnection && data.postsConnection.values.map((post, keyPost) => {
           //console.log(post);
           return (
@@ -142,11 +148,10 @@ export default function BlogPostCard({ dictionary }: Props) {
                 {post.categories && post.categories.length > 0 && (
                   <CardActions>
                     <Stack direction="row" spacing={1}>
-
                       {post.categories.map((category, KeyCategory) => (
                         <Chip
                           key={KeyCategory}
-                          label={category.name}
+                          label={removeAtEN(category.name)}
                           component="a"
                           href={"/category/" + category.slug}
                           variant="outlined"
@@ -154,11 +159,9 @@ export default function BlogPostCard({ dictionary }: Props) {
                           clickable
                         />
                       ))}
-
                     </Stack>
                   </CardActions>
                 )}
-
 
                 <CardActions><SocialMedia dictionary={t} post={post} size={32} /></CardActions>
 
@@ -182,9 +185,8 @@ export default function BlogPostCard({ dictionary }: Props) {
   }
 
   return (
-    <Suspense>
-      <SuspenseQueryPosts>
-      </SuspenseQueryPosts>
+    <Suspense fallback={<BlogPostCardSkeleton />}>
+      <SuspenseQueryPosts />
     </Suspense>
   );
 }

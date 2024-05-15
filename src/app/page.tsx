@@ -120,7 +120,7 @@ export default async function IndexPage({
     <div>
       <Navigation dictionary={dictionary} />
       <LocaleSwitcher />
-      <Container maxWidth="xl" sx={{ marginTop: '24px' }}>
+      <Container maxWidth="xl" sx={{ marginTop: '40px' }}>
         <Grid
           container
           spacing={2}

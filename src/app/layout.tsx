@@ -39,9 +39,11 @@ const roboto = Roboto({ subsets: ["latin"], weight: ["100", "300", "400", "500",
 
 /* Cookie */
 import { cookies } from "next/headers";
+
+/* GraphQL */
 import { ApolloWrapper } from '@/components/ApolloWrapper';
 
-export default function Root({
+export default async function RootLayout({
   children,
   params,
 }: {
@@ -55,7 +57,7 @@ export default function Root({
       <body className={roboto.className}>
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
-            <ApolloWrapper>
+            <ApolloWrapper delay={delay}>
               {children}
             </ApolloWrapper>
           </ThemeProvider>

@@ -42,7 +42,7 @@ export default function Footer({ dictionary }: Props) {
                         </Typography>
 
                         <Typography component="p">
-                            <span className={"copy-left"}>©</span> {year} <Link href="https://common-services.com" target="_blank"><Button size="small">Common-Services</Button></Link>, {t["homemade with love and powered by"]} <Link href='https://reactjs.org' target="_blank" rel="noopener noreferrer"><Button size="small">React</Button></Link>, <Link href='https://material-ui.com' target="_blank" rel="noopener noreferrer"><Button size="small">Material UI</Button></Link> & <Link href='https://strapi.io' target="_blank" rel="noopener noreferrer"><Button size="small">Strapi</Button></Link>.
+                            <span className={"copy-left"}>©</span> {year} <Button size="small" href="https://common-services.com" target="_blank">Common-Services</Button>, {t["homemade with love and powered by"]} <Button size="small" href='https://reactjs.org' target="_blank" rel="noopener noreferrer">React</Button>, <Button size="small" href='https://nextjs.org' target="_blank" rel="noopener noreferrer">Next.js</Button>, <Button size="small" href='https://material-ui.com' target="_blank" rel="noopener noreferrer">Material UI</Button> & <Button size="small" href='https://strapi.io' target="_blank" rel="noopener noreferrer">Strapi</Button>.
                         </Typography>
                     </Grid>
                 </Grid>
