@@ -1,5 +1,5 @@
 "use client";
-/*
+
 import { ApolloLink, HttpLink } from "@apollo/client";
 import {
   ApolloNextAppProvider,
@@ -37,9 +37,9 @@ export function ApolloWrapper({ children }: React.PropsWithChildren) {
       {children}
     </ApolloNextAppProvider>
   );
-}*/
+}
 
-import React from "react";
+/*import React from "react";
 import { ApolloLink, HttpLink } from "@apollo/client";
 import clientCookies from "js-cookie";
 import {
@@ -113,4 +113,4 @@ export function ApolloWrapper({
       link,
     });
   }
-}
+}*/

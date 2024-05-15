@@ -1,6 +1,6 @@
 "use client";
-import * as React from 'react';;
-import { Suspense } from 'react';
+import * as React from 'react';
+import { useState, Suspense, startTransition } from 'react';
 import Link from "next/link";
 
 /* MUI */
@@ -34,6 +34,8 @@ import SocialMedia from './SocialMedia';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import BlogPostCardSkeleton from './BlogPostCardSkeleton';
+import Pagination from '@mui/material/Pagination';
+import { Interface } from 'readline';
 
 //import { getClient } from "./../ApolloClient";
 
@@ -41,16 +43,29 @@ type Props = {
   dictionary: string;
 }
 
+interface PostProps {
+  children: React.ReactNode;
+  page: number;
+}
+
 export default function BlogPostCard({ dictionary }: Props) {
   //const { data } = await getClient().query({ query: userQuery });
 
   //console.log(data);
   const t = dictionary;
+  const [page, setPage] = React.useState(1);
 
-  const postsQuery = gql`
-{
+  function handleChange(event: React.ChangeEvent<unknown>, value: number) {
+    startTransition(() => {
+      setPage(value);
+    })
+  };
+
+  const postsQuery: TypedDocumentNode<Variables> = gql`
+query getPosts($page: Int){
   postsConnection(
     where: {tag:{slug: "${t['language-selected']}" },active:true},
+    start: $page,
     sort: "published:DESC",
     limit:10,
   ){
@@ -170,12 +185,28 @@ export default function BlogPostCard({ dictionary }: Props) {
           )
         }
         )}
+        <Grid
+          item
+          container
+          spacing={2}
+          direction="row"
+          justifyContent="center"
+          alignItems="flex-start"
+          sx={{ marginTop: 2 }}
+        >
+          <Grid item>
+            <Pagination count={(Math.ceil(data.postsConnection.aggregate.count / 10))} page={page} variant="outlined" color="primary" onChange={handleChange} />
+          </Grid>
+        </Grid>
       </>
     );
   }
 
-  function SuspenseQueryPosts({ children }: React.PropsWithChildren) {
-    const result = useSuspenseQuery(postsQuery, { fetchPolicy: "cache-first" }); //no-cache cache-first
+  function SuspenseQueryPosts({ children, page }: PostProps) {
+    let result = useSuspenseQuery(postsQuery, {
+      fetchPolicy: "no-cache",
+      variables: { page: (page-1) },
+    }); //no-cache cache-first // fetchPolicy: "cache-first",
     return (
       <>
         <Result source="useSuspenseQuery(postsQuery)" data={result.data} />
@@ -186,7 +217,7 @@ export default function BlogPostCard({ dictionary }: Props) {
 
   return (
     <Suspense fallback={<BlogPostCardSkeleton />}>
-      <SuspenseQueryPosts />
+      <SuspenseQueryPosts page={page} />
     </Suspense>
   );
 }

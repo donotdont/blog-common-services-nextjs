@@ -43,11 +43,7 @@ function CustomTabPanel(props: TabPanelProps) {
             aria-labelledby={`simple-tab-${index}`}
             {...other}
         >
-            {value === index && (
-                <Box sx={{ p: 0 }}>
-                    <Typography>{children}</Typography>
-                </Box>
-            )}
+            {value === index && (<>{children}</>)}
         </div>
     );
 }
@@ -114,7 +110,7 @@ export default function Sidebar(props: Props) {
                             </Tabs>
                         </Box>
                         <CustomTabPanel value={value} index={0}>
-                            <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
+                            <List component="nav" sx={{ width: '100%', bgcolor: 'background.paper' }}>
                                 {data.posts && data.posts.length > 0 && data.posts.map((post, keyPost) => {
 
                                     return (
@@ -126,7 +122,7 @@ export default function Sidebar(props: Props) {
                             </List>
                         </CustomTabPanel>
                         <CustomTabPanel value={value} index={1}>
-                            <List>
+                            <List component="nav">
                                 {popularPosts && popularPosts.length > 0 && popularPosts.map((popular, keyPopular) => {
                                     return (
                                         <ListItemButton key={keyPopular} divider={popularPosts.length - 1 > keyPopular} component="a" href={'/post/' + popular.slugurl}>

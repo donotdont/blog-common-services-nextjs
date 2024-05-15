@@ -8,11 +8,11 @@ import Grid from "@mui/material/Grid";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 export default function BlogPostCardSkeleton() {
-    const numbers = [1, 2, 3, 4, 5, 6];
+    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     return (
         <React.Fragment>
-            {numbers.forEach((num, keyNum) => {
-                <Grid key={keyNum} item md={4}>
+            {numbers && numbers.length > 0 && numbers.map((num, keyNum) => {
+                return (<Grid key={keyNum} item md={4}>
                     <Card>
                         <CardHeader
                             avatar={
@@ -65,7 +65,7 @@ export default function BlogPostCardSkeleton() {
                         </CardActions>
 
                     </Card>
-                </Grid>
+                </Grid>);
             })}
         </React.Fragment>
     );
