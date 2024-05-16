@@ -108,6 +108,7 @@ import Container from "@mui/material/Container";
 import { Grid, Paper, Stack } from "@mui/material";
 import Footer from "@/components/Footer";
 import Sidebar from "@/components/Sidebar";
+import SidebarSkeleton from "@/components/SidebarSkeleton";
 
 export default async function IndexPage({
   params: { lang },

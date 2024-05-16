@@ -21,6 +21,7 @@ import Moment from "react-moment";
 import populars from "@/components/popular.json";
 import CardContent from "@mui/material/CardContent";
 import ListSubheader from "@mui/material/ListSubheader";
+import SidebarSkeleton from "./SidebarSkeleton";
 
 type Props = {
     dictionary: string;
@@ -189,7 +190,7 @@ export default function Sidebar(props: Props) {
     }
 
     return (
-        <Suspense>
+        <Suspense fallback={<SidebarSkeleton dictionary={t} />}>
             <SuspenseQuerySidebar />
         </Suspense>
     );
