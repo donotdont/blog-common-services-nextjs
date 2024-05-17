@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { useEffect } from 'react';
+import { startTransition, Suspense, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import SearchIcon from '@mui/icons-material/Search';
 import styled from '@emotion/styled';
-import { FormLabel, Input, OutlinedInput } from '@mui/material';
+import { CircularProgress, FormLabel, Input, OutlinedInput } from '@mui/material';
 import { WidthFull } from '@mui/icons-material';
 
 //import * as React from 'react';
@@ -34,6 +34,10 @@ import ArticleIcon from '@mui/icons-material/Article';
 
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
+
+/* GraphQL */
+import { gql, TypedDocumentNode } from "@apollo/client";
+import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -77,26 +81,133 @@ export default function SearchModal({ dictionary }: Props) {
     const t = dictionary;
 
     const [open, setOpen] = React.useState(false);
+    const [search, setSearch] = React.useState('');
+    const [keyword, setKeyword] = React.useState('');
+    const [loading, setLoading] = React.useState(true);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    useEffect(() => {
+        /*const timeOutId = setTimeout(() => setDisplayMessage(search), 500);
+        return () => clearTimeout(timeOutId);*/
+        const searchCountdownInterval = setTimeout(() => {
+            // Decrease the countdown value every second
+            startTransition(() => {
+                setSearch(keyword);
+            });
+        }, 2000);
+
+        // Cleanup function to clear the interval when the component unmounts
+        return () => clearTimeout(searchCountdownInterval);
+      }, [keyword]);
+
+    function handleChange(event: React.ChangeEvent<unknown>) {
+        /*startTransition(() => {
+            setSearch(event.target.value);
+        });*/
+        setKeyword(event.target.value);
+    };
+
+    const searchPostsQuery: TypedDocumentNode<Variables> = gql`
+    query searchPosts($search: String, $lang: String){
+        posts(where: {title_contains: $search,tag:{slug_contains: $lang } }, limit:10){
+            title
+            slugurl
+            published
+        }
+    }
+`;
 
     const keyDownHandler = React.useCallback((event: KeyboardEvent) => {
         //console.log(`Pressed keyCode ${event ?? event.key}`,event ?? event.key);
         if (event && ((event.key === 'k' || event.key === 'K') && event.ctrlKey == true)) {
-          // Do code here
-          handleOpen();
-          event.preventDefault();
+            // Do code here
+            handleOpen();
+            event.preventDefault();
         }
-      }, []);
-      useEffect(() => {
+    }, []);
+    useEffect(() => {
         document.addEventListener("keydown", keyDownHandler);
-    
+
         return () => document.removeEventListener("keydown", keyDownHandler);
-      }, []);
+    }, []);
+
+    const [countdown, setCountdown] = React.useState(5);
+
+    /*useEffect(() => {
+        const countdownInterval = setInterval(() => {
+            // Decrease the countdown value every second
+            setCountdown((prevCountdown) => prevCountdown - 1);
+        }, 1000);
+
+        // Cleanup function to clear the interval when the component unmounts
+        return () => clearInterval(countdownInterval);
+    }, []); // Empty dependency array ensures the effect runs only once
+
+    useEffect(() => {
+        // Use setTimeout to reset the countdown after it reaches 0
+        if (countdown === 0) {
+            setTimeout(() => {
+                setCountdown(5); // Reset the countdown to 5 seconds
+            }, 2000); // Delay before resetting (2 seconds)
+        }
+    }, [countdown]); // Effect re-runs whenever countdown changes*/
+
+    function Result({ source, data }: { source: string; data: unknown }) {
+        /*return (
+          <div>
+            <span>Source: {source}</span>
+            <span>
+              Data:
+              {JSON.stringify(data)}
+            </span>
+          </div>
+        );*/
+
+        return (
+            <React.Fragment>
+                <MenuList>
+                    <MenuItem>
+                        <ListItemIcon>
+                            <ArticleIcon fontSize="small" />
+                        </ListItemIcon>
+                        <ListItemText>Cut</ListItemText>
+                        <Chip label="Amazon" size="small" variant="outlined" />
+                    </MenuItem>
+                    <MenuItem>
+                        <ListItemIcon>
+                            <ArticleIcon fontSize="small" />
+                        </ListItemIcon>
+                        <ListItemText>Copy</ListItemText>
+                        <Chip label="Amazon" size="small" variant="outlined" />
+                    </MenuItem>
+                    <MenuItem>
+                        <ListItemIcon>
+                            <ArticleIcon fontSize="small" />
+                        </ListItemIcon>
+                        <ListItemText>Paste</ListItemText>
+                        <Chip label="Amazon" size="small" variant="outlined" />
+                    </MenuItem>
+                </MenuList>
+            </React.Fragment>
+        );
+    }
+
+    function SuspenseQuerySearchPosts({ children, search }: PostProps) {
+        let result = useSuspenseQuery(searchPostsQuery, {
+            fetchPolicy: "no-cache",
+            variables: { search, lang: t['language-selected'] },
+        }); //no-cache cache-first // fetchPolicy: "cache-first",
+        return (
+            <React.Fragment>
+                <Result source="useSuspenseQuery(searchPostsQuery)" data={result && result.data ?? null} />
+                <React.Fragment key="children">{children}</React.Fragment>
+            </React.Fragment>
+        );
+    }
 
     return (
-        <>
-            {/*<Button onClick={handleOpen}>Open modal</Button>*/}
+        <React.Fragment>
             <Button
                 onClick={handleOpen}
                 variant="outlined"
@@ -134,77 +245,41 @@ export default function SearchModal({ dictionary }: Props) {
                 }}
             >
                 <Box sx={style}>
-                    <header>
-                        <form>
-                            <Paper
-                                component="form"
-                                sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '100%', borderRadius: 0 }}
-                            >
-                                <IconButton sx={{ p: '10px' }} aria-label="menu">
-                                    <MenuIcon />
-                                </IconButton>
-                                <InputBase
-                                    sx={{ ml: 1, flex: 1 }}
-                                    placeholder="Search Blog"
-                                    inputProps={{ 'aria-label': 'search blog' }}
-                                />
-                                <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
-                                    <SearchIcon />
-                                </IconButton>
-                                <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-                                <IconButton color="primary" sx={{ p: '10px' }} aria-label="close" onClick={handleClose}>
-                                    <HighlightOffRoundedIcon />
-                                </IconButton>
-                            </Paper>
-                        </form>
-                    </header>
-                    <div>
-                        <Stack direction="row" spacing={1} sx={{ padding: '8px' }}>
-                            <Chip label="Amazon" size="small" variant="outlined" component="a" href="#basic-chip" clickable />
-                            <Chip label="Ebay" size="small" variant="outlined" component="a" href="#basic-chip" clickable />
-                            <Chip label="Cdiscount" size="small" variant="outlined" component="a" href="#basic-chip" clickable />
-                        </Stack>
-                    </div>
-                    <div>
-                        <MenuList>
-                            <MenuItem>
-                                <ListItemIcon>
-                                    <ArticleIcon fontSize="small" />
-                                </ListItemIcon>
-                                <ListItemText>Cut</ListItemText>
-                                <Typography variant="body2" color="text.secondary">
-                                    <Chip label="Amazon" size="small" variant="outlined" />
-                                </Typography>
-                            </MenuItem>
-                            <MenuItem>
-                                <ListItemIcon>
-                                    <ArticleIcon fontSize="small" />
-                                </ListItemIcon>
-                                <ListItemText>Copy</ListItemText>
-                                <Typography variant="body2" color="text.secondary">
-                                    <Chip label="Amazon" size="small" variant="outlined" />
-                                </Typography>
-                            </MenuItem>
-                            <MenuItem>
-                                <ListItemIcon>
-                                    <ArticleIcon fontSize="small" />
-                                </ListItemIcon>
-                                <ListItemText>Paste</ListItemText>
-                                <Typography variant="body2" color="text.secondary">
-                                    <Chip label="Amazon" size="small" variant="outlined" />
-                                </Typography>
-                            </MenuItem>
-                            {/*<Divider />
-                            <MenuItem>
-                                <ListItemIcon>
-                                    <Cloud fontSize="small" />
-                                </ListItemIcon>
-                                <ListItemText>Web Clipboard</ListItemText>
-                            </MenuItem>*/}
-                        </MenuList>
-                    </div>
+                    <>
+                        <Paper
+                            component="form"
+                            sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '100%', borderRadius: 0 }}
+                        >
+                            <IconButton sx={{ p: '10px' }} aria-label="menu">
+                                {(loading) ? <CircularProgress color="primary" size={16} /> : (<MenuIcon />)}
+                            </IconButton>
+                            <InputBase
+                                onChange={handleChange}
+                                sx={{ ml: 1, flex: 1 }}
+                                placeholder="Search Blog"
+                                inputProps={{ 'aria-label': 'search blog' }}
+                            />
+                            <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+                                <SearchIcon />
+                            </IconButton>
+                            <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+                            <IconButton color="primary" sx={{ p: '10px' }} aria-label="close" onClick={handleClose}>
+                                <HighlightOffRoundedIcon />
+                            </IconButton>
+                        </Paper>
+                    </>
+                    <Stack direction="row" spacing={1} sx={{ padding: '8px' }}>
+                        <Chip label="Amazon" size="small" variant="outlined" component="a" href="#basic-chip" clickable />
+                        <Chip label="Ebay" size="small" variant="outlined" component="a" href="#basic-chip" clickable />
+                        <Chip label="Cdiscount" size="small" variant="outlined" component="a" href="#basic-chip" clickable />
+                    </Stack>
+                    <Suspense>
+                        <SuspenseQuerySearchPosts search={search} />
+                    </Suspense>
+
                 </Box>
             </Modal>
-        </>
+        </React.Fragment>
+
     );
 }
