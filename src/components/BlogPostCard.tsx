@@ -108,7 +108,7 @@ query getPosts($page: Int){
     return (<Moment format="D MMMM YYYY" titleFormat="DD MMMM YYYY" locale={t['language-selected'].toLowerCase()} withTitle>{post.published}</Moment>)
   }
 
-  function removeAtEN(name) {
+  function removeAtENFR(name) {
     return (t['language-selected'] == "FR") ? name.replace(/ @fr/g, '') : name.replace(/ @en/g, '');
   }
 
@@ -166,7 +166,7 @@ query getPosts($page: Int){
                       {post.categories.map((category, KeyCategory) => (
                         <Chip
                           key={KeyCategory}
-                          label={removeAtEN(category.name)}
+                          label={removeAtENFR(category.name)}
                           component="a"
                           href={"/category/" + category.slug}
                           variant="outlined"

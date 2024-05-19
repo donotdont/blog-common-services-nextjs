@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import SearchIcon from '@mui/icons-material/Search';
 import styled from '@emotion/styled';
-import { CircularProgress, FormLabel, Input, OutlinedInput } from '@mui/material';
+import { Alert, CircularProgress, FormLabel, Input, OutlinedInput } from '@mui/material';
 import { WidthFull } from '@mui/icons-material';
 
 //import * as React from 'react';
@@ -81,9 +81,9 @@ export default function SearchModal({ dictionary }: Props) {
     const t = dictionary;
 
     const [open, setOpen] = React.useState(false);
-    const [search, setSearch] = React.useState('');
     const [keyword, setKeyword] = React.useState('');
-    const [loading, setLoading] = React.useState(true);
+    const [search, setSearch] = React.useState('');
+    const [loading, setLoading] = React.useState<boolean>(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
@@ -99,13 +99,15 @@ export default function SearchModal({ dictionary }: Props) {
 
         // Cleanup function to clear the interval when the component unmounts
         return () => clearTimeout(searchCountdownInterval);
-      }, [keyword]);
+
+    }, [keyword]);
 
     function handleChange(event: React.ChangeEvent<unknown>) {
         /*startTransition(() => {
             setSearch(event.target.value);
         });*/
         setKeyword(event.target.value);
+        setLoading(true);
     };
 
     const searchPostsQuery: TypedDocumentNode<Variables> = gql`
@@ -114,6 +116,14 @@ export default function SearchModal({ dictionary }: Props) {
             title
             slugurl
             published
+            tag{
+                name
+                slug
+            }
+            categories{
+                name
+                slug
+            }
         }
     }
 `;
@@ -126,6 +136,7 @@ export default function SearchModal({ dictionary }: Props) {
             event.preventDefault();
         }
     }, []);
+
     useEffect(() => {
         document.addEventListener("keydown", keyDownHandler);
 
@@ -153,7 +164,12 @@ export default function SearchModal({ dictionary }: Props) {
         }
     }, [countdown]); // Effect re-runs whenever countdown changes*/
 
+    function removeAtENFR(name) {
+        return (t['language-selected'] == "FR") ? name.replace(/ @fr/g, '') : name.replace(/ @en/g, '');
+    }
+
     function Result({ source, data }: { source: string; data: unknown }) {
+        setLoading(false);
         /*return (
           <div>
             <span>Source: {source}</span>
@@ -166,34 +182,30 @@ export default function SearchModal({ dictionary }: Props) {
 
         return (
             <React.Fragment>
-                <MenuList>
-                    <MenuItem>
-                        <ListItemIcon>
-                            <ArticleIcon fontSize="small" />
-                        </ListItemIcon>
-                        <ListItemText>Cut</ListItemText>
-                        <Chip label="Amazon" size="small" variant="outlined" />
-                    </MenuItem>
-                    <MenuItem>
-                        <ListItemIcon>
-                            <ArticleIcon fontSize="small" />
-                        </ListItemIcon>
-                        <ListItemText>Copy</ListItemText>
-                        <Chip label="Amazon" size="small" variant="outlined" />
-                    </MenuItem>
-                    <MenuItem>
-                        <ListItemIcon>
-                            <ArticleIcon fontSize="small" />
-                        </ListItemIcon>
-                        <ListItemText>Paste</ListItemText>
-                        <Chip label="Amazon" size="small" variant="outlined" />
-                    </MenuItem>
-                </MenuList>
+                {data && data.posts.length > 0 ? (<MenuList>
+                    {data.posts.map((post, keyPost) => {
+                        var title = post.title;
+                        var length = 40;
+                        var trimmedTitle = title.length > length ?
+                            title.substring(0, length - 3) + "..." :
+                            title;
+                        return (
+                            <MenuItem key={keyPost}>
+                                <ListItemIcon>
+                                    <ArticleIcon fontSize="small" />
+                                </ListItemIcon>
+                                <ListItemText>{trimmedTitle}</ListItemText>
+                                {post.categories && post.categories.length > 0 ? (<Chip label={removeAtENFR(post.categories[0].name)} size="small" variant="outlined" />) : null}
+                            </MenuItem>
+                        );
+                    })}
+                </MenuList>) : (<Alert severity="info">Not Found the article.</Alert>)}
             </React.Fragment>
         );
     }
 
     function SuspenseQuerySearchPosts({ children, search }: PostProps) {
+        setLoading(true);
         let result = useSuspenseQuery(searchPostsQuery, {
             fetchPolicy: "no-cache",
             variables: { search, lang: t['language-selected'] },
@@ -234,9 +246,10 @@ export default function SearchModal({ dictionary }: Props) {
                     "& > .MuiBox-root": {
                         border: 'none',
                         borderRadius: '6px',
-                        top: '150px',
                         padding: 0,
-                        minWidth: '480px'
+                        minWidth: '480px',
+                        top: '10%',
+                        transform: 'translate(-50%, -10%)',
                     },
                     "& > .MuiBackdrop-root": {
                         backgroundColor: "rgb(255, 255, 255, 0.1)",
@@ -251,9 +264,10 @@ export default function SearchModal({ dictionary }: Props) {
                             sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '100%', borderRadius: 0 }}
                         >
                             <IconButton sx={{ p: '10px' }} aria-label="menu">
-                                {(loading) ? <CircularProgress color="primary" size={16} /> : (<MenuIcon />)}
+                                {loading === true ? (<CircularProgress color="primary" size={16} />) : (<MenuIcon />)}
                             </IconButton>
                             <InputBase
+                                value={keyword}
                                 onChange={handleChange}
                                 sx={{ ml: 1, flex: 1 }}
                                 placeholder="Search Blog"
@@ -272,6 +286,7 @@ export default function SearchModal({ dictionary }: Props) {
                         <Chip label="Amazon" size="small" variant="outlined" component="a" href="#basic-chip" clickable />
                         <Chip label="Ebay" size="small" variant="outlined" component="a" href="#basic-chip" clickable />
                         <Chip label="Cdiscount" size="small" variant="outlined" component="a" href="#basic-chip" clickable />
+                        <Chip label="Marketplace" size="small" variant="outlined" component="a" href="#basic-chip" clickable />
                     </Stack>
                     <Suspense>
                         <SuspenseQuerySearchPosts search={search} />
