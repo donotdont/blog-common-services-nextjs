@@ -106,8 +106,16 @@ export default function SearchModal({ dictionary }: Props) {
         /*startTransition(() => {
             setSearch(event.target.value);
         });*/
-        setKeyword(event.target.value);
         setLoading(true);
+        setKeyword(event.target.value);
+    };
+    
+    function handleSearch(event: React.MouseEvent<unknown>) {
+        /*startTransition(() => {
+            setSearch(event.target.value);
+        });*/
+        setLoading(true);
+        setKeyword(keyword);
     };
 
     const searchPostsQuery: TypedDocumentNode<Variables> = gql`
@@ -205,7 +213,7 @@ export default function SearchModal({ dictionary }: Props) {
     }
 
     function SuspenseQuerySearchPosts({ children, search }: PostProps) {
-        setLoading(true);
+
         let result = useSuspenseQuery(searchPostsQuery, {
             fetchPolicy: "no-cache",
             variables: { search, lang: t['language-selected'] },
@@ -273,7 +281,7 @@ export default function SearchModal({ dictionary }: Props) {
                                 placeholder="Search Blog"
                                 inputProps={{ 'aria-label': 'search blog' }}
                             />
-                            <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+                            <IconButton type="button" sx={{ p: '10px' }} aria-label="search" onClick={handleSearch}>
                                 <SearchIcon />
                             </IconButton>
                             <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
