@@ -213,7 +213,6 @@ export default function SearchModal({ dictionary }: Props) {
     }
 
     function SuspenseQuerySearchPosts({ children, search }: PostProps) {
-
         let result = useSuspenseQuery(searchPostsQuery, {
             fetchPolicy: "no-cache",
             variables: { search, lang: t['language-selected'] },
@@ -224,6 +223,10 @@ export default function SearchModal({ dictionary }: Props) {
                 <React.Fragment key="children">{children}</React.Fragment>
             </React.Fragment>
         );
+    }
+
+    function Loading(){
+        return setLoading(true);
     }
 
     return (
@@ -296,7 +299,7 @@ export default function SearchModal({ dictionary }: Props) {
                         <Chip label="Cdiscount" size="small" variant="outlined" component="a" href="#basic-chip" clickable />
                         <Chip label="Marketplace" size="small" variant="outlined" component="a" href="#basic-chip" clickable />
                     </Stack>
-                    <Suspense>
+                    <Suspense fallback={<Loading />}>
                         <SuspenseQuerySearchPosts search={search} />
                     </Suspense>
 

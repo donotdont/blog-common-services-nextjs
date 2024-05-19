@@ -43,9 +43,6 @@ import { cookies } from "next/headers";
 /* GraphQL */
 import { ApolloWrapper } from '@/components/ApolloWrapper';
 
-/* Analytic */
-import GoogleAnalytics from '@/components/GoogleAnalytics';
-
 export default async function RootLayout({
   children,
   params,
@@ -58,7 +55,6 @@ export default async function RootLayout({
   return (
     <html lang={params.lang}>
       <body className={roboto.className}>
-        <GoogleAnalytics />
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <ApolloWrapper delay={delay}>

@@ -111,7 +111,7 @@ export default function Sidebar(props: Props) {
                             </Tabs>
                         </Box>
                         <CustomTabPanel value={value} index={0}>
-                            <List component="nav" sx={{ width: '100%', bgcolor: 'background.paper' }}>
+                            <List component="nav" sx={{ width: '100%', bgcolor: 'background.paper', paddingTop: 0, paddingBottom: 0 }}>
                                 {data.posts && data.posts.length > 0 && data.posts.map((post, keyPost) => {
 
                                     return (
@@ -123,7 +123,7 @@ export default function Sidebar(props: Props) {
                             </List>
                         </CustomTabPanel>
                         <CustomTabPanel value={value} index={1}>
-                            <List component="nav">
+                            <List component="nav" sx={{ width: '100%', bgcolor: 'background.paper', paddingTop: 0, paddingBottom: 0 }}>
                                 {popularPosts && popularPosts.length > 0 && popularPosts.map((popular, keyPopular) => {
                                     return (
                                         <ListItemButton key={keyPopular} divider={popularPosts.length - 1 > keyPopular} component="a" href={'/post/' + popular.slugurl}>
@@ -145,6 +145,7 @@ export default function Sidebar(props: Props) {
                                 {t['Company'].toUpperCase()}
                             </ListSubheader>
                         }
+                        sx={{ width: '100%', bgcolor: 'background.paper', paddingTop: 0, paddingBottom: 0 }}
                     >
                         {data.pages && data.pages.length > 0 && data.pages.map((page, keyPage) => {
                             return (
@@ -165,6 +166,7 @@ export default function Sidebar(props: Props) {
                                 {t['Category'].toUpperCase()}
                             </ListSubheader>
                         }
+                        sx={{ width: '100%', bgcolor: 'background.paper', paddingTop: 0, paddingBottom: 0 }}
                     >
                         {data.categories && data.categories.length > 0 && data.categories.map((category, keyCategory) => {
                             return (

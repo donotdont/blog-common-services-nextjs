@@ -7,6 +7,12 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Button from '@mui/material/Button';
 
+/* Analytic */
+import GoogleAnalytics from "./GoogleAnalytics";
+
+/* Userback */
+import Userback from "./Userback";
+
 type Props = {
     dictionary: string;
 }
@@ -46,6 +52,8 @@ export default function Footer({ dictionary }: Props) {
                         </Typography>
                     </Grid>
                 </Grid>
+                <GoogleAnalytics />
+                <Userback />
             </footer>
         </Container>
     );
