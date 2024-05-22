@@ -13,7 +13,7 @@ setVerbosity("debug");
 
 function makeClient() {
   const httpLink = new HttpLink({
-    uri: "https://strapi2.common-services.com/graphql",
+    uri: process.env.NEXT_PUBLIC_STRAPI_GRAPHQL,
     fetchOptions: { cache: "no-store" },
   });
 

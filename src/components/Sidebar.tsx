@@ -13,9 +13,7 @@ import ListItemText from "@mui/material/ListItemText";
 /* GraphQL */
 import { gql, TypedDocumentNode } from "@apollo/client";
 import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
-import Divider from "@mui/material/Divider";
 import ListItemButton from "@mui/material/ListItemButton";
-import { Padding } from "@mui/icons-material";
 import Moment from "react-moment";
 
 import populars from "@/components/popular.json";
@@ -60,8 +58,8 @@ export default function Sidebar(props: Props) {
     const t = props.dictionary;
     const getCurrentLng = t['language-selected'].toLowerCase();
     const popularPosts = populars[getCurrentLng];
-    var where_posts = '{tag:{slug_contains: "' + getCurrentLng + '" },active:true }';
-    var where_pages = '{ active:true }';
+    const where_posts = '{tag:{slug_contains: "' + getCurrentLng + '" },active:true }';
+    const where_pages = '{ active:true }';
     const sidebarQuery = gql`
     query Sidebar{
         posts(where: ${where_posts},sort:"published:DESC",limit:10){
@@ -73,9 +71,15 @@ export default function Sidebar(props: Props) {
             title_${getCurrentLng}
             slug
         }
-        categories{
-            name
-            slug
+        translationCategories{
+            category_en{
+              name
+              slug
+            }
+            category_fr{
+              name
+              slug
+            }
         }
     }
     `;
@@ -168,10 +172,10 @@ export default function Sidebar(props: Props) {
                         }
                         sx={{ width: '100%', bgcolor: 'background.paper', paddingTop: 0, paddingBottom: 0 }}
                     >
-                        {data.categories && data.categories.length > 0 && data.categories.map((category, keyCategory) => {
+                        {data.translationCategories && data.translationCategories.length > 0 && data.translationCategories.map((category, keyCategory) => {
                             return (
-                                <ListItemButton key={keyCategory} divider={data.categories.length - 1 > keyCategory} component="a" href={'/' + category.slug}>
-                                    <ListItemText primary={removeAtEN(category.name)} />
+                                <ListItemButton key={keyCategory} divider={data.translationCategories.length - 1 > keyCategory} component="a" href={'/' + (category && category["category_" + getCurrentLng] != null) ? category["category_" + getCurrentLng].slug : ''}>
+                                    <ListItemText primary={removeAtEN((category && category["category_" + getCurrentLng] != null) ? category["category_" + getCurrentLng].name : '')} />
                                 </ListItemButton>
                             );
                         })}

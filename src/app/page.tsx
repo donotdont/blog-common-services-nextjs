@@ -97,18 +97,14 @@ export default function Home() {
 
 import { getDictionary } from "../../get-dictionary";
 import { Locale } from "../../i18n-config";
-import Counter from "./[lang]/components/counter";
-import LocaleSwitcher from "./[lang]/components/locale-switcher";
 import BlogPostCard from "@/components/BlogPostCard";
 import Navigation from "@/components/Navigation";
 
 import "./globals.css";
-import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import { Grid, Paper, Stack } from "@mui/material";
 import Footer from "@/components/Footer";
 import Sidebar from "@/components/Sidebar";
-import SidebarSkeleton from "@/components/SidebarSkeleton";
 
 export default async function IndexPage({
   params: { lang },
@@ -120,8 +116,7 @@ export default async function IndexPage({
   return (
     <div>
       <Navigation dictionary={dictionary} />
-      <LocaleSwitcher />
-      <Container maxWidth="xl" sx={{ marginTop: '40px' }}>
+      <Container maxWidth="xl" sx={{ marginTop: '88px' }}>
         <Grid
           container
           spacing={2}
@@ -141,12 +136,6 @@ export default async function IndexPage({
       </Container>
 
     <Footer dictionary={dictionary} size={32}  />
-      {/*<p>Current locale: {lang}</p>
-      <p>
-        This text is rendered on the server:{" "}
-        {dictionary["server-component"].welcome}
-      </p>
-  <Counter dictionary={dictionary.counter} />*/}
     </div>
   );
 }

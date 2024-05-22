@@ -1,6 +1,6 @@
 'use client';
 
-import React, { startTransition } from 'react';
+import React, { startTransition, Suspense } from 'react';
 
 //import { useLocale, useTranslations } from 'next-intl';
 //import LocaleSwitcherSelect from './LocaleSwitcherSelect';
@@ -13,9 +13,13 @@ import { useParams } from 'next/navigation';
 import { ChangeEvent, ReactNode, useTransition } from 'react';
 import { useRouter, usePathname } from '@/navigation';*/
 
-import { usePathname } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
 import Link from "next/link";
 import { i18n, type Locale } from "../../i18n-config";
+
+/* GraphQL */
+import { gql, TypedDocumentNode } from "@apollo/client";
+import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
 
 interface Props {
     handleCloseUserMenu: React.MouseEventHandler<HTMLButtonElement>;
@@ -46,6 +50,28 @@ export default function LocaleMenuSwitcher({ dictionary, handleCloseUserMenu }: 
         handleCloseUserMenu();
     }*/
     const t = dictionary;
+    const currentLang = t['language-selected'].toLowerCase();
+    const postTranslateQuery: TypedDocumentNode<Variables> = gql`
+        query Translations($slugurl: String) {
+            translation_en: translations(where: { post_en: { slugurl: $slugurl } }) {
+              post_en {
+                slugurl
+              }
+              post_fr {
+                slugurl
+              }
+            }
+          
+            translation_fr: translations(where: { post_fr: { slugurl: $slugurl } }) {
+              post_en {
+                slugurl
+              }
+              post_fr {
+                slugurl
+              }
+            }
+          }
+    `;
 
     const pathName = usePathname();
     const redirectedPathName = (locale: Locale) => {
@@ -55,23 +81,71 @@ export default function LocaleMenuSwitcher({ dictionary, handleCloseUserMenu }: 
         return segments.join("/");
     };
 
+    const redirectedPathNamePost = (locale: Locale, path: string) => {
+        if (!pathName) return "/";
+        const segments = pathName.split("/");
+        segments[1] = locale;
+        segments[2] = path
+        return segments.join("/");
+    };
     //console.log('i18n', i18n);
 
-    return (
-        <>
-            {i18n && i18n.locales.map((locale) => {
+    function Result({ source, data }: { source: string; data: unknown }) {
+        console.log(data);
+        const segments = pathName.split("/");
+        if(data && data.translation_en && data.translation_en.length > 0 && data.translation_en[0]["post_" + segments[1]].slugurl != segments[2]){
+            //console.log(data["translation_"+currentLang] && data["translation_"+currentLang][0]["post_" + segments[1]].slugurl+" != "+segments[2]);
+            return redirect(`/${segments[1]}/${data.translation_en && data.translation_en[0]["post_fr"].slugurl}`);
+        }
+        if(data && data.translation_fr && data.translation_fr.length > 0 && data.translation_fr[0]["post_" + segments[1]].slugurl != segments[2]){
+            //console.log(data["translation_"+currentLang] && data["translation_"+currentLang][0]["post_" + segments[1]].slugurl+" != "+segments[2]);
+            return redirect(`/${segments[1]}/${data.translation_fr && data.translation_fr[0]["post_en"].slugurl}`);
+        }
+        return (
+            <>
+                {i18n && i18n.locales.map((locale) => {
 
-                return (
-                    <Link key={locale} href={redirectedPathName(locale)}>
-                        <MenuItem key={locale} data-value={locale}>
-                            <Typography textAlign="center">
-                                {t['locale'][locale]}
-                            </Typography>
-                        </MenuItem>
-                    </Link>
-                )
-            })
-            }
-        </>
-    )
+                    return (
+                        <React.Fragment key={locale}>
+                            {data && data["translation_"+currentLang] && data["translation_"+currentLang].length > 0 ? <Link key={locale} href={redirectedPathNamePost(locale, data.translation_en.length ? data.translation_en[0]["post_" + locale].slugurl:data.translation_fr[0]["post_" + locale].slugurl)}>
+                                <MenuItem data-value={locale}>
+                                    <Typography textAlign="center">
+                                        {t['locale'][locale]}
+                                    </Typography>
+                                </MenuItem>
+                            </Link> : <Link key={locale} href={redirectedPathName(locale)}>
+                                <MenuItem data-value={locale}>
+                                    <Typography textAlign="center">
+                                        {t['locale'][locale]}
+                                    </Typography>
+                                </MenuItem>
+                            </Link>
+                            }
+                        </React.Fragment>
+                    )
+                })
+                }
+            </>
+        )
+    }
+
+    function SuspenseQueryPostTranslate({ children, title }: PostProps) {
+        let result = useSuspenseQuery(postTranslateQuery, {
+            fetchPolicy: "no-cache",
+            variables: { slugurl: pathName.split("/")[2] ?? null },
+        }); //no-cache cache-first // fetchPolicy: "cache-first",
+        return (
+            <>
+                <Result key="result-post" source="useSuspenseQuery(postTranslateQuery)" data={result.data} />
+                <React.Fragment key="children">{children}</React.Fragment>
+            </>
+        );
+    }
+
+    return (
+        <Suspense>
+            <SuspenseQueryPostTranslate />
+        </Suspense>
+    );
+
 }

@@ -62,46 +62,46 @@ export default function BlogPostCard({ dictionary }: Props) {
   };
 
   const postsQuery: TypedDocumentNode<Variables> = gql`
-query getPosts($page: Int){
-  postsConnection(
-    where: {tag:{slug: "${t['language-selected']}" },active:true},
-    start: $page,
-    sort: "published:DESC",
-    limit:10,
-  ){
-    aggregate{
-      totalCount
-      count
-    }
-    values {
-      title
-      summary
-      published
-      slugurl
-      medialibrary{
-        file{
-        url
-        }
+  query getPosts($page: Int){
+    postsConnection(
+      where: {tag:{slug: "${t['language-selected'].toLowerCase()}" },active:true},
+      start: $page,
+      sort: "published:DESC",
+      limit:10,
+    ){
+      aggregate{
+        totalCount
+        count
       }
-      categories{
-        name
-        slug
-      }
-      tag{
-        name
-        slug
-      }
-      user{
-        first_name
-        last_name
-        profile_image
-        {
+      values {
+        title
+        summary
+        published
+        slugurl
+        medialibrary{
+          file{
           url
+          }
+        }
+        categories{
+          name
+          slug
+        }
+        tag{
+          name
+          slug
+        }
+        user{
+          first_name
+          last_name
+          profile_image
+          {
+            url
+          }
         }
       }
     }
   }
-}
 `;
 
   function dateFormat(post) {
@@ -145,12 +145,12 @@ query getPosts($page: Int){
                   title={post.user.first_name + " " + post.user.last_name}
                   subheader={dateFormat(post)}
                 />
-                <Link href={`/post/${post.slugurl}`}>
+                <Link href={`${process.env.NODE_ENV === 'development' ? '' : process.env.NEXT_PUBLIC_HOST}/${t['language-selected'].toLowerCase()}/${post.slugurl}`}>
                   <CardActionArea>
                     <CardMedia
                       component="img"
                       height="194"
-                      image={'https://strapi2.common-services.com' + post.medialibrary.file.url}
+                      image={process.env.NEXT_PUBLIC_STRAPI + post.medialibrary.file.url}
                       alt={post.title}
                     />
                     <CardContent>

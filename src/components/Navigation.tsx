@@ -91,7 +91,7 @@ export default function Navigation(props: Props) {
                                 textDecoration: 'none',
                             }}
                         >
-                            <Image src="./common-services.svg"
+                            <Image src="/common-services.svg"
                                 alt="Common-Services Logo"
                                 width={330}
                                 height={45}
@@ -152,7 +152,7 @@ export default function Navigation(props: Props) {
                                 textDecoration: 'none',
                             }}
                         >
-                            <Image src="./common-services.svg"
+                            <Image src="/common-services.svg"
                                 alt="Common-Services Logo"
                                 width={300}
                                 height={45}

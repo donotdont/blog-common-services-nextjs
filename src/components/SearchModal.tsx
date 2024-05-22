@@ -38,6 +38,7 @@ import Stack from '@mui/material/Stack';
 /* GraphQL */
 import { gql, TypedDocumentNode } from "@apollo/client";
 import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
+import Link from 'next/link';
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -109,7 +110,7 @@ export default function SearchModal({ dictionary }: Props) {
         setLoading(true);
         setKeyword(event.target.value);
     };
-    
+
     function handleSearch(event: React.MouseEvent<unknown>) {
         /*startTransition(() => {
             setSearch(event.target.value);
@@ -198,17 +199,20 @@ export default function SearchModal({ dictionary }: Props) {
                             title.substring(0, length - 3) + "..." :
                             title;
                         return (
-                            <MenuItem key={keyPost}>
-                                <ListItemIcon>
-                                    <ArticleIcon fontSize="small" />
-                                </ListItemIcon>
-                                <ListItemText>{trimmedTitle}</ListItemText>
-                                {post.categories && post.categories.length > 0 ? (<Chip label={removeAtENFR(post.categories[0].name)} size="small" variant="outlined" />) : null}
-                            </MenuItem>
+                            <Link key={keyPost} href={`/${t['language-selected'].toLowerCase()}/${post.slugurl}`}>
+                                <MenuItem key={keyPost}>
+                                    <ListItemIcon>
+                                        <ArticleIcon fontSize="small" />
+                                    </ListItemIcon>
+                                    <ListItemText>{trimmedTitle}</ListItemText>
+                                    {post.categories && post.categories.length > 0 ? (<Chip label={removeAtENFR(post.categories[0].name)} size="small" variant="outlined" />) : null}
+                                </MenuItem>
+                            </Link>
                         );
                     })}
-                </MenuList>) : (<Alert severity="info">Not Found the article.</Alert>)}
-            </React.Fragment>
+                </MenuList>) : (<Alert severity="info">Not Found the article.</Alert>)
+                }
+            </React.Fragment >
         );
     }
 
@@ -225,7 +229,7 @@ export default function SearchModal({ dictionary }: Props) {
         );
     }
 
-    function Loading(){
+    function Loading() {
         return setLoading(true);
     }
 

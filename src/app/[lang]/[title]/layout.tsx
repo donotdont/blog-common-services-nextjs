@@ -3,11 +3,11 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 import { ThemeProvider } from '@mui/material/styles';
 
 /* i18n */
-import { i18n, type Locale } from "../../../i18n-config";
+import { i18n, type Locale } from "../../../../i18n-config";
 
-export async function generateStaticParams() {
+/*export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
-}
+}*/
 
 import { Roboto } from "next/font/google";
 import theme from '@/theme';
@@ -25,12 +25,12 @@ export default async function RootLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: { lang: Locale };
+  params: { lang: Locale, title: string };
 }) {
   const cookieStore = cookies();
   const delay = Number(cookieStore.get("apollo-x-custom-delay")?.value ?? 1000);
   return (
-    <html lang={params.lang}>
+    <html >
       <body className={roboto.className}>
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
