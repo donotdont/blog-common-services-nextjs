@@ -16,6 +16,7 @@ import Card from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardActions from '@mui/material/CardActions';
 import CardHeader from '@mui/material/CardHeader';
+import CardContent from '@mui/material/CardContent';
 
 /* GraphQL */
 import { gql, TypedDocumentNode } from "@apollo/client";
@@ -30,11 +31,6 @@ import 'moment/locale/fr';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 
-/* JQuery */
-import $ from 'jquery';
-import GalleryImages from './GalleryImages';
-import CardContent from '@mui/material/CardContent';
-
 import SocialMedia from './SocialMedia';
 import BlogPostPaperSkeleton from './BlogPostPaperSkeleton';
 import BlogPostSoNice from './BlogPostSonice';
@@ -44,52 +40,21 @@ type Props = {
     title: string;
 }
 
-interface PostProps {
+interface PageProps {
     children: React.ReactNode;
+    title: string;
 }
 
-export default function BlogPostPaper({ dictionary, title }: Props) {
+export default function BlogPagePaper({ dictionary, title }: Props) {
     const t = dictionary;
     //const lang = t['language-selected'].toLowerCase();
-    const [slugurl, setSlugurl] = React.useState<string>(title);
+    const [slug, setSlug] = React.useState<string>(title);
 
-    useEffect(() => {
-        window.jQuery = $;
-        window.$ = $;
-        global.jQuery = $;
-    });
-
-    const postQuery: TypedDocumentNode<Variables> = gql`query getPost($slugurl: String){
-        posts(where: {slugurl:$slugurl,active:true},limit:1){
-          title
-          seo_title
-          meta_description
-          summary
-          published
-          modified:updated_at
-          slugurl
-          body
-          medialibrary{
-            file{
-              url
-            }
-          }
-          categories{
-            name
-            slug
-          }
-          tag{
-            name
-            slug
-          }
-          user{
-              first_name
-              last_name
-              profile_image
-              {
-                url
-              }
-          }
+    const pageQuery: TypedDocumentNode<Variables> = gql`query getPage($slug: String){
+        pages(where: {slug:$slug,active:true},limit:1){
+            title_${t['language-selected'].toLowerCase()}
+			body_${t['language-selected'].toLowerCase()}
+			slug
         }
       }
     `;
@@ -104,7 +69,7 @@ export default function BlogPostPaper({ dictionary, title }: Props) {
             </span>
           </div>
         );*/
-        const post = data ? data.posts[0] : null;
+        const page = data ? data.pages[0] : null;
 
         function dateFormat(_post: unknown) {
             return (<Moment format="D MMMM YYYY" titleFormat="DD MMMM YYYY" locale={t['language-selected'].toLowerCase()} withTitle>{_post.published}</Moment>)
@@ -124,51 +89,34 @@ export default function BlogPostPaper({ dictionary, title }: Props) {
 
         return (
             <React.Fragment>
-                {(post) ?
+                {(page) ?
                     (<Paper elevation={2}>
                         <Card elevation={0}>
                             <CardHeader
-                                avatar={<Avatar sx={{ width: 50, height: 50 }} alt={(post && post.user) ? post.user.first_name + '  ' + post.user.last_name : ""} src={process.env.NEXT_PUBLIC_STRAPI + ((post && post.user && post.user.profile_image && post.user.profile_image.url) ? post.user.profile_image.url : "/uploads/kisspng_avatar_user_449cb96c34.png")} />}
-                                title={<Typography variant="h5" component="h1">{post.title}</Typography>}
-                                subheader={<Typography color="textSecondary">
-                                    <Event style={{ fontSize: 14 }} /> {dateFormat(post)} {t['by']} <AccountBox style={{ fontSize: 14 }} /> {(post && post.user) ? post.user.first_name + '  ' + post.user.last_name : ""}
-                                </Typography>}
+                                title={<Typography variant="h5" component="h1">{page[`title_${t['language-selected'].toLowerCase()}`]}</Typography>}
                             />
 
                             <CardActions>
                                 <CardContent>
                                     <Typography component={'span'} variant={'body2'}>
-                                        <ReactMarkdown className={'doc-markdown'} children={post.body} rehypePlugins={[rehypeRaw] as any} urlTransform={(value: string) => { return (!value.includes('https://')) ? process.env.NEXT_PUBLIC_STRAPI + value : value }} />
+                                        <ReactMarkdown className={'doc-markdown'} children={page[`body_${t['language-selected'].toLowerCase()}`]} rehypePlugins={[rehypeRaw] as any} urlTransform={(value: string) => { return (!value.includes('https://')) ? process.env.NEXT_PUBLIC_STRAPI + value : value }} />
                                     </Typography>
                                 </CardContent>
                             </CardActions>
-
-                            {post.slugurl === "pourquoi-sonice" && (
-                                <BlogPostSoNice dictionary={t} />
-                            )}
-
-                            <CardActions>
-                                {post.categories.map((cat, keyCat) => {
-                                    return <Chip variant="outlined" label={removeAtENFR(cat.name)} key={`chip-${keyCat}`} component="a" href={`/category/${cat.slug}`} clickable sx={{ margin: "8px" }} />;
-                                })}
-                            </CardActions>
-
-                            <CardActions><SocialMedia dictionary={t} post={post} size={32} /></CardActions>
-                            <GalleryImages />
 
                         </Card>
                     </Paper>) : (<>Not Found</>)}
             </React.Fragment>)
     }
 
-    function SuspenseQueryPost({ children }: PostProps) {
-        let result = useSuspenseQuery(postQuery, {
+    function SuspenseQueryPage({ children, title }: PageProps) {
+        let result = useSuspenseQuery(pageQuery, {
             fetchPolicy: "no-cache",
-            variables: { slugurl },
+            variables: { slug },
         }); //no-cache cache-first // fetchPolicy: "cache-first",
         return (
             <>
-                <Result key="result-post" source="useSuspenseQuery(postQuery)" data={result.data} />
+                <Result key="result-post" source="useSuspenseQuery(pageQuery)" data={result.data} />
                 <React.Fragment key="children">{children}</React.Fragment>
             </>
         );
@@ -176,7 +124,7 @@ export default function BlogPostPaper({ dictionary, title }: Props) {
 
     return (
         <Suspense fallback={<BlogPostPaperSkeleton />}>
-            <SuspenseQueryPost />
+            <SuspenseQueryPage />
         </Suspense>
     );
 }
