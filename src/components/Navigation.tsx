@@ -27,6 +27,7 @@ import { Language } from '@mui/icons-material';
 
 import SearchModal from './SearchModal';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
+import { usePathname } from 'next/navigation';
 
 const pages = ["product", "store", "documentation"];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -39,6 +40,8 @@ interface Props {
 
 export default function Navigation(props: Props) {
     const { children, window, dictionary } = props;
+    const pathName = usePathname();
+    const segments = pathName.split("/");
     //const locale = useLocale();
     //const t = useTranslations('Navigation');
     //const trigger = useScrollTrigger();
@@ -80,7 +83,7 @@ export default function Navigation(props: Props) {
                         <Typography
                             variant="h6"
                             component="a"
-                            href="/"
+                            href={segments[1] == 'fr' ? '/fr' : '/'}
                             sx={{
                                 mr: 2,
                                 display: { xs: 'none', md: 'flex' },
@@ -140,7 +143,7 @@ export default function Navigation(props: Props) {
                             variant="h5"
                             noWrap
                             component="a"
-                            href="#"
+                            href={segments[1] == 'fr' ? '/fr' : '/'}
                             sx={{
                                 mr: 2,
                                 display: { xs: 'flex', md: 'none' },
