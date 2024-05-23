@@ -1,0 +1,854 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xml:base="http://blog.common-services.com/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+	xmlns:media="http://search.yahoo.com/mrss/"
+	xmlns:g="http://base.google.com/ns/1.0">
+	<channel>
+		<title>Blog Common-Services</title>
+		<description>Modules, extensions, addons, plugins for Prestashop, Oscommerce, Open Cart, Magento, Shopify</description>
+		<link>https://blog.common-services.com/</link>
+		<atom:link rel="self" href="https://blog.common-services.com/feed.rss" />
+		<language>en-us,fr-fr</language>
+		<managingEditor>olivier@common-services.com (Olivier Baquet)</managingEditor>
+		<webMaster>don@common-services.com (Chutirat Chaisan)</webMaster>
+		<docs>https://documentation.common-services.com/</docs>
+	<item>
+		<title>Partenariat Store Commander / Common-Services</title>
+		<link>https://blog.common-services.com/post/partenariat-store-commander-common-services</link>
+		<guid>https://blog.common-services.com/post/partenariat-store-commander-common-services</guid>
+		<pubDate>Thu, 18 Oct 2018 12:00:00 GMT</pubDate>
+		<dc:identifier>1</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Store Commander et Common-Services éditent d’une part une solution moderne de gestion de catalogue en masse et d’autre part des solutions de</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/0b875d25d295455b951607dc73211df3.png' length='20750' type='image/png' />
+		<category>E-commerce, Marketplace, Prestashop</category>
+	</item>
+	<item>
+		<title>Products classification by learning machine</title>
+		<link>https://blog.common-services.com/post/products-classification-by-learning-machine</link>
+		<guid>https://blog.common-services.com/post/products-classification-by-learning-machine</guid>
+		<pubDate>Tue, 28 Aug 2018 12:00:00 GMT</pubDate>
+		<dc:identifier>2</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Common-Services develops the Flux module for Prestashop for Feed.biz and its joint offer with Cdiscount. The problem is that Cdiscount has a</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/bdd02e75903040638637aa4adccb603f.png' length='57410' type='image/png' />
+		<category>E-commerce @en, Marketplace @en, Prestashop @en</category>
+	</item>
+	<item>
+		<title>Classification e-commerce via la learning machine</title>
+		<link>https://blog.common-services.com/post/classification-e-commerce-via-la-learning-machine</link>
+		<guid>https://blog.common-services.com/post/classification-e-commerce-via-la-learning-machine</guid>
+		<pubDate>Mon, 27 Aug 2018 12:00:00 GMT</pubDate>
+		<dc:identifier>3</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Common-Services développe pour Feed.biz et son offre conjointe avec Cdiscount le module Cdiscount Flux pour Prestashop . Le problématique c’</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/bdd02e75903040638637aa4adccb603f.png' length='57410' type='image/png' />
+		<category>E-commerce, Prestashop, Places de Marché</category>
+	</item>
+	<item>
+		<title>Module La Poste Suivi pour PrestaShop 1.6+</title>
+		<link>https://blog.common-services.com/post/module-la-poste-suivi</link>
+		<guid>https://blog.common-services.com/post/module-la-poste-suivi</guid>
+		<pubDate>Mon, 25 Jun 2018 12:00:00 GMT</pubDate>
+		<dc:identifier>4</dc:identifier>
+		<dc:creator>Alexandre Debusschère</dc:creator>
+		<description>Il y a quelques temps, La Poste a mis à disposition des développeurs une API de suivi lettres et colis intégrant les services de livraison L</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/8edf3b3eca9a41aca75c6d4b2ada12fb.png' length='44250' type='image/png' />
+		<category>E-commerce, Prestashop</category>
+	</item>
+	<item>
+		<title>Nouveautés des modules Colissimo</title>
+		<link>https://blog.common-services.com/post/nouveautes-des-modules-colissimo</link>
+		<guid>https://blog.common-services.com/post/nouveautes-des-modules-colissimo</guid>
+		<pubDate>Sun, 27 May 2018 12:00:00 GMT</pubDate>
+		<dc:identifier>5</dc:identifier>
+		<dc:creator>Alexandre Debusschère</dc:creator>
+		<description>Colissimo (Webservice) – Officiel La compatibilité avec le module Colissimo Pass pour les marchands éligibles possédant le module Colissimo </description>
+		<enclosure url='https://strapi2.common-services.com/uploads/7cb34d8e4dd147578d4f08e034994793.png' length='40920' type='image/png' />
+		<category>E-commerce, Prestashop, Colissimo</category>
+	</item>
+	<item>
+		<title>What’s new in Amazon version 4.3</title>
+		<link>https://blog.common-services.com/post/whats-new-in-amazon-version-4-3</link>
+		<guid>https://blog.common-services.com/post/whats-new-in-amazon-version-4-3</guid>
+		<pubDate>Tue, 24 Apr 2018 12:00:00 GMT</pubDate>
+		<dc:identifier>6</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>New features Multiple features have been added since version 4.2, here is a summary; Tax Management Improved multi-store management Import o</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/fd7e569fc03c452192fe0b08a395690e.png' length='23930' type='image/png' />
+		<category>E-commerce @en, Prestashop @en</category>
+	</item>
+	<item>
+		<title>Nouveautés du module Amazon version 4.3</title>
+		<link>https://blog.common-services.com/post/nouveautes-du-module-amazon-version-4-3</link>
+		<guid>https://blog.common-services.com/post/nouveautes-du-module-amazon-version-4-3</guid>
+		<pubDate>Sun, 15 Apr 2018 12:00:00 GMT</pubDate>
+		<dc:identifier>7</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Nouvelles fonctionnalités De multiples fonctionnalités ont été ajoutées depuis la version 4.2, voici une synthèse ; Gestion des taxes Gestio</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/fd7e569fc03c452192fe0b08a395690e.png' length='23930' type='image/png' />
+		<category>E-commerce, Places de Marché, Prestashop</category>
+	</item>
+	<item>
+		<title>Jet Marketplace for Prestashop</title>
+		<link>https://blog.common-services.com/post/jet-marketplace-for-prestashop</link>
+		<guid>https://blog.common-services.com/post/jet-marketplace-for-prestashop</guid>
+		<pubDate>Tue, 16 Aug 2016 12:00:00 GMT</pubDate>
+		<dc:identifier>8</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Jet.com since its launch in 2015, has experienced tremendous growth and its only ambition was to compete with Amazon! The start-up has found</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/8edf3b3eca9a41aca75c6d4b2ada12fb.png' length='44250' type='image/png' />
+		<category>E-commerce @en, Prestashop @en</category>
+	</item>
+	<item>
+		<title>Jet Marketplace pour Prestashop</title>
+		<link>https://blog.common-services.com/post/jet-marketplace-pour-prestashop</link>
+		<guid>https://blog.common-services.com/post/jet-marketplace-pour-prestashop</guid>
+		<pubDate>Mon, 15 Aug 2016 12:00:00 GMT</pubDate>
+		<dc:identifier>9</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Jet.com, depuis son lancement en 2015, a connu une croissance fulgurante et n’ambitionnait que de concurrencer Amazon ! La jeune pousse s’es</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/8edf3b3eca9a41aca75c6d4b2ada12fb.png' length='44250' type='image/png' />
+		<category>E-commerce, Places de Marché, Prestashop</category>
+	</item>
+	<item>
+		<title>What’s new in Amazon module version 4.2</title>
+		<link>https://blog.common-services.com/post/whats-new-in-amazon-module-version-4-2</link>
+		<guid>https://blog.common-services.com/post/whats-new-in-amazon-module-version-4-2</guid>
+		<pubDate>Wed, 10 Aug 2016 12:00:00 GMT</pubDate>
+		<dc:identifier>10</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>What’s new in Amazon module version 4.2 The new Amazon Marketplace module for PrestaShop version 4.2 incorporates new messaging features imp</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/fd7e569fc03c452192fe0b08a395690e.png' length='23930' type='image/png' />
+		<category>E-commerce @en, Prestashop @en</category>
+	</item>
+	<item>
+		<title>Mirakl Module for Prestashop</title>
+		<link>https://blog.common-services.com/post/mirakl-module-for-prestashop</link>
+		<guid>https://blog.common-services.com/post/mirakl-module-for-prestashop</guid>
+		<pubDate>Wed, 10 Aug 2016 12:00:00 GMT</pubDate>
+		<dc:identifier>11</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Since few months Mirakl solution is becoming more and more widespread</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/415cf8d88126470aaab2bf78effbd813.png' length='50440' type='image/png' />
+		<category>E-commerce @en, Marketplace @en, Prestashop @en</category>
+	</item>
+	<item>
+		<title>Nouveautés du module Amazon version 4.2</title>
+		<link>https://blog.common-services.com/post/nouveautes-module-amazon-version-4-2</link>
+		<guid>https://blog.common-services.com/post/nouveautes-module-amazon-version-4-2</guid>
+		<pubDate>Mon, 18 Jul 2016 12:00:00 GMT</pubDate>
+		<dc:identifier>12</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Le nouveau module Amazon Marketplace pour Prestashop version 4.2 intègre des nouvelles fonctions de messagerie améliorant la communication a</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/fd7e569fc03c452192fe0b08a395690e.png' length='23930' type='image/png' />
+		<category>E-commerce, Prestashop</category>
+	</item>
+	<item>
+		<title>Module Mirakl pour Prestashop</title>
+		<link>https://blog.common-services.com/post/module-mirakl-pour-prestashop</link>
+		<guid>https://blog.common-services.com/post/module-mirakl-pour-prestashop</guid>
+		<pubDate>Tue, 12 Jul 2016 12:00:00 GMT</pubDate>
+		<dc:identifier>13</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Depuis quelques mois la solution Mirakl est de plus en plus répandue </description>
+		<enclosure url='https://strapi2.common-services.com/uploads/415cf8d88126470aaab2bf78effbd813.png' length='50440' type='image/png' />
+		<category>E-commerce, Places de Marché, Prestashop</category>
+	</item>
+	<item>
+		<title>Module Mondial Relay Advanced pour PrestaShop</title>
+		<link>https://blog.common-services.com/post/mondial-relay-advanced-prestashop</link>
+		<guid>https://blog.common-services.com/post/mondial-relay-advanced-prestashop</guid>
+		<pubDate>Sun, 24 Jan 2016 12:00:00 GMT</pubDate>
+		<dc:identifier>14</dc:identifier>
+		<dc:creator>Alexandre Debusschère</dc:creator>
+		<description>Common-Services étend sa gamme de modules de transports et vous propose Mondial Relay Advanced, le module parfait pour les marchands utilisa</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/42bcf5de5bf241cbbb2c8f25e739ceb3.png' length='29730' type='image/png' />
+		<category>E-commerce, Prestashop</category>
+	</item>
+	<item>
+		<title>SoNice Étiquetage 2.0 pour PrestaShop</title>
+		<link>https://blog.common-services.com/post/sonice-etiquetage-2-0-pour-prestashop</link>
+		<guid>https://blog.common-services.com/post/sonice-etiquetage-2-0-pour-prestashop</guid>
+		<pubDate>Wed, 26 Aug 2015 12:00:00 GMT</pubDate>
+		<dc:identifier>15</dc:identifier>
+		<dc:creator>Alexandre Debusschère</dc:creator>
+		<description>Historique Précédemment, il existait plusieurs webservices chez Coliposte, ce qui nous avait contraint à commercialiser plusieurs modules, S</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/8edf3b3eca9a41aca75c6d4b2ada12fb.png' length='44250' type='image/png' />
+		<category>E-commerce, Colissimo</category>
+	</item>
+	<item>
+		<title>Nouveautés du module Amazon version 4.1</title>
+		<link>https://blog.common-services.com/post/nouveautes-du-module-amazon-version-4-1</link>
+		<guid>https://blog.common-services.com/post/nouveautes-du-module-amazon-version-4-1</guid>
+		<pubDate>Sun, 12 Jul 2015 12:00:00 GMT</pubDate>
+		<dc:identifier>16</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Il y a quelques semaines nous annoncions la sortie de la version 4 du module Amazon Marketplace pour Prestashop. Nous avons délibérément ret</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/fd7e569fc03c452192fe0b08a395690e.png' length='23930' type='image/png' />
+		<category>E-commerce, Places de Marché, Prestashop</category>
+	</item>
+	<item>
+		<title>New in Amazon version 4.1 Module</title>
+		<link>https://blog.common-services.com/post/new-in-amazon-version-4-1-module</link>
+		<guid>https://blog.common-services.com/post/new-in-amazon-version-4-1-module</guid>
+		<pubDate>Tue, 07 Jul 2015 12:00:00 GMT</pubDate>
+		<dc:identifier>17</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Few weeks ago, we announced the version 4 release of the Amazon Marketplace module for Prestashop. We have deliberately delayed this release</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/fd7e569fc03c452192fe0b08a395690e.png' length='23930' type='image/png' />
+		<category>Amazon @en, E-commerce @en, Marketplace @en, Prestashop @en</category>
+	</item>
+	<item>
+		<title>Spartoo Marketplace pour PrestaShop passe en version 2</title>
+		<link>https://blog.common-services.com/post/spartoo-marketplace-pour-prestashop-passe-en-version-2</link>
+		<guid>https://blog.common-services.com/post/spartoo-marketplace-pour-prestashop-passe-en-version-2</guid>
+		<pubDate>Tue, 23 Jun 2015 12:00:00 GMT</pubDate>
+		<dc:identifier>18</dc:identifier>
+		<dc:creator>Alexandre Debusschère</dc:creator>
+		<description>L’année dernière à la même période nous vous annoncions la sortie du module Spartoo pour PrestaShop , aujourd’hui nous vous annonçons sa mis</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/8edf3b3eca9a41aca75c6d4b2ada12fb.png' length='44250' type='image/png' />
+		<category>E-commerce</category>
+	</item>
+	<item>
+		<title>New in Amazon version 4 Module</title>
+		<link>https://blog.common-services.com/post/new-amazon-version-4-module</link>
+		<guid>https://blog.common-services.com/post/new-amazon-version-4-module</guid>
+		<pubDate>Thu, 28 May 2015 12:00:00 GMT</pubDate>
+		<dc:identifier>19</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>A simple module This version was ultimately simplified, a minimum number of features are visible for simplicity and maximum efficiency, only</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/fd7e569fc03c452192fe0b08a395690e.png' length='23930' type='image/png' />
+		<category>E-commerce @en, Prestashop @en</category>
+	</item>
+	<item>
+		<title>Nouveautés du module Amazon version 4</title>
+		<link>https://blog.common-services.com/post/nouveautes-du-module-amazon-version-4</link>
+		<guid>https://blog.common-services.com/post/nouveautes-du-module-amazon-version-4</guid>
+		<pubDate>Mon, 25 May 2015 12:00:00 GMT</pubDate>
+		<dc:identifier>20</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Un module simple Cette version a été ultimement simplifiée, un minimum de fonctionnalités sont visibles pour une simplicité et efficacité ma</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/fd7e569fc03c452192fe0b08a395690e.png' length='23930' type='image/png' />
+		<category>E-commerce, Places de Marché, Prestashop</category>
+	</item>
+	<item>
+		<title>Spartoo Marketplace Module for Prestashop</title>
+		<link>https://blog.common-services.com/post/spartoo-marketplace-module-prestashop</link>
+		<guid>https://blog.common-services.com/post/spartoo-marketplace-module-prestashop</guid>
+		<pubDate>Tue, 31 Mar 2015 12:00:00 GMT</pubDate>
+		<dc:identifier>21</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>The Spartoo marketplace module for Prestashop is finally here! Do you know Spartoo? Spartoo, in short, is a European marketplace specialized</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/8edf3b3eca9a41aca75c6d4b2ada12fb.png' length='44250' type='image/png' />
+		<category>E-commerce @en, Marketplace @en, Prestashop @en</category>
+	</item>
+	<item>
+		<title>CDiscount Module – What’s New, First Quarter 2015</title>
+		<link>https://blog.common-services.com/post/cdiscount-module-whats-new-first-quarter-2015</link>
+		<guid>https://blog.common-services.com/post/cdiscount-module-whats-new-first-quarter-2015</guid>
+		<pubDate>Mon, 23 Feb 2015 12:00:00 GMT</pubDate>
+		<dc:identifier>22</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Fashion Category – At least one free shipping fee From 02/17 all the products of the Fashion category will have at least one free shipping</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/b4386f3bf855490ebee8186321eb3518.png' length='26520' type='image/png' />
+		<category>Marketplace @en, Prestashop @en</category>
+	</item>
+	<item>
+		<title>CDiscount – Nouveautés premier trimestre 2015</title>
+		<link>https://blog.common-services.com/post/cdiscount-nouveautes-premier-trimestre-2015</link>
+		<guid>https://blog.common-services.com/post/cdiscount-nouveautes-premier-trimestre-2015</guid>
+		<pubDate>Wed, 18 Feb 2015 12:00:00 GMT</pubDate>
+		<dc:identifier>23</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Catégorie Mode – Un Frais de Port Gratuit A partir du 17/02 tous les produits de la catégorie Mode devront comporter au moins un frais de po</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/b4386f3bf855490ebee8186321eb3518.png' length='26520' type='image/png' />
+		<category>Places de Marché, Prestashop</category>
+	</item>
+	<item>
+		<title>SoNice Smart Display</title>
+		<link>https://blog.common-services.com/post/sonice-smart-display</link>
+		<guid>https://blog.common-services.com/post/sonice-smart-display</guid>
+		<pubDate>Sat, 07 Feb 2015 12:00:00 GMT</pubDate>
+		<dc:identifier>24</dc:identifier>
+		<dc:creator>Alexandre Debusschère</dc:creator>
+		<description>Avec Prestashop 1.6 est apparu un problème d’affichage et de clarté sur la fiche commande. En effet, les développeurs ont la possibilité d’a</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/8edf3b3eca9a41aca75c6d4b2ada12fb.png' length='44250' type='image/png' />
+		<category>E-commerce</category>
+	</item>
+	<item>
+		<title>Module Play.com Marketplace for Prestashop</title>
+		<link>https://blog.common-services.com/post/play-com-prestashop-2</link>
+		<guid>https://blog.common-services.com/post/play-com-prestashop-2</guid>
+		<pubDate>Sun, 27 Jul 2014 12:00:00 GMT</pubDate>
+		<dc:identifier>25</dc:identifier>
+		<dc:creator>Alexandre Debusschère</dc:creator>
+		<description>Play.com, a marketplace founded in 1998, was one of the first to target the United Kingdom. With over 16 million registered customers, </description>
+		<enclosure url='https://strapi2.common-services.com/uploads/8edf3b3eca9a41aca75c6d4b2ada12fb.png' length='44250' type='image/png' />
+		<category>E-commerce @en, Marketplace @en, Prestashop @en</category>
+	</item>
+	<item>
+		<title>Module Play.com Marketplace pour Prestashop</title>
+		<link>https://blog.common-services.com/post/play-com-prestashop</link>
+		<guid>https://blog.common-services.com/post/play-com-prestashop</guid>
+		<pubDate>Sun, 27 Jul 2014 12:00:00 GMT</pubDate>
+		<dc:identifier>26</dc:identifier>
+		<dc:creator>Alexandre Debusschère</dc:creator>
+		<description>Play.com, place de marché fondée en 1998, fût l’une des première à cibler le Royaume-Uni. Forte de ses plus de 16 millions de client enregis</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/8edf3b3eca9a41aca75c6d4b2ada12fb.png' length='44250' type='image/png' />
+		<category>E-commerce, Places de Marché, Prestashop</category>
+	</item>
+	<item>
+		<title>Module Spartoo Marketplace pour Prestashop</title>
+		<link>https://blog.common-services.com/post/module-spartoo-marketplace-pour-prestashop</link>
+		<guid>https://blog.common-services.com/post/module-spartoo-marketplace-pour-prestashop</guid>
+		<pubDate>Mon, 30 Jun 2014 12:00:00 GMT</pubDate>
+		<dc:identifier>27</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Le module Spartoo Marketplace pour Prestashop est enfin arrivé ! Connaissez vous Spartoo ? Spartoo, en quelques mots, est une place de march</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/25bdcb6e80d84218b77ae0b6b7301b0c.png' length='30520' type='image/png' />
+		<category>E-commerce, Places de Marché, Prestashop</category>
+	</item>
+	<item>
+		<title>Module La Redoute Marketplace pour Prestashop</title>
+		<link>https://blog.common-services.com/post/module-la-redoute-marketplace-pour-prestashop</link>
+		<guid>https://blog.common-services.com/post/module-la-redoute-marketplace-pour-prestashop</guid>
+		<pubDate>Sun, 29 Jun 2014 12:00:00 GMT</pubDate>
+		<dc:identifier>28</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Le module La Redoute Marketplace pour Prestashop est enfin disponible ! Grâce à l’utilisation d’un mapping astucieux et performant, vous aff</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/fe5dfcd846dd490990479ad6c3bbce97.png' length='25230' type='image/png' />
+		<category>E-commerce, Places de Marché, Prestashop</category>
+	</item>
+	<item>
+		<title>Statistiques et Tendance des intégrations de places de marché sur Prestashop 2012 – 2014</title>
+		<link>https://blog.common-services.com/post/statistiques-tendance-des-integrations-de-places-de-marche-sur-prestashop-2012-2014</link>
+		<guid>https://blog.common-services.com/post/statistiques-tendance-des-integrations-de-places-de-marche-sur-prestashop-2012-2014</guid>
+		<pubDate>Sat, 24 May 2014 12:00:00 GMT</pubDate>
+		<dc:identifier>29</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Les tendances représentées ci-dessous n’indiquent pas les parts de marché qu’occupent les places de marché mais la part de Common-Services d</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/8edf3b3eca9a41aca75c6d4b2ada12fb.png' length='44250' type='image/png' />
+		<category>E-commerce, Prestashop</category>
+	</item>
+	<item>
+		<title>Pourquoi SoNice</title>
+		<link>https://blog.common-services.com/post/pourquoi-sonice</link>
+		<guid>https://blog.common-services.com/post/pourquoi-sonice</guid>
+		<pubDate>Sun, 18 May 2014 12:00:00 GMT</pubDate>
+		<dc:identifier>30</dc:identifier>
+		<dc:creator>Alexandre Debusschère</dc:creator>
+		<description>La gamme de modules SoNice a été conçue pour répondre au manque de solutions logistiques pour vos expéditions de colis depuis le backoffice </description>
+		<enclosure url='https://strapi2.common-services.com/uploads/cbadeee21e0242818494b15e8e247595.png' length='32040' type='image/png' />
+		<category>E-commerce, Prestashop</category>
+	</item>
+	<item>
+		<title>Actualité des modules de places de marché – 1er Trimestre 2014</title>
+		<link>https://blog.common-services.com/post/actualite-des-modules-de-places-de-marche-1er-trimestre-2014</link>
+		<guid>https://blog.common-services.com/post/actualite-des-modules-de-places-de-marche-1er-trimestre-2014</guid>
+		<pubDate>Thu, 10 Apr 2014 12:00:00 GMT</pubDate>
+		<dc:identifier>31</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Ensemble des Modules – Prestashop 1.6 Tous les modules ont été portés pour Prestashop 1.6 en mode compatibilité, c’est à dire qu’ils offrent</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/0b875d25d295455b951607dc73211df3.png' length='20750' type='image/png' />
+		<category>E-commerce</category>
+	</item>
+	<item>
+		<title>SoNice Étiquetage 1.0 pour PrestaShop</title>
+		<link>https://blog.common-services.com/post/sonice-etiquetage-1-0-pour-prestashop</link>
+		<guid>https://blog.common-services.com/post/sonice-etiquetage-1-0-pour-prestashop</guid>
+		<pubDate>Tue, 08 Apr 2014 12:00:00 GMT</pubDate>
+		<dc:identifier>32</dc:identifier>
+		<dc:creator>Alexandre Debusschère</dc:creator>
+		<description>Un nouveau venu vient de faire son apparition dans la gamme « SoNice » : SoNice Étiquetage, le module de génération d’étiquettes Colissimo</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/8edf3b3eca9a41aca75c6d4b2ada12fb.png' length='44250' type='image/png' />
+		<category>E-commerce, Prestashop</category>
+	</item>
+	<item>
+		<title>Updates about marketplaces modules – 1st Quarter 2014</title>
+		<link>https://blog.common-services.com/post/updates-marketplaces-modules-1st-quarter-2014</link>
+		<guid>https://blog.common-services.com/post/updates-marketplaces-modules-1st-quarter-2014</guid>
+		<pubDate>Thu, 13 Feb 2014 12:00:00 GMT</pubDate>
+		<dc:identifier>33</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Set of Modules – Prestashop 1.6 All modules have been brought to Prestashop 1.6 in compatibility mode, ie they offer mixed operation Prestas</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/0b875d25d295455b951607dc73211df3.png' length='20750' type='image/png' />
+		<category>E-commerce @en</category>
+	</item>
+	<item>
+		<title>Amazon Marketplace – Frais de port basés sur le poids</title>
+		<link>https://blog.common-services.com/post/amazon-marketplace-frais-de-port-bases-sur-le-poids</link>
+		<guid>https://blog.common-services.com/post/amazon-marketplace-frais-de-port-bases-sur-le-poids</guid>
+		<pubDate>Tue, 24 Dec 2013 12:00:00 GMT</pubDate>
+		<dc:identifier>34</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Il est de notoriété publique que les poids indiqués sur les fiches produits, sur Amazon, sont très souvent faux. L’explication est simple ; </description>
+		<enclosure url='https://strapi2.common-services.com/uploads/fd7e569fc03c452192fe0b08a395690e.png' length='23930' type='image/png' />
+		<category>Places de Marché, Prestashop</category>
+	</item>
+	<item>
+		<title>Amazon Marketplace – Shipping charges based on weight</title>
+		<link>https://blog.common-services.com/post/amazon-marketplace-shipping-charges-based-weight</link>
+		<guid>https://blog.common-services.com/post/amazon-marketplace-shipping-charges-based-weight</guid>
+		<pubDate>Tue, 24 Dec 2013 12:00:00 GMT</pubDate>
+		<dc:identifier>35</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>It is public knowledge that the weights indicated on products on Amazon are very often wrong. The explanation is simple: Product pages are s</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/fd7e569fc03c452192fe0b08a395690e.png' length='23930' type='image/png' />
+		<category>Marketplace @en, Prestashop @en</category>
+	</item>
+	<item>
+		<title>SoNice Suivi Colis – Module de Suivi de Colis pour Prestashop</title>
+		<link>https://blog.common-services.com/post/sonice-suivi-colis-module-de-suivi-de-colis-pour-prestashop</link>
+		<guid>https://blog.common-services.com/post/sonice-suivi-colis-module-de-suivi-de-colis-pour-prestashop</guid>
+		<pubDate>Fri, 20 Dec 2013 12:00:00 GMT</pubDate>
+		<dc:identifier>36</dc:identifier>
+		<dc:creator>Alexandre Debusschère</dc:creator>
+		<description>La gamme So Nice s’étoffe avec un nouveau module de suivi de colis : So Nice Suivi de Colis qui utilise le web service ColiPoste. Nous savon</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/8edf3b3eca9a41aca75c6d4b2ada12fb.png' length='44250' type='image/png' />
+		<category>E-commerce, Prestashop</category>
+	</item>
+	<item>
+		<title>Barcodes (EAN/UPC/GTIN) for Ecommerce solutions and Marketplaces</title>
+		<link>https://blog.common-services.com/post/prestashop-ean-barcodes-and-marketplaces</link>
+		<guid>https://blog.common-services.com/post/prestashop-ean-barcodes-and-marketplaces</guid>
+		<pubDate>Sun, 01 Dec 2013 12:00:00 GMT</pubDate>
+		<dc:identifier>37</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Introduction The EAN/UPC Barcode and Marketplaces Amazon Marketplace has always imposed EAN/UPC barcodes as universal product coding for all</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/8edf3b3eca9a41aca75c6d4b2ada12fb.png' length='44250' type='image/png' />
+		<category>E-commerce @en, Marketplace @en, Prestashop @en</category>
+	</item>
+	<item>
+		<title>SoNice Retour – Service d’étiquetage Colissimo pour retours de produits</title>
+		<link>https://blog.common-services.com/post/sonice-retour-service-detiquetage-colissimo-pour-retours-de-produits</link>
+		<guid>https://blog.common-services.com/post/sonice-retour-service-detiquetage-colissimo-pour-retours-de-produits</guid>
+		<pubDate>Sun, 17 Nov 2013 12:00:00 GMT</pubDate>
+		<dc:identifier>38</dc:identifier>
+		<dc:creator>Alexandre Debusschère</dc:creator>
+		<description>Common-Services a développé une nouvelle gamme de modules de logistique baptisée « SoNice ». Dans la gamme SoNice, découvrez le nouveau modu</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/5271a0c9919d46899ee62182d9cd1dfa.png' length='18610' type='image/png' />
+		<category>E-commerce, Prestashop</category>
+	</item>
+	<item>
+		<title>Codes barre (EAN/UPC/GTIN) dans le e-commerce et Places de Marché</title>
+		<link>https://blog.common-services.com/post/prestashop-ean-barcodes-marketplaces</link>
+		<guid>https://blog.common-services.com/post/prestashop-ean-barcodes-marketplaces</guid>
+		<pubDate>Mon, 21 Oct 2013 12:00:00 GMT</pubDate>
+		<dc:identifier>39</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Préambule Vous êtes e-commerçant, vous utilisez Prestashop, vous souhaitez vous développer sur les places de marché, vous n’avez pas de code</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/8edf3b3eca9a41aca75c6d4b2ada12fb.png' length='44250' type='image/png' />
+		<category>E-commerce, Places de Marché, Prestashop</category>
+	</item>
+	<item>
+		<title>Amazon Marketplace for Prestashop v3.9 – Messaging – Invoice by Email</title>
+		<link>https://blog.common-services.com/post/amazon-marketplace-for-prestashop-v3-9-invoice-by-email</link>
+		<guid>https://blog.common-services.com/post/amazon-marketplace-for-prestashop-v3-9-invoice-by-email</guid>
+		<pubDate>Sat, 12 Oct 2013 12:00:00 GMT</pubDate>
+		<dc:identifier>40</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>New Emailing Feature Emailing customers is very strictly controlled on Amazon, but it is allowed; the email exchange must pertain to the sub</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/fd7e569fc03c452192fe0b08a395690e.png' length='23930' type='image/png' />
+		<category>Amazon @en, E-commerce @en, Prestashop @en</category>
+	</item>
+	<item>
+		<title>Amazon Marketplace pour Prestashop v3.9 – Messagerie – Facture par Email</title>
+		<link>https://blog.common-services.com/post/amazon-marketplace-prestashop-v3-9-facture-email</link>
+		<guid>https://blog.common-services.com/post/amazon-marketplace-prestashop-v3-9-facture-email</guid>
+		<pubDate>Tue, 08 Oct 2013 12:00:00 GMT</pubDate>
+		<dc:identifier>41</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Nouvelle Fonction Messagerie Les échanges de mails avec les clients sont très stricts sur Amazon, mais pas interdits ; il faut que l’échange</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/fd7e569fc03c452192fe0b08a395690e.png' length='23930' type='image/png' />
+		<category>Places de Marché, Prestashop</category>
+	</item>
+	<item>
+		<title>Amazon Marketplace pour Prestashop v3.9 et Fonctionnalités FBA</title>
+		<link>https://blog.common-services.com/post/amazon-3-9-fba-fulfillment</link>
+		<guid>https://blog.common-services.com/post/amazon-3-9-fba-fulfillment</guid>
+		<pubDate>Tue, 27 Aug 2013 12:00:00 GMT</pubDate>
+		<dc:identifier>42</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Amazon Marketplace version 3.9 Depuis la version 3.0 le module intègre quelques fonctionnalités FBA (Fulfufillment By Amazon ou Fulfilled By</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/fd7e569fc03c452192fe0b08a395690e.png' length='23930' type='image/png' />
+		<category>Places de Marché, Prestashop</category>
+	</item>
+	<item>
+		<title>Amazon marketplace for Prestashop v3.9 and FBA features</title>
+		<link>https://blog.common-services.com/post/amazon-marketplace-3-9-for-prestashop-and-fba-features</link>
+		<guid>https://blog.common-services.com/post/amazon-marketplace-3-9-for-prestashop-and-fba-features</guid>
+		<pubDate>Tue, 27 Aug 2013 12:00:00 GMT</pubDate>
+		<dc:identifier>43</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Amazon Marketplace Version 3.9 Since Version 3.0, the module has included some built-in FBA (Fulfilled by Amazon) features. The currently </description>
+		<enclosure url='https://strapi2.common-services.com/uploads/fd7e569fc03c452192fe0b08a395690e.png' length='23930' type='image/png' />
+		<category>Marketplace @en, Prestashop @en</category>
+	</item>
+	<item>
+		<title>So Colissimo Liberté 4.0 pour PrestaShop</title>
+		<link>https://blog.common-services.com/post/socolissimo-liberte-4-0-pour-prestashop-1-5</link>
+		<guid>https://blog.common-services.com/post/socolissimo-liberte-4-0-pour-prestashop-1-5</guid>
+		<pubDate>Thu, 15 Aug 2013 12:00:00 GMT</pubDate>
+		<dc:identifier>44</dc:identifier>
+		<dc:creator>Alexandre Debusschère</dc:creator>
+		<description>Voici la toute nouvelle version de notre module So Colissimo Liberté. Le module offre de nombreuses fonctionnalités : Une fenêtre conviviale</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/8edf3b3eca9a41aca75c6d4b2ada12fb.png' length='44250' type='image/png' />
+		<category>E-commerce, Prestashop</category>
+	</item>
+	<item>
+		<title>Nouveautés du module Amazon Marketplace pour Prestashop 3.8</title>
+		<link>https://blog.common-services.com/post/nouveautes-du-module-amazon-marketplace-pour-prestashop-3-8</link>
+		<guid>https://blog.common-services.com/post/nouveautes-du-module-amazon-marketplace-pour-prestashop-3-8</guid>
+		<pubDate>Tue, 09 Jul 2013 12:00:00 GMT</pubDate>
+		<dc:identifier>45</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>1. Revamping Le design du module Amazon Marketplace datait de Prestashop 1.3, nous avons donc entrepris un gros lifting pour la nouvelle mou</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/fd7e569fc03c452192fe0b08a395690e.png' length='23930' type='image/png' />
+		<category>Places de Marché, Prestashop</category>
+	</item>
+	<item>
+		<title>New features of amazon marketplace for prestashop 3.8</title>
+		<link>https://blog.common-services.com/post/new-features-of-amazon-marketplace-for-prestashop-3-8</link>
+		<guid>https://blog.common-services.com/post/new-features-of-amazon-marketplace-for-prestashop-3-8</guid>
+		<pubDate>Sun, 09 Jun 2013 12:00:00 GMT</pubDate>
+		<dc:identifier>46</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>1. Revamping The design of the module Amazon Marketplace dated from Prestashop 1.3, we have therefore undertaken a big facelift for the new </description>
+		<enclosure url='https://strapi2.common-services.com/uploads/fd7e569fc03c452192fe0b08a395690e.png' length='23930' type='image/png' />
+		<category>Amazon @en, Marketplace @en, Prestashop @en</category>
+	</item>
+	<item>
+		<title>Modules de Place de Marché pour Prestashop 1.5</title>
+		<link>https://blog.common-services.com/post/modules-de-place-de-marche-pour-prestashop-1-5</link>
+		<guid>https://blog.common-services.com/post/modules-de-place-de-marche-pour-prestashop-1-5</guid>
+		<pubDate>Sun, 19 May 2013 12:00:00 GMT</pubDate>
+		<dc:identifier>47</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>20/05/2013 Voici une petite rédaction pour vous informer de l’évolution des modules de place de marché pour Prestashop à ce jour. Modules di</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/8edf3b3eca9a41aca75c6d4b2ada12fb.png' length='44250' type='image/png' />
+		<category>Places de Marché</category>
+	</item>
+	<item>
+		<title>Marketplaces modules for prestashop 1.5</title>
+		<link>https://blog.common-services.com/post/marketplaces-modules-for-prestashop-1-5</link>
+		<guid>https://blog.common-services.com/post/marketplaces-modules-for-prestashop-1-5</guid>
+		<pubDate>Sun, 19 May 2013 12:00:00 GMT</pubDate>
+		<dc:identifier>48</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>May 20, 2013 Here is a short text to tell you about developments in the Prestashop marketplace to date. Add-ons availables for Prestashop 1.</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/8edf3b3eca9a41aca75c6d4b2ada12fb.png' length='44250' type='image/png' />
+		<category>Marketplace, Prestashop</category>
+	</item>
+	<item>
+		<title>Wozapi – Automate de Repricing pour Amazon</title>
+		<link>https://blog.common-services.com/post/wozapi-automate-de-repricing-pour-amazon</link>
+		<guid>https://blog.common-services.com/post/wozapi-automate-de-repricing-pour-amazon</guid>
+		<pubDate>Mon, 06 May 2013 12:00:00 GMT</pubDate>
+		<dc:identifier>49</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Préambule Il y a deux ans nous avons écrit un article sur le module de repricing que nous avions développé, Amazon Trader pour Prestashop : </description>
+		<enclosure url='https://strapi2.common-services.com/uploads/fd7e569fc03c452192fe0b08a395690e.png' length='23930' type='image/png' />
+		<category>Places de Marché, Prestashop</category>
+	</item>
+	<item>
+		<title>WOZAPI – The repricing automaton for amazon</title>
+		<link>https://blog.common-services.com/post/wozapi-the-repricing-automaton-for-amazon</link>
+		<guid>https://blog.common-services.com/post/wozapi-the-repricing-automaton-for-amazon</guid>
+		<pubDate>Mon, 06 May 2013 12:00:00 GMT</pubDate>
+		<dc:identifier>50</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Introduction Two years ago, we wrote an article about Amazon Trader for Prestashop, the repricing module we developed</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/fd7e569fc03c452192fe0b08a395690e.png' length='23930' type='image/png' />
+		<category>Amazon @en, Marketplace @en, Prestashop @en</category>
+	</item>
+	<item>
+		<title>Amazon Market Place pour Prestashop v3.5</title>
+		<link>https://blog.common-services.com/post/amazon-market-place-pour-prestashop-v3-5</link>
+		<guid>https://blog.common-services.com/post/amazon-market-place-pour-prestashop-v3-5</guid>
+		<pubDate>Thu, 13 Dec 2012 12:00:00 GMT</pubDate>
+		<dc:identifier>51</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Amazon Marketplace 3.5 Nous annonçons aujourd’hui la version 3.5 avec une nouveauté tant attendue : la création automatique de fiches articl</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/fd7e569fc03c452192fe0b08a395690e.png' length='23930' type='image/png' />
+		<category>Prestashop</category>
+	</item>
+	<item>
+		<title>Amazon market place for prestashop v3.5</title>
+		<link>https://blog.common-services.com/post/amazon-market-place-for-prestashop-v3-5</link>
+		<guid>https://blog.common-services.com/post/amazon-market-place-for-prestashop-v3-5</guid>
+		<pubDate>Thu, 13 Dec 2012 12:00:00 GMT</pubDate>
+		<dc:identifier>52</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Amazon Marketplace 3.5 Today we are announcing theversion 3.5 with its long awaited new feature: The automatic creation of product sheets on</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/fd7e569fc03c452192fe0b08a395690e.png' length='23930' type='image/png' />
+		<category>Prestashop @en</category>
+	</item>
+	<item>
+		<title>So Colissimo Liberté ou Flexibilité pour Prestashop 1.5</title>
+		<link>https://blog.common-services.com/post/so-colissimo-liberte-ou-flexibilite-pour-prestashop-1-5</link>
+		<guid>https://blog.common-services.com/post/so-colissimo-liberte-ou-flexibilite-pour-prestashop-1-5</guid>
+		<pubDate>Thu, 27 Sep 2012 12:00:00 GMT</pubDate>
+		<dc:identifier>53</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Voici la dernière version du module SoColissimo Liberté / Flexibilité pour Prestashop. Comme son petit frère, le module offre les fonctionna</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/8edf3b3eca9a41aca75c6d4b2ada12fb.png' length='44250' type='image/png' />
+		<category>Prestashop</category>
+	</item>
+	<item>
+		<title>CDiscount – C Le Marché – Marketplace pour Prestashop</title>
+		<link>https://blog.common-services.com/post/cdiscount-c-le-marche-marketplace-pour-prestashop</link>
+		<guid>https://blog.common-services.com/post/cdiscount-c-le-marche-marketplace-pour-prestashop</guid>
+		<pubDate>Thu, 23 Aug 2012 12:00:00 GMT</pubDate>
+		<dc:identifier>54</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Augmentez votre potentiel de ventes et diffusez sur la place de marché C Le Marché ! En moins d’un an, C Le Marché, s’est imposée parmi les </description>
+		<enclosure url='https://strapi2.common-services.com/uploads/b4386f3bf855490ebee8186321eb3518.png' length='26520' type='image/png' />
+		<category>Places de Marché, Prestashop</category>
+	</item>
+	<item>
+		<title>Nouveautés du module Amazon 2.5 à 2.7</title>
+		<link>https://blog.common-services.com/post/nouveautes-du-module-amazon-2-5</link>
+		<guid>https://blog.common-services.com/post/nouveautes-du-module-amazon-2-5</guid>
+		<pubDate>Sun, 13 May 2012 12:00:00 GMT</pubDate>
+		<dc:identifier>55</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Voici donc les nouveautés apparues dans cette nouvelle mouture du module : Configuration du Module Type de Compte : Permet d’associer un com</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/fd7e569fc03c452192fe0b08a395690e.png' length='23930' type='image/png' />
+		<category>Places de Marché</category>
+	</item>
+	<item>
+		<title>IMPROVEMENTS IN THE AMAZON MODULE FOR PRESTASHOP V2.5</title>
+		<link>https://blog.common-services.com/post/improvements-in-the-amazon-module-for-prestashop-v2-5</link>
+		<guid>https://blog.common-services.com/post/improvements-in-the-amazon-module-for-prestashop-v2-5</guid>
+		<pubDate>Sun, 13 May 2012 12:00:00 GMT</pubDate>
+		<dc:identifier>56</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Voici donc les nouveautés apparues dans cette nouvelle mouture du module : Module configuration: Account type: This setting allows you to us</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/8edf3b3eca9a41aca75c6d4b2ada12fb.png' length='44250' type='image/png' />
+		<category>Amazon @en, Marketplace @en, Prestashop @en</category>
+	</item>
+	<item>
+		<title>Coliposte – So Colissimo Simplicité V2</title>
+		<link>https://blog.common-services.com/post/coliposte-so-colissimo-simplicite-v2</link>
+		<guid>https://blog.common-services.com/post/coliposte-so-colissimo-simplicite-v2</guid>
+		<pubDate>Tue, 21 Feb 2012 12:00:00 GMT</pubDate>
+		<dc:identifier>57</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>J’apprends la sortie de la version beta de So Colissimo Simplicité version 2 qui devrait sortir bientôt </description>
+		<enclosure url='https://strapi2.common-services.com/uploads/1d5a34aa3ee0433ab8b2dbb837651db4.png' length='46470' type='image/png' />
+		<category>E-commerce</category>
+	</item>
+	<item>
+		<title>Boostez vos Ventes avec Pixplace / Pixmania Marketplace pour Prestashop</title>
+		<link>https://blog.common-services.com/post/boostez-vos-ventes-avec-pixplace-pixmania-marketplace-pour-prestashop</link>
+		<guid>https://blog.common-services.com/post/boostez-vos-ventes-avec-pixplace-pixmania-marketplace-pour-prestashop</guid>
+		<pubDate>Tue, 20 Dec 2011 12:00:00 GMT</pubDate>
+		<dc:identifier>58</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Dynamisez vos ventes grâce à Pixmania , place de marché qui couvre 26 pays ! En bref : Synchroniser votre boutique Prestashop avec Pixmania </description>
+		<enclosure url='https://strapi2.common-services.com/uploads/8edf3b3eca9a41aca75c6d4b2ada12fb.png' length='44250' type='image/png' />
+		<category>Places de Marché, Prestashop</category>
+	</item>
+	<item>
+		<title>Amazon Market Place pour OpenCart</title>
+		<link>https://blog.common-services.com/post/amazon-market-place-pour-opencart</link>
+		<guid>https://blog.common-services.com/post/amazon-market-place-pour-opencart</guid>
+		<pubDate>Sat, 10 Sep 2011 12:00:00 GMT</pubDate>
+		<dc:identifier>59</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Boostez votre Boutique OpenCart avec Amazon En bref : Synchronisation des produits, stocks, prix sur Amazon Stock de votre boutiques mis à j</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/fd7e569fc03c452192fe0b08a395690e.png' length='23930' type='image/png' />
+		<category>OpenCart, Places de Marché</category>
+	</item>
+	<item>
+		<title>AMAZON MARKET PLACE FOR OPENCART</title>
+		<link>https://blog.common-services.com/post/amazon-market-place-for-opencart</link>
+		<guid>https://blog.common-services.com/post/amazon-market-place-for-opencart</guid>
+		<pubDate>Sat, 10 Sep 2011 12:00:00 GMT</pubDate>
+		<dc:identifier>60</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Strengthen your Store with Amazon Market Place Description : The Amazon Market Place application gives you the chance to put your products</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/fd7e569fc03c452192fe0b08a395690e.png' length='23930' type='image/png' />
+		<category>Marketplace @en, OpenCart @en</category>
+	</item>
+	<item>
+		<title>Explosez vos ventes avec Amazon Trader pour Prestashop</title>
+		<link>https://blog.common-services.com/post/amazon-trading-module-prestashop</link>
+		<guid>https://blog.common-services.com/post/amazon-trading-module-prestashop</guid>
+		<pubDate>Wed, 20 Jul 2011 12:00:00 GMT</pubDate>
+		<dc:identifier>61</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Le module Web Service Amazon synchronise votre boutique Prestashop avec Amazon et notamment : les commandes, la gestion des stocks et les pr</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/8edf3b3eca9a41aca75c6d4b2ada12fb.png' length='44250' type='image/png' />
+		<category>E-commerce</category>
+	</item>
+	<item>
+		<title>Module So Colissimo Flexibilité Pour Prestashop</title>
+		<link>https://blog.common-services.com/post/module-so-colissimo-flexibilite-pour-prestashop</link>
+		<guid>https://blog.common-services.com/post/module-so-colissimo-flexibilite-pour-prestashop</guid>
+		<pubDate>Wed, 20 Jul 2011 12:00:00 GMT</pubDate>
+		<dc:identifier>62</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Depuis le mois de mars, l’API Flexibilité est disponible auprès de Coliposte, nous avons donc porté la version So Colissimo Liberté vers Fle</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/8edf3b3eca9a41aca75c6d4b2ada12fb.png' length='44250' type='image/png' />
+		<category>Prestashop</category>
+	</item>
+	<item>
+		<title>Boostez vos Ventes avec Amazon Market Place</title>
+		<link>https://blog.common-services.com/post/boostez-vos-ventes-avec-amazon-market-place</link>
+		<guid>https://blog.common-services.com/post/boostez-vos-ventes-avec-amazon-market-place</guid>
+		<pubDate>Wed, 15 Jun 2011 12:00:00 GMT</pubDate>
+		<dc:identifier>63</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Boostez votre Boutique avec Amazon En bref : Synchronisation des produits, stocks, prix sur Amazon Stock de votre boutiques mis à jour en ca</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/fd7e569fc03c452192fe0b08a395690e.png' length='23930' type='image/png' />
+		<category>E-commerce</category>
+	</item>
+	<item>
+		<title>Strengthen your Store with Amazon Market Place</title>
+		<link>https://blog.common-services.com/post/strengthen-your-store-with-amazon-market-place</link>
+		<guid>https://blog.common-services.com/post/strengthen-your-store-with-amazon-market-place</guid>
+		<pubDate>Wed, 15 Jun 2011 12:00:00 GMT</pubDate>
+		<dc:identifier>64</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Brief description : Synchronize products, stocks, and prices on Amazon Stock updated for your store for sales on Amazon Orders automatically</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/fd7e569fc03c452192fe0b08a395690e.png' length='23930' type='image/png' />
+		<category>Amazon @en, E-commerce @en, Marketplace @en</category>
+	</item>
+	<item>
+		<title>Module So Colissimo pour Prestashop</title>
+		<link>https://blog.common-services.com/post/module-so-colissimo-pour-prestashop</link>
+		<guid>https://blog.common-services.com/post/module-so-colissimo-pour-prestashop</guid>
+		<pubDate>Tue, 17 May 2011 12:00:00 GMT</pubDate>
+		<dc:identifier>65</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Prestashop a aussi son module So Colissimo . Comme pour Oscommerce, ce module So Colissimo Prestashop permet de ne plus dépendre des serveur</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/8edf3b3eca9a41aca75c6d4b2ada12fb.png' length='44250' type='image/png' />
+		<category>Prestashop</category>
+	</item>
+	<item>
+		<title>Module So Colissimo Oscommerce</title>
+		<link>https://blog.common-services.com/post/module-so-colissimo-oscommerce</link>
+		<guid>https://blog.common-services.com/post/module-so-colissimo-oscommerce</guid>
+		<pubDate>Mon, 18 Oct 2010 12:00:00 GMT</pubDate>
+		<dc:identifier>66</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Lancé il y a un peu moins d’un an, So Colissimo est devenu un service incontournable pour tout e-commerçant. Oscommerce a été une des premiè</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/0b875d25d295455b951607dc73211df3.png' length='20750' type='image/png' />
+		<category>Oscommerce</category>
+	</item>
+	<item>
+		<title>Application Colissimo Shopify</title>
+		<link>https://blog.common-services.com/post/app-colissimo-shopify</link>
+		<guid>https://blog.common-services.com/post/app-colissimo-shopify</guid>
+		<pubDate>Tue, 09 Jul 2019 12:00:00 GMT</pubDate>
+		<dc:identifier>67</dc:identifier>
+		<dc:creator>Alexandre Debusschère</dc:creator>
+		<description>Common-Service se lance dans l'aventure Shopify en proposant aux e-commerçant une application Colissimo tout-en-un.</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/7cb34d8e4dd147578d4f08e034994793.png' length='40920' type='image/png' />
+		<category>Colissimo, E-commerce, Shopify</category>
+	</item>
+	<item>
+		<title>SoNice Pro pour PrestaShop</title>
+		<link>https://blog.common-services.com/post/sonicepro</link>
+		<guid>https://blog.common-services.com/post/sonicepro</guid>
+		<pubDate>Thu, 29 Aug 2019 12:00:00 GMT</pubDate>
+		<dc:identifier>75</dc:identifier>
+		<dc:creator>Alexandre Debusschère</dc:creator>
+		<description>Notre module tout-en-un Colissimo est enfin disponible sur PrestaShop Addons !</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/7cb34d8e4dd147578d4f08e034994793.png' length='40920' type='image/png' />
+		<category>E-commerce, Prestashop, Colissimo</category>
+	</item>
+	<item>
+		<title>Nos applications Shopify</title>
+		<link>https://blog.common-services.com/post/nos-applications-shopify</link>
+		<guid>https://blog.common-services.com/post/nos-applications-shopify</guid>
+		<pubDate>Wed, 17 Jun 2020 12:00:00 GMT</pubDate>
+		<dc:identifier>80</dc:identifier>
+		<dc:creator>Alexandre Debusschère</dc:creator>
+		<description>Après une année de développement d'application Shopify, il est temps de faire le point sur les app sorties et celles à venir prochainement.</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/Shopify_Banner_bd82c525a3.png' length='33400' type='image/png' />
+		<category>E-commerce, Places de Marché, Marketplace, Shopify</category>
+	</item>
+	<item>
+		<title>Our Shopify apps</title>
+		<link>https://blog.common-services.com/post/our-shopify-apps</link>
+		<guid>https://blog.common-services.com/post/our-shopify-apps</guid>
+		<pubDate>Wed, 17 Jun 2020 12:00:00 GMT</pubDate>
+		<dc:identifier>81</dc:identifier>
+		<dc:creator>Alexandre Debusschère</dc:creator>
+		<description>After a year developing Shopify apps, it is time to take stock of the apps released and those to come soon.</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/Shopify_Banner_bd82c525a3.png' length='33400' type='image/png' />
+		<category>E-commerce @en, Marketplace @en, Shopify</category>
+	</item>
+	<item>
+		<title>Amazon Module for Prestashop and Amazon MWS API Update</title>
+		<link>https://blog.common-services.com/post/amazon-mws-changes</link>
+		<guid>https://blog.common-services.com/post/amazon-mws-changes</guid>
+		<pubDate>Thu, 13 Aug 2020 12:00:00 GMT</pubDate>
+		<dc:identifier>82</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Amazon Module for Prestashop and Amazon MWS API Update, changes about versions released before October 2018.</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/fd7e569fc03c452192fe0b08a395690e.png' length='23930' type='image/png' />
+		<category>Amazon @en, Prestashop</category>
+	</item>
+	<item>
+		<title>Module Amazon pour PrestaShop et mise à jour de l'API Amazon MWS</title>
+		<link>https://blog.common-services.com/post/changement-amazon-mws</link>
+		<guid>https://blog.common-services.com/post/changement-amazon-mws</guid>
+		<pubDate>Thu, 13 Aug 2020 12:00:00 GMT</pubDate>
+		<dc:identifier>83</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Module Amazon pour PrestaShop et mise à jour de l'API Amazon MWS, changement pour les versions publiées avant Octobre 2018.</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/fd7e569fc03c452192fe0b08a395690e.png' length='23930' type='image/png' />
+		<category>Prestashop, Amazon</category>
+	</item>
+	<item>
+		<title>Amazon App pour Shopify</title>
+		<link>https://blog.common-services.com/post/amazon-integration-plus-pour-shopify</link>
+		<guid>https://blog.common-services.com/post/amazon-integration-plus-pour-shopify</guid>
+		<pubDate>Tue, 01 Sep 2020 12:00:00 GMT</pubDate>
+		<dc:identifier>84</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Amazon Intégration + pour Shopify vous permet de gérer votre catalogue Amazon depuis Shopify pour l'ensemble des marketplaces Amazon disponibles. </description>
+		<enclosure url='https://strapi2.common-services.com/uploads/app_rounded_corners_1_7423d62c15.png' length='20290' type='image/png' />
+		<category>Amazon</category>
+	</item>
+	<item>
+		<title>Amazon App for Shopify</title>
+		<link>https://blog.common-services.com/post/amazon-integration-plus-for-shopify</link>
+		<guid>https://blog.common-services.com/post/amazon-integration-plus-for-shopify</guid>
+		<pubDate>Sun, 20 Sep 2020 12:00:00 GMT</pubDate>
+		<dc:identifier>85</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Amazon Integration + for Shopify allows you to manage your Amazon catalog from Shopify for all available Amazon Marketplaces. </description>
+		<enclosure url='https://strapi2.common-services.com/uploads/app_rounded_corners_1_7423d62c15.png' length='20290' type='image/png' />
+		<category>Amazon @en</category>
+	</item>
+	<item>
+		<title>Sheets pour Shopify</title>
+		<link>https://blog.common-services.com/post/sheets-pour-shopify</link>
+		<guid>https://blog.common-services.com/post/sheets-pour-shopify</guid>
+		<pubDate>Tue, 01 Sep 2020 12:00:00 GMT</pubDate>
+		<dc:identifier>86</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Sheets pour Shopify, une application de productivité qui permet d'étider son catalogue directement depuis Google Sheets et de le synchroniser avec sa boutique.</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/blog_banner_cb51a44795.png' length='31560' type='image/png' />
+		<category>Shopify</category>
+	</item>
+	<item>
+		<title>Sheets for Shopify</title>
+		<link>https://blog.common-services.com/post/sheets-for-shopify</link>
+		<guid>https://blog.common-services.com/post/sheets-for-shopify</guid>
+		<pubDate>Tue, 01 Sep 2020 12:00:00 GMT</pubDate>
+		<dc:identifier>87</dc:identifier>
+		<dc:creator>Olivier Baquet</dc:creator>
+		<description>Sheets for Shopify, a productivity application that allows you to stretch your catalog directly from Google Sheets and synchronize it with your store.</description>
+		<enclosure url='https://strapi2.common-services.com/uploads/blog_banner_cb51a44795.png' length='31560' type='image/png' />
+		<category>E-commerce, Shopify</category>
+	</item>
+	</channel>
+</rss>

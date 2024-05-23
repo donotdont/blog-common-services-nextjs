@@ -31,9 +31,7 @@ import 'moment/locale/fr';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 
-import SocialMedia from './SocialMedia';
-import BlogPostPaperSkeleton from './BlogPostPaperSkeleton';
-import BlogPostSoNice from './BlogPostSonice';
+import BlogPagePaperSkeleton from './BlogPostPaperSkeleton';
 
 type Props = {
     dictionary: string;
@@ -123,7 +121,7 @@ export default function BlogPagePaper({ dictionary, title }: Props) {
     }
 
     return (
-        <Suspense fallback={<BlogPostPaperSkeleton />}>
+        <Suspense fallback={<BlogPagePaperSkeleton />}>
             <SuspenseQueryPage />
         </Suspense>
     );
