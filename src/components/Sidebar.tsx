@@ -153,7 +153,7 @@ export default function Sidebar(props: Props) {
                     >
                         {data.pages && data.pages.length > 0 && data.pages.map((page, keyPage) => {
                             return (
-                                <ListItemButton key={keyPage} divider={data.pages.length - 1 > keyPage} component="a" href={'/' + page.slug}>
+                                <ListItemButton key={keyPage} divider={data.pages.length - 1 > keyPage} component="a" href={`/${getCurrentLng}/company/${page.slug}`}>
                                     <ListItemText primary={page["title_" + getCurrentLng]} />
                                 </ListItemButton>
                             );
