@@ -1,6 +1,6 @@
 "use client";
 import * as React from 'react';
-import { useState, Suspense, startTransition } from 'react';
+import { useState, Suspense, startTransition, useEffect } from 'react';
 import Image from 'next/image';
 import Link from "next/link";
 
@@ -29,6 +29,10 @@ import SocialMedia from './SocialMedia';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 
+/* JQuery */
+import $ from 'jquery';
+import GalleryImages from './GalleryImages';
+
 
 type Props = {
     dictionary: string;
@@ -44,6 +48,12 @@ export default function BlogPostPaper({ dictionary, title }: Props) {
     const t = dictionary;
     //const lang = t['language-selected'].toLowerCase();
     const [slugurl, setSlugurl] = React.useState<string>(title);
+
+    useEffect(() => {
+        window.jQuery = $;
+        window.$ = $;
+        global.jQuery = $;
+    });
 
     const postQuery: TypedDocumentNode<Variables> = gql`query getPost($slugurl: String){
         posts(where: {slugurl:$slugurl,active:true},limit:1){
@@ -132,7 +142,7 @@ export default function BlogPostPaper({ dictionary, title }: Props) {
                     </Grid>
                     <CardActions>
                         <Typography component={'span'} variant={'body2'}>
-                            <ReactMarkdown children={post.body} rehypePlugins={[rehypeRaw] as any} urlTransform={(value: string) => { return (value.includes('.png')) ? process.env.NEXT_PUBLIC_STRAPI+value:value}} />
+                            <ReactMarkdown className={'doc-markdown'} children={post.body} rehypePlugins={[rehypeRaw] as any} urlTransform={(value: string) => { return (!value.includes('https://')) ? process.env.NEXT_PUBLIC_STRAPI + value : value }} />
                         </Typography>
                     </CardActions>
 
@@ -147,6 +157,7 @@ export default function BlogPostPaper({ dictionary, title }: Props) {
                     </CardActions>
 
                     <CardActions><SocialMedia dictionary={t} post={post} size={32} /></CardActions>
+                    <GalleryImages />
                 </Paper>) : <>Not Found</>}
             </React.Fragment>
         );

@@ -90,24 +90,46 @@ export default function LocaleMenuSwitcher({ dictionary, handleCloseUserMenu }: 
     };
     //console.log('i18n', i18n);
 
+    function removePostUnderscore(name: string) {
+        return name.replace(/post_/g, '');
+    }
+
     function Result({ source, data }: { source: string; data: unknown }) {
-        console.log(data);
+        //console.log(data);
         const segments = pathName.split("/");
-        if(data && data.translation_en && data.translation_en.length > 0 && data.translation_en[0]["post_" + segments[1]].slugurl != segments[2]){
+        if (segments[1] && segments[1] == 'en' && data && data.translation_en && data.translation_en.length > 0 && data.translation_en[0]["post_" + segments[1]].slugurl != segments[2]) {
             //console.log(data["translation_"+currentLang] && data["translation_"+currentLang][0]["post_" + segments[1]].slugurl+" != "+segments[2]);
             return redirect(`/${segments[1]}/${data.translation_en && data.translation_en[0]["post_fr"].slugurl}`);
         }
-        if(data && data.translation_fr && data.translation_fr.length > 0 && data.translation_fr[0]["post_" + segments[1]].slugurl != segments[2]){
+        if (segments[1] && segments[1] == 'fr' && data && data.translation_fr && data.translation_fr.length > 0 && data.translation_fr[0]["post_" + segments[1]].slugurl != segments[2]) {
             //console.log(data["translation_"+currentLang] && data["translation_"+currentLang][0]["post_" + segments[1]].slugurl+" != "+segments[2]);
             return redirect(`/${segments[1]}/${data.translation_fr && data.translation_fr[0]["post_en"].slugurl}`);
         }
         return (
             <>
-                {i18n && i18n.locales.map((locale) => {
+                {data && data["translation_" + currentLang] && data["translation_" + currentLang].length > 0 ?
+                    Object.keys(data["translation_" + currentLang][0]).map((keyTranslation) =>
+                    (keyTranslation != "__typename" && <Link key={keyTranslation} href={data["translation_" + currentLang][0][keyTranslation] ? redirectedPathNamePost(removePostUnderscore(keyTranslation), data["translation_" + currentLang][0][keyTranslation].slugurl) : '#'}>
+                        <MenuItem disabled={data["translation_" + currentLang][0][keyTranslation] == null}>
+                            <Typography textAlign="center">
+                                {t['locale'][removePostUnderscore(keyTranslation)]}
+                            </Typography>
+                        </MenuItem>
+                    </Link>
+                    )) : i18n && i18n.locales.map((locale, keyLocale) => (
+                        <Link key={keyLocale} href={redirectedPathName(locale)}>
+                            <MenuItem>
+                                <Typography textAlign="center">
+                                    {t['locale'][locale]}
+                                </Typography>
+                            </MenuItem>
+                        </Link>
+                    ))}
+                {/*i18n && i18n.locales.map((locale) => {
 
                     return (
                         <React.Fragment key={locale}>
-                            {data && data["translation_"+currentLang] && data["translation_"+currentLang].length > 0 ? <Link key={locale} href={redirectedPathNamePost(locale, data.translation_en.length ? data.translation_en[0]["post_" + locale].slugurl:data.translation_fr[0]["post_" + locale].slugurl)}>
+                            {data && data["translation_"+currentLang] && data["translation_"+currentLang].length > 0 ? <Link key={locale} href={redirectedPathNamePost(locale, data.translation_en.length > 0 && data.translation_en[0]["post_" + locale] ? data.translation_en[0]["post_" + locale].slugurl:data.translation_fr[0]["post_" + locale].slugurl)}>
                                 <MenuItem data-value={locale}>
                                     <Typography textAlign="center">
                                         {t['locale'][locale]}
@@ -124,7 +146,7 @@ export default function LocaleMenuSwitcher({ dictionary, handleCloseUserMenu }: 
                         </React.Fragment>
                     )
                 })
-                }
+            */}
             </>
         )
     }

@@ -30,7 +30,7 @@ export default async function RootLayout({
   const cookieStore = cookies();
   const delay = Number(cookieStore.get("apollo-x-custom-delay")?.value ?? 1000);
   return (
-    <html >
+    <html lang={params.lang}>
       <body className={roboto.className}>
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>

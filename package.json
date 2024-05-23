@@ -20,6 +20,7 @@
     "@mui/material-nextjs": "^5.15.11",
     "@types/negotiator": "^0.6.3",
     "html-differ": "^1.4.0",
+    "jquery": "^3.7.1",
     "js-cookie": "^3.0.5",
     "negotiator": "^0.6.3",
     "next": "14.2.3",
