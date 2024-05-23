@@ -37,6 +37,7 @@ import CardContent from '@mui/material/CardContent';
 
 import SocialMedia from './SocialMedia';
 import BlogPostPaperSkeleton from './BlogPostPaperSkeleton';
+import BlogPostSoNice from './BlogPostSonice';
 
 type Props = {
     dictionary: string;
@@ -144,7 +145,7 @@ export default function BlogPostPaper({ dictionary, title }: Props) {
                             </CardActions>
 
                             {post.slugurl === "pourquoi-sonice" && (
-                                <SoNice />
+                                <BlogPostSoNice dictionary={t} />
                             )}
 
                             <CardActions>
