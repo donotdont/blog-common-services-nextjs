@@ -9,6 +9,7 @@ import { Grid, Paper, Stack } from "@mui/material";
 import Footer from "@/components/Footer";
 import Sidebar from "@/components/Sidebar";
 import BlogPostPaper from "@/components/BlogPostPaper";
+import BlogPostPaperSkeleton from "@/components/BlogPostPaperSkeleton";
 
 interface Props {
   params: {

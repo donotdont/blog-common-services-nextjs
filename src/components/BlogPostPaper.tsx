@@ -11,8 +11,11 @@ import ButtonBase from '@mui/material/ButtonBase';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import { AccountBox, Event } from '@mui/icons-material';
-import CardActions from '@mui/material/CardActions';
 import Chip from '@mui/material/Chip';
+import Card from '@mui/material/Card';
+import CardActionArea from '@mui/material/CardActionArea';
+import CardActions from '@mui/material/CardActions';
+import CardHeader from '@mui/material/CardHeader';
 
 /* GraphQL */
 import { gql, TypedDocumentNode } from "@apollo/client";
@@ -22,8 +25,6 @@ import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
 import Moment from 'react-moment';
 import 'moment/locale/fr';
 
-import SocialMedia from './SocialMedia';
-
 /* HTML */
 //import { Markup } from "react-render-markup";
 import ReactMarkdown from 'react-markdown';
@@ -32,7 +33,10 @@ import rehypeRaw from 'rehype-raw';
 /* JQuery */
 import $ from 'jquery';
 import GalleryImages from './GalleryImages';
+import CardContent from '@mui/material/CardContent';
 
+import SocialMedia from './SocialMedia';
+import BlogPostPaperSkeleton from './BlogPostPaperSkeleton';
 
 type Props = {
     dictionary: string;
@@ -120,47 +124,41 @@ export default function BlogPostPaper({ dictionary, title }: Props) {
 
         return (
             <React.Fragment>
-                {(post) ? (<Paper elevation={2} sx={{ padding: 2 }}>
-                    <Grid container spacing={1}>
-                        <Grid item>
-                            <ButtonBase>
-                                <Avatar sx={{ width: 50, height: 50 }} alt={(post && post.user) ? post.user.first_name + '  ' + post.user.last_name : ""} src={process.env.NEXT_PUBLIC_STRAPI + ((post && post.user && post.user.profile_image && post.user.profile_image.url) ? post.user.profile_image.url : "/uploads/kisspng_avatar_user_449cb96c34.png")} />
-                            </ButtonBase>
-                        </Grid>
-                        <Grid item xs container>
-                            <Grid item xs container direction="column" spacing={16}>
-                                <Grid item xs>
-                                    <Typography variant="h5" component="h1">
-                                        {post.title}
+                {(post) ?
+                    (<Paper elevation={2}>
+                        <Card elevation={0}>
+                            <CardHeader
+                                avatar={<Avatar sx={{ width: 50, height: 50 }} alt={(post && post.user) ? post.user.first_name + '  ' + post.user.last_name : ""} src={process.env.NEXT_PUBLIC_STRAPI + ((post && post.user && post.user.profile_image && post.user.profile_image.url) ? post.user.profile_image.url : "/uploads/kisspng_avatar_user_449cb96c34.png")} />}
+                                title={<Typography variant="h5" component="h1">{post.title}</Typography>}
+                                subheader={<Typography color="textSecondary">
+                                    <Event style={{ fontSize: 14 }} /> {dateFormat(post)} {t['by']} <AccountBox style={{ fontSize: 14 }} /> {(post && post.user) ? post.user.first_name + '  ' + post.user.last_name : ""}
+                                </Typography>}
+                            />
+
+                            <CardActions>
+                                <CardContent>
+                                    <Typography component={'span'} variant={'body2'}>
+                                        <ReactMarkdown className={'doc-markdown'} children={post.body} rehypePlugins={[rehypeRaw] as any} urlTransform={(value: string) => { return (!value.includes('https://')) ? process.env.NEXT_PUBLIC_STRAPI + value : value }} />
                                     </Typography>
-                                    <Typography color="textSecondary">
-                                        <Event style={{ fontSize: 14 }} /> {dateFormat(post)} {t['by']} <AccountBox style={{ fontSize: 14 }} /> {(post && post.user) ? post.user.first_name + '  ' + post.user.last_name : ""}
-                                    </Typography>
-                                </Grid>
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                    <CardActions>
-                        <Typography component={'span'} variant={'body2'}>
-                            <ReactMarkdown className={'doc-markdown'} children={post.body} rehypePlugins={[rehypeRaw] as any} urlTransform={(value: string) => { return (!value.includes('https://')) ? process.env.NEXT_PUBLIC_STRAPI + value : value }} />
-                        </Typography>
-                    </CardActions>
+                                </CardContent>
+                            </CardActions>
 
-                    {post.slugurl === "pourquoi-sonice" && (
-                        <SoNice />
-                    )}
+                            {post.slugurl === "pourquoi-sonice" && (
+                                <SoNice />
+                            )}
 
-                    <CardActions>
-                        {post.categories.map((cat, keyCat) => {
-                            return <Chip variant="outlined" label={removeAtENFR(cat.name)} key={`chip-${keyCat}`} component="a" href={`/category/${cat.slug}`} clickable sx={{ margin: "8px" }} />;
-                        })}
-                    </CardActions>
+                            <CardActions>
+                                {post.categories.map((cat, keyCat) => {
+                                    return <Chip variant="outlined" label={removeAtENFR(cat.name)} key={`chip-${keyCat}`} component="a" href={`/category/${cat.slug}`} clickable sx={{ margin: "8px" }} />;
+                                })}
+                            </CardActions>
 
-                    <CardActions><SocialMedia dictionary={t} post={post} size={32} /></CardActions>
-                    <GalleryImages />
-                </Paper>) : <>Not Found</>}
-            </React.Fragment>
-        );
+                            <CardActions><SocialMedia dictionary={t} post={post} size={32} /></CardActions>
+                            <GalleryImages />
+
+                        </Card>
+                    </Paper>) : (<>Not Found</>)}
+            </React.Fragment>)
     }
 
     function SuspenseQueryPost({ children, title }: PostProps) {
@@ -177,7 +175,7 @@ export default function BlogPostPaper({ dictionary, title }: Props) {
     }
 
     return (
-        <Suspense>
+        <Suspense fallback={<BlogPostPaperSkeleton />}>
             <SuspenseQueryPost slugurl={slugurl} />
         </Suspense>
     );
