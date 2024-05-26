@@ -32,6 +32,7 @@ import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 
 import BlogPagePaperSkeleton from './BlogPostPaperSkeleton';
+import PageNotFound from './PageNotFound';
 
 type Props = {
     dictionary: string;
@@ -103,7 +104,7 @@ export default function BlogPagePaper({ dictionary, title }: Props) {
                             </CardActions>
 
                         </Card>
-                    </Paper>) : (<>Not Found</>)}
+                    </Paper>) : (<PageNotFound dictionary={t} />)}
             </React.Fragment>)
     }
 

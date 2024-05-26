@@ -28,7 +28,11 @@ import 'moment/locale/fr';
 /* HTML */
 //import { Markup } from "react-render-markup";
 import ReactMarkdown from 'react-markdown';
-import rehypeRaw from 'rehype-raw';
+import rehypeRaw from 'rehype-raw'
+import rehypeStringify from 'rehype-stringify'
+import remarkGfm from 'remark-gfm';
+import remarkParse from 'remark-parse';
+import remarkRehype from 'remark-rehype';
 
 /* JQuery */
 import $ from 'jquery';
@@ -38,6 +42,7 @@ import CardContent from '@mui/material/CardContent';
 import SocialMedia from './SocialMedia';
 import BlogPostPaperSkeleton from './BlogPostPaperSkeleton';
 import BlogPostSoNice from './BlogPostSonice';
+import PageNotFound from './PageNotFound';
 
 type Props = {
     dictionary: string;
@@ -138,7 +143,7 @@ export default function BlogPostPaper({ dictionary, title }: Props) {
                             <CardActions>
                                 <CardContent>
                                     <Typography component={'span'} variant={'body2'}>
-                                        <ReactMarkdown className={'doc-markdown'} children={post.body} rehypePlugins={[rehypeRaw] as any} urlTransform={(value: string) => { return (!value.includes('https://')) ? process.env.NEXT_PUBLIC_STRAPI + value : value }} />
+                                        <ReactMarkdown className={'doc-markdown'} children={post.body} remarkPlugins={[remarkGfm, remarkParse, remarkRehype] as any} rehypePlugins={[rehypeRaw, rehypeStringify] as any} remarkRehypeOptions={{ passThrough: ['link'] }} urlTransform={(value: string) => { return (!value.includes('https://')) ? process.env.NEXT_PUBLIC_STRAPI + value : value }} />
                                     </Typography>
                                 </CardContent>
                             </CardActions>
@@ -157,7 +162,7 @@ export default function BlogPostPaper({ dictionary, title }: Props) {
                             <GalleryImages />
 
                         </Card>
-                    </Paper>) : (<>Not Found</>)}
+                    </Paper>) : (<PageNotFound dictionary={t} />)}
             </React.Fragment>)
     }
 

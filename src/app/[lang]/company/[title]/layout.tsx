@@ -3,7 +3,7 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 import { ThemeProvider } from '@mui/material/styles';
 
 /* i18n */
-import { i18n, type Locale } from "../../../../../../../i18n-config";
+import { i18n, type Locale } from "../../../../../i18n-config";
 
 /*export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));

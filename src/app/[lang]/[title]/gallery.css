@@ -22,6 +22,10 @@ body.compensate-for-scrollbar{overflow:hidden}.fancybox-active{height:auto}.fanc
 	z-index: 9050;
 }
 
+.doc-markdown a{
+    color: #ff5722;
+}
+
 .image img {
     width: 100%;
     height: auto;
@@ -47,6 +51,9 @@ body.compensate-for-scrollbar{overflow:hidden}.fancybox-active{height:auto}.fanc
 .doc-markdown img{
     max-width: 100%;
     height: auto;
+}
+.doc-markdown p {
+    line-height: 1.5em;
 }
 .lightSlider.lsGrab img {
     cursor: pointer;

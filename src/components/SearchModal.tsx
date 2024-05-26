@@ -121,7 +121,7 @@ export default function SearchModal({ dictionary }: Props) {
 
     const searchPostsQuery: TypedDocumentNode<Variables> = gql`
     query searchPosts($search: String, $lang: String){
-        posts(where: {title_contains: $search,tag:{slug_contains: $lang } }, limit:10){
+        posts(where: {_or:[{title_contains:$search}, {summary_contains:$search}, {slugurl_contains:$search}, {body_contains:$search}],tag:{slug_contains: $lang } }, limit:10){
             title
             slugurl
             published

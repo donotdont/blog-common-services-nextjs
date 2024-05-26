@@ -174,7 +174,7 @@ export default function Sidebar(props: Props) {
                     >
                         {data.translationCategories && data.translationCategories.length > 0 && data.translationCategories.map((category, keyCategory) => {
                             return (
-                                <ListItemButton key={keyCategory} divider={data.translationCategories.length - 1 > keyCategory} component="a" href={'/' + (category && category["category_" + getCurrentLng] != null) ? category["category_" + getCurrentLng].slug : ''}>
+                                <ListItemButton key={keyCategory} divider={data.translationCategories.length - 1 > keyCategory} component="a" href={`/${getCurrentLng}/category/` + ((category && category["category_" + getCurrentLng] != null) ? category["category_" + getCurrentLng].slug : '')}>
                                     <ListItemText primary={removeAtEN((category && category["category_" + getCurrentLng] != null) ? category["category_" + getCurrentLng].name : '')} />
                                 </ListItemButton>
                             );

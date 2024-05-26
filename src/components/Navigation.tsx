@@ -174,7 +174,6 @@ export default function Navigation(props: Props) {
                             ))}
                         </Box>
 
-
                         <Box sx={{ flexGrow: 0, paddingRight: 2 }}>
                             {/*<Button variant="outlined" startIcon={<SearchIcon fontSize="small" sx={{ flexGrow: 1, display: { xs: 'none', sm: 'none', md: 'block' } }} />} endIcon={<Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'none', md: 'block' } }}><ShotcutSearch>Ctrl+K</ShotcutSearch></Box>} aria-label="search" size="small" sx={{ minWidth: '18px', minHeight: '24px' }}>
                                         <Typography variant="span" component="div" sx={{ flexGrow: 1, display: { xs: 'none', sm: 'none', md: 'block' } }}>

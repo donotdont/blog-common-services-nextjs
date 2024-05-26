@@ -1,9 +1,9 @@
 
-import { getDictionary } from "../../../../get-dictionary";
-import { Locale } from "../../../../i18n-config";
-import BlogPostCard from "@/components/BlogPostCard";
+import { getDictionary } from "../../../../../get-dictionary";
+import { Locale } from "../../../../../i18n-config";
+import BlogPostCategoryCard from "@/components/BlogPostCategoryCard";
 import Navigation from "@/components/Navigation";
-import "./../../globals.css";
+import "./../../../globals.css";
 
 import Container from "@mui/material/Container";
 import { Grid, Paper, Stack } from "@mui/material";
@@ -11,9 +11,9 @@ import Footer from "@/components/Footer";
 import Sidebar from "@/components/Sidebar";
 
 export default async function IndexPage({
-  params: { lang },
+  params: { lang, slug },
 }: {
-  params: { lang: Locale };
+  params: { lang: Locale, slug: string };
 }) {
   const dictionary = await getDictionary(lang);
 
@@ -30,7 +30,7 @@ export default async function IndexPage({
         >
           <Grid item md={9}>
             <Grid container direction="row" justifyContent="center" alignItems="stretch" spacing={4} >
-              <BlogPostCard dictionary={dictionary} />
+              <BlogPostCategoryCard dictionary={dictionary} slug={slug} />
             </Grid>
           </Grid>
           <Grid item md={3}>
@@ -39,7 +39,7 @@ export default async function IndexPage({
         </Grid>
       </Container>
 
-    <Footer dictionary={dictionary} size={32}  />
+      <Footer dictionary={dictionary} size={32} />
     </div>
   );
 }
