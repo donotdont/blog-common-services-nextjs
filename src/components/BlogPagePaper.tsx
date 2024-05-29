@@ -17,6 +17,12 @@ import CardActionArea from '@mui/material/CardActionArea';
 import CardActions from '@mui/material/CardActions';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
+import Alert from '@mui/material/Alert';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import WarningAmberIcon from '@mui/icons-material/WarningAmber';
+import SendIcon from '@mui/icons-material/Send';
+import LoadingButton from '@mui/lab/LoadingButton';
+import SaveIcon from '@mui/icons-material/Save';
 
 /* GraphQL */
 import { gql, TypedDocumentNode } from "@apollo/client";
@@ -33,6 +39,12 @@ import rehypeRaw from 'rehype-raw';
 
 import BlogPagePaperSkeleton from './BlogPostPaperSkeleton';
 import PageNotFound from './PageNotFound';
+import { GoogleReCaptchaProvider, GoogleReCaptcha } from 'react-google-recaptcha-v3';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import FormControl from '@mui/material/FormControl';
+import axios from 'axios';
 
 type Props = {
     dictionary: string;
@@ -46,8 +58,16 @@ interface PageProps {
 
 export default function BlogPagePaper({ dictionary, title }: Props) {
     const t = dictionary;
+
+    const [token, setToken] = useState('')
+    const verifyRecaptchaCallback = React.useCallback((token) => {
+        setToken(token)
+    }, []);
+
     //const lang = t['language-selected'].toLowerCase();
     const [slug, setSlug] = React.useState<string>(title);
+    const [contactStatus, setContactStatus] = React.useState<string>();
+
 
     const pageQuery: TypedDocumentNode<Variables> = gql`query getPage($slug: String){
         pages(where: {slug:$slug,active:true},limit:1){
@@ -69,6 +89,17 @@ export default function BlogPagePaper({ dictionary, title }: Props) {
           </div>
         );*/
         const page = data ? data.pages[0] : null;
+        const [loadding, setLoadding] = React.useState<bool>(false);
+        const [formData, setFormData] = React.useState<any>({
+            name: "",
+            email: "",
+            subject: "",
+            message: "",
+            nameError: "",
+            emailError: "",
+            subjectError: "",
+            messageError: ""
+        });
 
         function dateFormat(_post: unknown) {
             return (<Moment format="D MMMM YYYY" titleFormat="DD MMMM YYYY" locale={t['language-selected'].toLowerCase()} withTitle>{_post.published}</Moment>)
@@ -86,6 +117,103 @@ export default function BlogPagePaper({ dictionary, title }: Props) {
             return process.env.NEXT_PUBLIC_HOST;
         }
 
+        function validateEmail(email: string) {
+            var re = /\S+@\S+\.\S+/;
+            return re.test(email);
+        }
+
+        function validate() {
+            let error = false;
+            console.log(formData.name.length);
+            if (formData.name.length == 0) {
+                setFormData(prevState => ({
+                    ...prevState,
+                    ["nameError"]: "Field is required!"
+                }));
+                error = true;
+            }
+            if (formData.email.length == 0) {
+                setFormData(prevState => ({
+                    ...prevState,
+                    ["emailError"]: "Field is required!"
+                }));
+                error = true;
+            } else if (!validateEmail(formData.email)) {
+                setFormData(prevState => ({
+                    ...prevState,
+                    ["emailError"]: "Please enter a valid email address"
+                }));
+                error = true;
+            }
+            if (formData.subject.length == 0) {
+                setFormData(prevState => ({
+                    ...prevState,
+                    ["subjectError"]: "Field is required!"
+                }));
+                error = true;
+            }
+            if (formData.message.length == 0) {
+                setFormData(prevState => ({
+                    ...prevState,
+                    ["messageError"]: "Field is required!"
+                }));
+                error = true;
+            }
+
+            if (error){
+                return false;
+            } else {
+                setFormData(prevState => ({
+                    ...prevState,
+                    ["nameError"]: "",
+                    ["emailError"]: "",
+                    ["subjectError"]: "",
+                    ["messageError"]: ""
+                }));
+                return true;
+            }
+        }
+
+        async function handleSubmit(event: any) {
+            event.preventDefault();
+            const validation = validate();
+            //console.log("validation", validation);
+            if (validation) {
+                setLoadding(true);
+                // clear form
+                //this.setState(initialState);
+                //console.log(this.state);
+                axios({
+                    method: "POST",
+                    url: process.env.NEXT_PUBLIC_HOST + "/api",
+                    data: {
+                        name: formData.name,
+                        email: formData.email,
+                        subject: formData.subject,
+                        message: formData.message
+                    }
+                }).then((response) => {
+                    if (response.data.msg === 'success') {
+                        setContactStatus("success");
+                    } else if (response.data.msg === 'fail') {
+                        setContactStatus("error");
+                    }
+                    setLoadding(false);
+                });
+            } else {
+                setContactStatus("");
+                setLoadding(false);
+            }
+        }
+
+        function handleChange(e: React.ChangeEvent<unknown>) {
+            const { name, value } = e.target;
+            setFormData(prevState => ({
+                ...prevState,
+                [name]: value
+            }));
+        }
+
         return (
             <React.Fragment>
                 {(page) ?
@@ -100,12 +228,145 @@ export default function BlogPagePaper({ dictionary, title }: Props) {
                                     <Typography component={'span'} variant={'body2'}>
                                         <ReactMarkdown className={'doc-markdown'} children={page[`body_${t['language-selected'].toLowerCase()}`]} rehypePlugins={[rehypeRaw] as any} urlTransform={(value: string) => { return (!value.includes('https://')) ? process.env.NEXT_PUBLIC_STRAPI + value : value }} />
                                     </Typography>
+
+                                    {slug && slug == "contact" && (
+                                        <React.Fragment>
+                                            {/*<GoogleReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA} language={t['language-selected'].toLowerCase()}>*/}
+                                            <Box
+                                                component="form"
+                                                sx={{
+                                                    '& > :not(style)': { m: 0 },
+                                                }}
+                                                noValidate
+                                                autoComplete="off"
+                                                onSubmit={handleSubmit}
+                                            >
+
+                                                {contactStatus && (
+                                                    <React.Fragment>
+                                                        {contactStatus === "success" && (
+                                                            <Grid container spacing={1}>
+                                                                <Grid item xs={12}>
+                                                                    <Alert icon={<CheckCircleOutlineIcon fontSize="inherit" />} severity="success">
+                                                                        {t['Thank you for your message, It has been sent']}.
+                                                                    </Alert>
+                                                                </Grid>
+                                                            </Grid>)}
+                                                        {contactStatus === "error" && (
+                                                            <Grid container spacing={1}>
+                                                                <Grid item xs={12}>
+                                                                    <Alert icon={<WarningAmberIcon fontSize="inherit" />} severity="error">
+                                                                        {t['There was an error trying to send your message, Please try again later']}.
+                                                                    </Alert>
+                                                                </Grid>
+                                                            </Grid>)}
+                                                    </React.Fragment>
+                                                )}
+
+                                                {contactStatus !== "success" && (
+                                                    <React.Fragment>
+                                                        <Grid
+                                                            container
+                                                            direction="row"
+                                                            justifyContent="center"
+                                                            alignItems="flex-start"
+                                                            spacing={1} >
+                                                            <Grid item xs={12} sm={4}>
+                                                                <TextField
+                                                                    required
+                                                                    error={formData.nameError.length > 0}
+                                                                    label={t["Your Name"]}
+                                                                    name="name"
+                                                                    onChange={handleChange}
+                                                                    value={formData.name}
+                                                                    margin="normal"
+                                                                    variant="filled"
+                                                                    helperText={formData.nameError}
+                                                                    sx={{ width: "100%" }}
+                                                                />
+                                                            </Grid>
+                                                            <Grid item xs={12} sm={4}>
+                                                                <TextField
+                                                                    required
+                                                                    error={formData.emailError.length > 0}
+                                                                    label={t["Your Email"]}
+                                                                    name="email"
+                                                                    onChange={handleChange}
+                                                                    value={formData.email}
+                                                                    margin="normal"
+                                                                    variant="filled"
+                                                                    helperText={formData.emailError}
+                                                                    sx={{ width: "100%" }}
+                                                                />
+                                                            </Grid>
+                                                            <Grid item xs={12} sm={4}>
+                                                                <TextField
+                                                                    required
+                                                                    error={formData.subjectError.length > 0}
+                                                                    label={t["Subject"]}
+                                                                    name="subject"
+                                                                    onChange={handleChange}
+                                                                    value={formData.subject}
+                                                                    margin="normal"
+                                                                    variant="filled"
+                                                                    helperText={formData.subjectError}
+                                                                    sx={{ width: "100%" }}
+                                                                />
+                                                            </Grid>
+                                                        </Grid>
+                                                        <Grid container spacing={1}>
+                                                            <Grid item xs={12}>
+                                                                <TextField
+                                                                    required
+                                                                    error={formData.messageError.length > 0}
+                                                                    label={t["Your Message"]}
+                                                                    multiline
+                                                                    rows="4"
+                                                                    name="message"
+                                                                    onChange={handleChange}
+                                                                    value={formData.message}
+                                                                    margin="normal"
+                                                                    variant="filled"
+                                                                    helperText={formData.messageError}
+                                                                    sx={{ width: "100%" }}
+                                                                />
+                                                            </Grid>
+                                                        </Grid>
+                                                        <Grid container spacing={1}>
+                                                            <Grid item xs={12} sx={{ textAlign: "right" }}>
+                                                                {/*<GoogleReCaptcha
+                                                                        onVerify={verifyRecaptchaCallback}
+                                                                    />*/}
+
+                                                                {/*<Button variant="contained" color="primary" type="submit" endIcon={<SendIcon />}>
+                                                                    {t["Send"]}
+                                                                </Button>*/}
+                                                                <LoadingButton
+                                                                    variant="contained"
+                                                                    type="submit"
+                                                                    loading={loadding}
+                                                                    loadingPosition="end"
+                                                                    endIcon={<SendIcon />}
+                                                                    variant="outlined"
+                                                                >
+                                                                    {t["Send"]}
+                                                                </LoadingButton>
+                                                            </Grid>
+                                                        </Grid>
+                                                    </React.Fragment>)}
+
+                                            </Box>
+                                            {/*</GoogleReCaptchaProvider>*/}
+                                        </React.Fragment>)}
                                 </CardContent>
                             </CardActions>
 
+
+
                         </Card>
-                    </Paper>) : (<PageNotFound dictionary={t} />)}
-            </React.Fragment>)
+                    </Paper>) : (<PageNotFound dictionary={t} />)
+                }
+            </React.Fragment >)
     }
 
     function SuspenseQueryPage({ children, title }: PageProps) {

@@ -65,7 +65,7 @@ export default function BlogPostPaper({ dictionary, title }: Props) {
     });
 
     const postQuery: TypedDocumentNode<Variables> = gql`query getPost($slugurl: String){
-        posts(where: {slugurl:$slugurl,active:true},limit:1){
+        posts(where: {slugurl_contains:$slugurl,active:true},limit:1){
           title
           seo_title
           meta_description

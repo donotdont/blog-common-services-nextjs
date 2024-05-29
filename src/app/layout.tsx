@@ -20,6 +20,8 @@ export default function RootLayout({
     </html>
   );
 }*/
+/* SEO */
+import type { Metadata } from "next";
 
 /* MUI Theme */
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
@@ -67,7 +69,7 @@ export default async function RootLayout({
   );
 }
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Blog Common-Services",
   description: "Modules, extensions, addons, plugins for Prestashop, Oscommerce, Open Cart, Magento, Shopify.",
 };
