@@ -10,7 +10,7 @@ import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 
 type Props = {
-    dictionary: string;
+    dictionary: any;
 }
 
 export default function PageNotFound({ dictionary }: Props) {

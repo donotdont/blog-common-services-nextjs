@@ -29,14 +29,14 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { lang: Locale };
 }) {
-  const cookieStore = cookies();
-  const delay = Number(cookieStore.get("apollo-x-custom-delay")?.value ?? 1000);
+  //const cookieStore = cookies();
+  //const delay = Number(cookieStore.get("apollo-x-custom-delay")?.value ?? 1000);
   return (
     <html lang={params.lang}>
       <body className={roboto.className}>
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
-            <ApolloWrapper delay={delay}>
+            <ApolloWrapper>
               {children}
             </ApolloWrapper>
           </ThemeProvider>

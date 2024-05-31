@@ -16,19 +16,25 @@ import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
 import ListItemButton from "@mui/material/ListItemButton";
 import Moment from "react-moment";
 
-import populars from "@/components/popular.json";
 import CardContent from "@mui/material/CardContent";
 import ListSubheader from "@mui/material/ListSubheader";
 import SidebarSkeleton from "./SidebarSkeleton";
+//import populars from "@/components/popular.json" with { type: "json" };
 
 type Props = {
-    dictionary: string;
+    dictionary: any;
 }
 
 interface TabPanelProps {
     children?: React.ReactNode;
     index: number;
     value: number;
+}
+
+interface Populars {
+    published: string;
+    title: string;
+    slugurl: string;
 }
 
 function CustomTabPanel(props: TabPanelProps) {
@@ -57,7 +63,8 @@ function a11yProps(index: number) {
 export default function Sidebar(props: Props) {
     const t = props.dictionary;
     const getCurrentLng = t['language-selected'].toLowerCase();
-    const popularPosts = populars[getCurrentLng];
+    const populars: {[key: string]: any} = require("@/components/popular.json");
+    const popularPosts =populars[getCurrentLng];
     const where_posts = '{tag:{slug_contains: "' + getCurrentLng + '" },active:true }';
     const where_pages = '{ active:true }';
     const sidebarQuery = gql`
@@ -90,15 +97,15 @@ export default function Sidebar(props: Props) {
         setValue(newValue);
     };
 
-    function dateFormat(post) {
+    function dateFormat(post: any) {
         return (<Moment format="D MMMM YYYY" titleFormat="DD MMMM YYYY" locale={t['language-selected'].toLowerCase()} withTitle>{post.published}</Moment>)
     }
 
-    function removeAtEN(name) {
+    function removeAtEN(name: string) {
         return (t['language-selected'] == "FR") ? name.replace(/ @fr/g, '') : name.replace(/ @en/g, '');
     }
 
-    function Result({ source, data }: { source: string; data: unknown }) {
+    function Result({ source, data }: { source: string; data: any }) {
         return (
             <Box sx={{ minWidth: 275 }}>
                 <Card variant="outlined" sx={{ marginBottom: 1 }}>
@@ -116,7 +123,7 @@ export default function Sidebar(props: Props) {
                         </Box>
                         <CustomTabPanel value={value} index={0}>
                             <List component="nav" sx={{ width: '100%', bgcolor: 'background.paper', paddingTop: 0, paddingBottom: 0 }}>
-                                {data.posts && data.posts.length > 0 && data.posts.map((post, keyPost) => {
+                                {data.posts && data.posts.length > 0 && data.posts.map((post: any, keyPost: number) => {
 
                                     return (
                                         <ListItemButton key={keyPost} divider={data.posts.length - 1 > keyPost} component="a" href={'/post/' + post.slugurl}>
@@ -128,7 +135,7 @@ export default function Sidebar(props: Props) {
                         </CustomTabPanel>
                         <CustomTabPanel value={value} index={1}>
                             <List component="nav" sx={{ width: '100%', bgcolor: 'background.paper', paddingTop: 0, paddingBottom: 0 }}>
-                                {popularPosts && popularPosts.length > 0 && popularPosts.map((popular, keyPopular) => {
+                                {popularPosts && popularPosts.length > 0 && popularPosts.map((popular: any, keyPopular: number) => {
                                     return (
                                         <ListItemButton key={keyPopular} divider={popularPosts.length - 1 > keyPopular} component="a" href={'/post/' + popular.slugurl}>
                                             <ListItemText primary={popular.title} secondary={dateFormat(popular)} />
@@ -151,7 +158,7 @@ export default function Sidebar(props: Props) {
                         }
                         sx={{ width: '100%', bgcolor: 'background.paper', paddingTop: 0, paddingBottom: 0 }}
                     >
-                        {data.pages && data.pages.length > 0 && data.pages.map((page, keyPage) => {
+                        {data.pages && data.pages.length > 0 && data.pages.map((page: any, keyPage: number) => {
                             return (
                                 <ListItemButton key={keyPage} divider={data.pages.length - 1 > keyPage} component="a" href={`/${getCurrentLng}/company/${page.slug}`}>
                                     <ListItemText primary={page["title_" + getCurrentLng]} />
@@ -172,7 +179,7 @@ export default function Sidebar(props: Props) {
                         }
                         sx={{ width: '100%', bgcolor: 'background.paper', paddingTop: 0, paddingBottom: 0 }}
                     >
-                        {data.translationCategories && data.translationCategories.length > 0 && data.translationCategories.map((category, keyCategory) => {
+                        {data.translationCategories && data.translationCategories.length > 0 && data.translationCategories.map((category: any, keyCategory: number) => {
                             return (
                                 <ListItemButton key={keyCategory} divider={data.translationCategories.length - 1 > keyCategory} component="a" href={`/${getCurrentLng}/category/` + ((category && category["category_" + getCurrentLng] != null) ? category["category_" + getCurrentLng].slug : '')}>
                                     <ListItemText primary={removeAtEN((category && category["category_" + getCurrentLng] != null) ? category["category_" + getCurrentLng].name : '')} />
@@ -186,7 +193,7 @@ export default function Sidebar(props: Props) {
     }
 
     function SuspenseQuerySidebar({ children }: React.PropsWithChildren) {
-        const result = useSuspenseQuery(sidebarQuery, { fetchPolicy: "cache-first" }); //no-cache cache-first
+        const result = useSuspenseQuery(sidebarQuery, { fetchPolicy: "network-only" }); //no-cache cache-first
         return (
             <>
                 <Result source="useSuspenseQuery(sidebarQuery)" data={result.data} />

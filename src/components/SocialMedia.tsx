@@ -44,9 +44,9 @@ import {
 } from 'react-share';
 
 type Props = {
-    dictionary: string;
+    dictionary: any;
     size: number;
-    post: object;
+    post: any;
 }
 
 export default function SocialMedia({ dictionary, size, post }: Props) {
@@ -65,7 +65,7 @@ export default function SocialMedia({ dictionary, size, post }: Props) {
                 <FacebookShareButton
                     aria-label={t['Facebook']}
                     url={`${BlogURL}/post/${post.slugurl}`}
-                    quote={post.title}>
+                    title={post.title}>
                     <FacebookIcon size={size ? size : 24} round aria-hidden={true} />
                 </FacebookShareButton>
                 {/*</IconButton>*/}
@@ -74,7 +74,8 @@ export default function SocialMedia({ dictionary, size, post }: Props) {
                 <PinterestShareButton
                     aria-label={t['Pinteres']}
                     url={`${BlogURL}/post/${post.slugurl}`}
-                    quote={post.title}>
+                    media={`${BlogURL}/post/${post.slugurl}`}
+                    title={post.title}>
                     <PinterestIcon size={size ? size : 24} round aria-hidden={true} />
                 </PinterestShareButton>
                 {/*</IconButton>*/}
@@ -83,7 +84,7 @@ export default function SocialMedia({ dictionary, size, post }: Props) {
                 <LinkedinShareButton
                     aria-label={t['Linkedin']}
                     url={`${BlogURL}/post/${post.slugurl}`}
-                    quote={post.title}>
+                    title={post.title}>
                     <LinkedinIcon size={size ? size : 24} round aria-hidden={true} />
                 </LinkedinShareButton>
                 {/*</IconButton>*/}
@@ -92,7 +93,7 @@ export default function SocialMedia({ dictionary, size, post }: Props) {
                 <TwitterShareButton
                     aria-label={t['Twitter']}
                     url={`${BlogURL}/post/${post.slugurl}`}
-                    quote={post.title}>
+                    title={post.title}>
                     <TwitterIcon size={size ? size : 24} round aria-hidden={true} />
                 </TwitterShareButton>
                 {/*</IconButton>*/}
@@ -101,7 +102,7 @@ export default function SocialMedia({ dictionary, size, post }: Props) {
                 <TumblrShareButton
                     aria-label={t['Tumblr']}
                     url={`${BlogURL}/post/${post.slugurl}`}
-                    quote={post.title}>
+                    title={post.title}>
                     <TumblrIcon size={size ? size : 24} round aria-hidden={true} />
                 </TumblrShareButton>
                 {/*</IconButton>*/}
@@ -110,7 +111,7 @@ export default function SocialMedia({ dictionary, size, post }: Props) {
                 <EmailShareButton
                     aria-label={t['Email']}
                     url={`${BlogURL}/post/${post.slugurl}`}
-                    quote={post.title}>
+                    title={post.title}>
                     <EmailIcon size={size ? size : 24} round aria-hidden={true} />
                 </EmailShareButton>
                 {/*</IconButton>*/}

@@ -11,7 +11,7 @@ import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
 
 type Props = {
-    dictionary: string;
+    dictionary: any;
 }
 
 export default function SidebarSkeleton(props: Props) {

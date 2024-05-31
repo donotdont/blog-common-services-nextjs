@@ -1,28 +1,28 @@
 {
   "name": "blog-common-services",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "@apollo/client": "^3.10.3",
+    "@apollo/client": "^3.10.4",
     "@apollo/experimental-nextjs-app-support": "^0.10.1",
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@formatjs/intl-localematcher": "^0.5.4",
     "@mui/icons-material": "^5.15.16",
-    "@mui/lab": "^6.0.0-alpha.8",
-    "@mui/material": "^6.0.0-alpha.8",
+    "@mui/lab": "^6.0.0-alpha.9",
+    "@mui/material": "^6.0.0-alpha.9",
     "@mui/material-nextjs": "^5.15.11",
+    "@playwright/test": "^1.44.1",
     "@types/negotiator": "^0.6.3",
     "axios": "^1.7.2",
     "html-differ": "^1.4.0",
-    "jquery": "^3.7.1",
     "js-cookie": "^3.0.5",
     "negotiator": "^0.6.3",
     "next": "14.2.3",
@@ -40,11 +40,13 @@
     "remark-rehype": "^11.1.0"
   },
   "devDependencies": {
+    "@types/jquery": "^3.5.30",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
+    "jquery": "^3.7.1",
     "typescript": "^5"
   }
 }

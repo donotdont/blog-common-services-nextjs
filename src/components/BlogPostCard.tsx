@@ -40,11 +40,10 @@ import { Interface } from 'readline';
 //import { getClient } from "./../ApolloClient";
 
 type Props = {
-  dictionary: string;
+  dictionary: any;
 }
 
 interface PostProps {
-  children: React.ReactNode;
   page: number;
 }
 
@@ -61,7 +60,7 @@ export default function BlogPostCard({ dictionary }: Props) {
     })
   };
 
-  const postsQuery: TypedDocumentNode<Variables> = gql`
+  const postsQuery: any = gql`
   query getPosts($page: Int){
     postsConnection(
       where: {tag:{slug: "${t['language-selected'].toLowerCase()}" },active:true},
@@ -104,15 +103,15 @@ export default function BlogPostCard({ dictionary }: Props) {
   }
 `;
 
-  function dateFormat(post) {
+  function dateFormat(post: any) {
     return (<Moment format="D MMMM YYYY" titleFormat="DD MMMM YYYY" locale={t['language-selected'].toLowerCase()} withTitle>{post.published}</Moment>)
   }
 
-  function removeAtENFR(name) {
+  function removeAtENFR(name: string) {
     return (t['language-selected'] == "FR") ? name.replace(/ @fr/g, '') : name.replace(/ @en/g, '');
   }
 
-  function Result({ source, data }: { source: string; data: unknown }) {
+  function Result({ source, data }: { source: string; data: any }) {
     /*return (
       <div>
         <span>Source: {source}</span>
@@ -126,7 +125,7 @@ export default function BlogPostCard({ dictionary }: Props) {
       <>
         {/*JSON.stringify(data.postsConnection.values)*/}
         {/*<BlogPostCardSkeleton />*/}
-        {data && data.postsConnection && data.postsConnection.values.map((post, keyPost) => {
+        {data && data.postsConnection && data.postsConnection.values.map((post: any, keyPost: number) => {
           //console.log(post);
           return (
             <Grid item md={4} key={keyPost}>
@@ -163,12 +162,12 @@ export default function BlogPostCard({ dictionary }: Props) {
                 {post.categories && post.categories.length > 0 && (
                   <CardActions>
                     <Stack direction="row" spacing={1}>
-                      {post.categories.map((category, KeyCategory) => (
+                      {post.categories.map((category: any, KeyCategory: number) => (
                         <Chip
                           key={KeyCategory}
                           label={removeAtENFR(category.name)}
                           component="a"
-                          href={"/category/" + category.slug}
+                          href={`${process.env.NODE_ENV === 'development' ? '' : process.env.NEXT_PUBLIC_HOST}/${t['language-selected'].toLowerCase()}/category/${category.slug}`}
                           variant="outlined"
                           size="small"
                           clickable
@@ -202,15 +201,14 @@ export default function BlogPostCard({ dictionary }: Props) {
     );
   }
 
-  function SuspenseQueryPosts({ children, page }: PostProps) {
+  function SuspenseQueryPosts({ page }: PostProps) {
     let result = useSuspenseQuery(postsQuery, {
-      fetchPolicy: "no-cache",
-      variables: { page: (page-1) },
+      fetchPolicy: "network-only",
+      variables: { page: (page - 1) },
     }); //no-cache cache-first // fetchPolicy: "cache-first",
     return (
       <>
         <Result source="useSuspenseQuery(postsQuery)" data={result.data} />
-        <React.Fragment key="children">{children}</React.Fragment>
       </>
     );
   }

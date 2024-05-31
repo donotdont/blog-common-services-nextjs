@@ -20,7 +20,7 @@ interface Props {
 export default async function IndexTitlePage({
   params: { lang, title },
 }: Props) {
-  const dictionary = await getDictionary(lang);
+  const dictionary: any = await getDictionary(lang);
 
   return (
     <div>
@@ -42,7 +42,7 @@ export default async function IndexTitlePage({
         </Grid>
       </Container>
 
-      <Footer dictionary={dictionary} size={32} />
+      <Footer dictionary={dictionary} />
     </div>
   );
 }

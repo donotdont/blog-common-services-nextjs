@@ -7,14 +7,14 @@ import {
   NextSSRApolloClient,
   SSRMultipartLink,
 } from "@apollo/experimental-nextjs-app-support/ssr";
-import { setVerbosity } from "ts-invariant";
+//import { setVerbosity } from "ts-invariant";
 
-setVerbosity("debug");
+//setVerbosity("debug");
 
 function makeClient() {
   const httpLink = new HttpLink({
     uri: process.env.NEXT_PUBLIC_STRAPI_GRAPHQL,
-    fetchOptions: { cache: "no-store" },
+    //fetchOptions: { cache: "no-store" },
   });
 
   return new NextSSRApolloClient({

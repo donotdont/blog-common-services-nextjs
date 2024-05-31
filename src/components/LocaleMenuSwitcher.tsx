@@ -23,7 +23,7 @@ import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
 
 interface Props {
     handleCloseUserMenu: React.MouseEventHandler<HTMLButtonElement>;
-    dictionary: string;
+    dictionary: any;
 }
 
 export default function LocaleMenuSwitcher({ dictionary, handleCloseUserMenu }: Props) {
@@ -51,7 +51,7 @@ export default function LocaleMenuSwitcher({ dictionary, handleCloseUserMenu }: 
     }*/
     const t = dictionary;
     const currentLang = t['language-selected'].toLowerCase();
-    const postTranslateQuery: TypedDocumentNode<Variables> = gql`
+    const postTranslateQuery: any = gql`
         query Translations($slugurl: String) {
             translation_en: translations(where: { post_en: { slugurl: $slugurl } }) {
               post_en {
@@ -90,11 +90,11 @@ export default function LocaleMenuSwitcher({ dictionary, handleCloseUserMenu }: 
     };
     //console.log('i18n', i18n);
 
-    function removePostUnderscore(name: string) {
+    function removePostUnderscore(name: any) {
         return name.replace(/post_/g, '');
     }
 
-    function Result({ source, data }: { source: string; data: unknown }) {
+    function Result({ source, data }: { source: string; data: any }) {
         //console.log(data);
         const segments = pathName.split("/");
         if (segments[1] && segments[1] == 'en' && data && data.translation_en && data.translation_en.length > 0 && data.translation_en[0]["post_" + segments[1]].slugurl != segments[2]) {
@@ -108,7 +108,7 @@ export default function LocaleMenuSwitcher({ dictionary, handleCloseUserMenu }: 
         return (
             <>
                 {data && data["translation_" + currentLang] && data["translation_" + currentLang].length > 0 ?
-                    Object.keys(data["translation_" + currentLang][0]).map((keyTranslation) =>
+                    Object.keys(data["translation_" + currentLang][0]).map((keyTranslation: any) =>
                     (keyTranslation != "__typename" && <Link key={keyTranslation} href={data["translation_" + currentLang][0][keyTranslation] ? redirectedPathNamePost(removePostUnderscore(keyTranslation), data["translation_" + currentLang][0][keyTranslation].slugurl) : '#'}>
                         <MenuItem disabled={data["translation_" + currentLang][0][keyTranslation] == null}>
                             <Typography textAlign="center">
@@ -116,7 +116,7 @@ export default function LocaleMenuSwitcher({ dictionary, handleCloseUserMenu }: 
                             </Typography>
                         </MenuItem>
                     </Link>
-                    )) : i18n && i18n.locales.map((locale, keyLocale) => (
+                    )) : i18n && i18n.locales.map((locale: Locale, keyLocale: number) => (
                         <Link key={keyLocale} href={redirectedPathName(locale)}>
                             <MenuItem>
                                 <Typography textAlign="center">
@@ -151,7 +151,7 @@ export default function LocaleMenuSwitcher({ dictionary, handleCloseUserMenu }: 
         )
     }
 
-    function SuspenseQueryPostTranslate({ children, title }: PostProps) {
+    function SuspenseQueryPostTranslate() {
         let result = useSuspenseQuery(postTranslateQuery, {
             fetchPolicy: "no-cache",
             variables: { slugurl: pathName.split("/")[2] ?? null },
@@ -159,7 +159,6 @@ export default function LocaleMenuSwitcher({ dictionary, handleCloseUserMenu }: 
         return (
             <>
                 <Result key="result-post" source="useSuspenseQuery(postTranslateQuery)" data={result.data} />
-                <React.Fragment key="children">{children}</React.Fragment>
             </>
         );
     }

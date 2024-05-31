@@ -47,20 +47,19 @@ import FormControl from '@mui/material/FormControl';
 import axios from 'axios';
 
 type Props = {
-    dictionary: string;
+    dictionary: any;
     title: string;
 }
 
 interface PageProps {
     children: React.ReactNode;
-    title: string;
 }
 
 export default function BlogPagePaper({ dictionary, title }: Props) {
     const t = dictionary;
 
     const [token, setToken] = useState('')
-    const verifyRecaptchaCallback = React.useCallback((token) => {
+    const verifyRecaptchaCallback = React.useCallback((token: string) => {
         setToken(token)
     }, []);
 
@@ -69,7 +68,7 @@ export default function BlogPagePaper({ dictionary, title }: Props) {
     const [contactStatus, setContactStatus] = React.useState<string>();
 
 
-    const pageQuery: TypedDocumentNode<Variables> = gql`query getPage($slug: String){
+    const pageQuery = gql`query getPage($slug: String){
         pages(where: {slug:$slug,active:true},limit:1){
             title_${t['language-selected'].toLowerCase()}
 			body_${t['language-selected'].toLowerCase()}
@@ -78,7 +77,7 @@ export default function BlogPagePaper({ dictionary, title }: Props) {
       }
     `;
 
-    function Result({ source, data }: { source: string; data: unknown }) {
+    function Result({ source, data }: { source: string; data: any }) {
         /*return (
           <div>
             <span>Source: {source}</span>
@@ -88,8 +87,8 @@ export default function BlogPagePaper({ dictionary, title }: Props) {
             </span>
           </div>
         );*/
-        const page = data ? data.pages[0] : null;
-        const [loadding, setLoadding] = React.useState<bool>(false);
+        const page = (data && data.pages && data.pages.length > 0) ? data.pages[0] : null;
+        const [loadding, setLoadding] = React.useState<boolean>(false);
         const [formData, setFormData] = React.useState<any>({
             name: "",
             email: "",
@@ -101,11 +100,11 @@ export default function BlogPagePaper({ dictionary, title }: Props) {
             messageError: ""
         });
 
-        function dateFormat(_post: unknown) {
+        function dateFormat(_post: any) {
             return (<Moment format="D MMMM YYYY" titleFormat="DD MMMM YYYY" locale={t['language-selected'].toLowerCase()} withTitle>{_post.published}</Moment>)
         }
 
-        function removeAtENFR(name) {
+        function removeAtENFR(name: string) {
             return (t['language-selected'] == "FR") ? name.replace(/ @fr/g, '') : name.replace(/ @en/g, '');
         }
 
@@ -126,44 +125,44 @@ export default function BlogPagePaper({ dictionary, title }: Props) {
             let error = false;
             console.log(formData.name.length);
             if (formData.name.length == 0) {
-                setFormData(prevState => ({
+                setFormData((prevState: any) => ({
                     ...prevState,
                     ["nameError"]: "Field is required!"
                 }));
                 error = true;
             }
             if (formData.email.length == 0) {
-                setFormData(prevState => ({
+                setFormData((prevState: any) => ({
                     ...prevState,
                     ["emailError"]: "Field is required!"
                 }));
                 error = true;
             } else if (!validateEmail(formData.email)) {
-                setFormData(prevState => ({
+                setFormData((prevState: any) => ({
                     ...prevState,
                     ["emailError"]: "Please enter a valid email address"
                 }));
                 error = true;
             }
             if (formData.subject.length == 0) {
-                setFormData(prevState => ({
+                setFormData((prevState: any) => ({
                     ...prevState,
                     ["subjectError"]: "Field is required!"
                 }));
                 error = true;
             }
             if (formData.message.length == 0) {
-                setFormData(prevState => ({
+                setFormData((prevState: any) => ({
                     ...prevState,
                     ["messageError"]: "Field is required!"
                 }));
                 error = true;
             }
 
-            if (error){
+            if (error) {
                 return false;
             } else {
-                setFormData(prevState => ({
+                setFormData((prevState: any) => ({
                     ...prevState,
                     ["nameError"]: "",
                     ["emailError"]: "",
@@ -206,9 +205,9 @@ export default function BlogPagePaper({ dictionary, title }: Props) {
             }
         }
 
-        function handleChange(e: React.ChangeEvent<unknown>) {
+        function handleChange(e: React.ChangeEvent<any>) {
             const { name, value } = e.target;
-            setFormData(prevState => ({
+            setFormData((prevState: any) => ({
                 ...prevState,
                 [name]: value
             }));
@@ -226,7 +225,9 @@ export default function BlogPagePaper({ dictionary, title }: Props) {
                             <CardActions>
                                 <CardContent>
                                     <Typography component={'span'} variant={'body2'}>
-                                        <ReactMarkdown className={'doc-markdown'} children={page[`body_${t['language-selected'].toLowerCase()}`]} rehypePlugins={[rehypeRaw] as any} urlTransform={(value: string) => { return (!value.includes('https://')) ? process.env.NEXT_PUBLIC_STRAPI + value : value }} />
+                                        <ReactMarkdown className={'doc-markdown'} rehypePlugins={[rehypeRaw] as any} urlTransform={(value: string) => { return (!value.includes('https://')) ? process.env.NEXT_PUBLIC_STRAPI + value : value }} >{
+                                            page[`body_${t['language-selected'].toLowerCase()}`]}
+                                        </ReactMarkdown>
                                     </Typography>
 
                                     {slug && slug == "contact" && (
@@ -342,7 +343,6 @@ export default function BlogPagePaper({ dictionary, title }: Props) {
                                                                     {t["Send"]}
                                                                 </Button>*/}
                                                                 <LoadingButton
-                                                                    variant="contained"
                                                                     type="submit"
                                                                     loading={loadding}
                                                                     loadingPosition="end"
@@ -369,15 +369,14 @@ export default function BlogPagePaper({ dictionary, title }: Props) {
             </React.Fragment >)
     }
 
-    function SuspenseQueryPage({ children, title }: PageProps) {
+    function SuspenseQueryPage() {
         let result = useSuspenseQuery(pageQuery, {
-            fetchPolicy: "no-cache",
+            fetchPolicy: "network-only",
             variables: { slug },
         }); //no-cache cache-first // fetchPolicy: "cache-first",
         return (
             <>
                 <Result key="result-post" source="useSuspenseQuery(pageQuery)" data={result.data} />
-                <React.Fragment key="children">{children}</React.Fragment>
             </>
         );
     }

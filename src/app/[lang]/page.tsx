@@ -9,16 +9,17 @@ import Container from "@mui/material/Container";
 import { Grid, Paper, Stack } from "@mui/material";
 import Footer from "@/components/Footer";
 import Sidebar from "@/components/Sidebar";
+import React from "react";
 
 export default async function IndexPage({
   params: { lang },
 }: {
   params: { lang: Locale };
 }) {
-  const dictionary = await getDictionary(lang);
+  const dictionary: any = await getDictionary(lang);
 
   return (
-    <div>
+    <React.Fragment>
       <Navigation dictionary={dictionary} />
       <Container maxWidth="xl" sx={{ marginTop: '88px' }}>
         <Grid
@@ -39,7 +40,7 @@ export default async function IndexPage({
         </Grid>
       </Container>
 
-    <Footer dictionary={dictionary} size={32}  />
-    </div>
+      <Footer dictionary={dictionary} />
+    </React.Fragment>
   );
 }

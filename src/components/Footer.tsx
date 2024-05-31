@@ -14,7 +14,7 @@ import GoogleAnalytics from "./GoogleAnalytics";
 import Userback from "./Userback";
 
 type Props = {
-    dictionary: string;
+    dictionary: any;
 }
 
 export default function Footer({ dictionary }: Props) {

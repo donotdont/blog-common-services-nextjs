@@ -15,7 +15,7 @@ export default async function IndexPage({
 }: {
   params: { lang: Locale, slug: string };
 }) {
-  const dictionary = await getDictionary(lang);
+  const dictionary: any = await getDictionary(lang);
 
   return (
     <div>
@@ -39,7 +39,7 @@ export default async function IndexPage({
         </Grid>
       </Container>
 
-      <Footer dictionary={dictionary} size={32} />
+      <Footer dictionary={dictionary} />
     </div>
   );
 }

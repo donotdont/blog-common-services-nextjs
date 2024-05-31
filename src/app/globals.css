@@ -105,3 +105,17 @@ a {
     color-scheme: dark;
   }
 }
+
+.MuiModal-root > .MuiBox-root {
+  border: none;
+  border-radius: 6px;
+  padding: 0;
+  min-width: 480px;
+  top: 10%;
+  transform: translate(-50%, -10%);
+}
+
+.MuiModal-root > .MuiBackdrop-root {
+  background-color: rgb(255, 255, 255, 0.1);
+  backdrop-filter: blur(2px);
+}

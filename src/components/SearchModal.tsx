@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import SearchIcon from '@mui/icons-material/Search';
 import styled from '@emotion/styled';
-import { Alert, CircularProgress, FormLabel, Input, OutlinedInput } from '@mui/material';
+import { Alert, CircularProgress, Fade, FormLabel, Input, OutlinedInput } from '@mui/material';
 import { WidthFull } from '@mui/icons-material';
 
 //import * as React from 'react';
@@ -53,7 +53,11 @@ const style = {
 };
 
 type Props = {
-    dictionary: string;
+    dictionary: any;
+}
+
+type PostProps = {
+    search: string;
 }
 
 const ShotcutSearch = styled('div')(({ theme }) => ({
@@ -69,7 +73,7 @@ const ShotcutSearch = styled('div')(({ theme }) => ({
 }));
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
-    padding: theme.spacing(0, 2),
+    padding: '8px',
     height: '100%',
     position: 'absolute',
     pointerEvents: 'none',
@@ -87,6 +91,7 @@ export default function SearchModal({ dictionary }: Props) {
     const [loading, setLoading] = React.useState<boolean>(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const rootRef = React.useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         /*const timeOutId = setTimeout(() => setDisplayMessage(search), 500);
@@ -103,7 +108,7 @@ export default function SearchModal({ dictionary }: Props) {
 
     }, [keyword]);
 
-    function handleChange(event: React.ChangeEvent<unknown>) {
+    function handleChange(event: React.ChangeEvent<any>) {
         /*startTransition(() => {
             setSearch(event.target.value);
         });*/
@@ -119,7 +124,7 @@ export default function SearchModal({ dictionary }: Props) {
         setKeyword(keyword);
     };
 
-    const searchPostsQuery: TypedDocumentNode<Variables> = gql`
+    const searchPostsQuery: any = gql`
     query searchPosts($search: String, $lang: String){
         posts(where: {_or:[{title_contains:$search}, {summary_contains:$search}, {slugurl_contains:$search}, {body_contains:$search}],tag:{slug_contains: $lang } }, limit:10){
             title
@@ -173,11 +178,11 @@ export default function SearchModal({ dictionary }: Props) {
         }
     }, [countdown]); // Effect re-runs whenever countdown changes*/
 
-    function removeAtENFR(name) {
+    function removeAtENFR(name: string) {
         return (t['language-selected'] == "FR") ? name.replace(/ @fr/g, '') : name.replace(/ @en/g, '');
     }
 
-    function Result({ source, data }: { source: string; data: unknown }) {
+    function Result({ source, data }: { source: string; data: any }) {
         setLoading(false);
         /*return (
           <div>
@@ -192,7 +197,7 @@ export default function SearchModal({ dictionary }: Props) {
         return (
             <React.Fragment>
                 {data && data.posts.length > 0 ? (<MenuList>
-                    {data.posts.map((post, keyPost) => {
+                    {data.posts.map((post: any, keyPost: number) => {
                         var title = post.title;
                         var length = 40;
                         var trimmedTitle = title.length > length ?
@@ -216,15 +221,14 @@ export default function SearchModal({ dictionary }: Props) {
         );
     }
 
-    function SuspenseQuerySearchPosts({ children, search }: PostProps) {
-        let result = useSuspenseQuery(searchPostsQuery, {
+    function SuspenseQuerySearchPosts({ search }: PostProps) {
+        let result: any = useSuspenseQuery(searchPostsQuery, {
             fetchPolicy: "no-cache",
             variables: { search, lang: t['language-selected'] },
         }); //no-cache cache-first // fetchPolicy: "cache-first",
         return (
             <React.Fragment>
-                <Result source="useSuspenseQuery(searchPostsQuery)" data={result && result.data ?? null} />
-                <React.Fragment key="children">{children}</React.Fragment>
+                <Result source="useSuspenseQuery(searchPostsQuery)" data={result && result.data ? result.data : null} />
             </React.Fragment>
         );
     }
@@ -243,71 +247,63 @@ export default function SearchModal({ dictionary }: Props) {
                 endIcon={<Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'none', md: 'block' } }}><ShotcutSearch>Ctrl+K</ShotcutSearch></Box>}
                 aria-label="search"
                 size="small" sx={{ minWidth: '18px', minHeight: '24px' }}>
-                <Typography variant="span" component="div" sx={{ flexGrow: 1, display: { xs: 'none', sm: 'none', md: 'block' } }}>
+                <Typography
+                    component="span"
+                    sx={{ flexGrow: 1, display: { xs: 'none', sm: 'none', md: 'block' } }}>
                     {t['search']}
                 </Typography>
                 <SearchIcon fontSize="small" sx={{ flexGrow: 1, display: { xs: 'block', sm: 'block', md: 'none' } }} />
             </Button>
             <Modal
-                color="neutral"
-                layout="center"
-                size="lg"
-                variant="plain"
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
-                sx={{
-                    "& > .MuiBox-root": {
-                        border: 'none',
-                        borderRadius: '6px',
-                        padding: 0,
-                        minWidth: '480px',
-                        top: '10%',
-                        transform: 'translate(-50%, -10%)',
+                closeAfterTransition
+                slotProps={{
+                    backdrop: {
+                        timeout: 500,
                     },
-                    "& > .MuiBackdrop-root": {
-                        backgroundColor: "rgb(255, 255, 255, 0.1)",
-                        backdropFilter: "blur(2px)"
-                    }
                 }}
             >
-                <Box sx={style}>
-                    <>
-                        <Paper
-                            component="form"
-                            sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '100%', borderRadius: 0 }}
-                        >
-                            <IconButton sx={{ p: '10px' }} aria-label="menu">
-                                {loading === true ? (<CircularProgress color="primary" size={16} />) : (<MenuIcon />)}
-                            </IconButton>
-                            <InputBase
-                                value={keyword}
-                                onChange={handleChange}
-                                sx={{ ml: 1, flex: 1 }}
-                                placeholder="Search Blog"
-                                inputProps={{ 'aria-label': 'search blog' }}
-                            />
-                            <IconButton type="button" sx={{ p: '10px' }} aria-label="search" onClick={handleSearch}>
-                                <SearchIcon />
-                            </IconButton>
-                            <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-                            <IconButton color="primary" sx={{ p: '10px' }} aria-label="close" onClick={handleClose}>
-                                <HighlightOffRoundedIcon />
-                            </IconButton>
-                        </Paper>
-                    </>
-                    <Stack direction="row" spacing={1} sx={{ padding: '8px' }}>
-                        <Chip label="Amazon" size="small" variant="outlined" component="a" href="#basic-chip" clickable />
-                        <Chip label="Ebay" size="small" variant="outlined" component="a" href="#basic-chip" clickable />
-                        <Chip label="Cdiscount" size="small" variant="outlined" component="a" href="#basic-chip" clickable />
-                        <Chip label="Marketplace" size="small" variant="outlined" component="a" href="#basic-chip" clickable />
-                    </Stack>
-                    <Suspense fallback={<Loading />}>
-                        <SuspenseQuerySearchPosts search={search} />
-                    </Suspense>
+                <Fade in={open}>
+                    <Box sx={style}>
+                        <>
+                            <Paper
+                                component="form"
+                                sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '100%', borderRadius: 0 }}
+                            >
+                                <IconButton sx={{ p: '10px' }} aria-label="menu">
+                                    {loading === true ? (<CircularProgress color="primary" size={16} />) : (<MenuIcon />)}
+                                </IconButton>
+                                <InputBase
+                                    value={keyword}
+                                    onChange={handleChange}
+                                    sx={{ ml: 1, flex: 1 }}
+                                    placeholder="Search Blog"
+                                    inputProps={{ 'aria-label': 'search blog' }}
+                                />
+                                <IconButton type="button" sx={{ p: '10px' }} aria-label="search" onClick={handleSearch}>
+                                    <SearchIcon />
+                                </IconButton>
+                                <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+                                <IconButton color="primary" sx={{ p: '10px' }} aria-label="close" onClick={handleClose}>
+                                    <HighlightOffRoundedIcon />
+                                </IconButton>
+                            </Paper>
+                        </>
+                        <Stack direction="row" spacing={1} sx={{ padding: '8px' }}>
+                            <Chip label="Amazon" size="small" variant="outlined" component="a" href="#basic-chip" clickable />
+                            <Chip label="Ebay" size="small" variant="outlined" component="a" href="#basic-chip" clickable />
+                            <Chip label="Cdiscount" size="small" variant="outlined" component="a" href="#basic-chip" clickable />
+                            <Chip label="Marketplace" size="small" variant="outlined" component="a" href="#basic-chip" clickable />
+                        </Stack>
+                        <Suspense>
+                            <SuspenseQuerySearchPosts search={search} />
+                        </Suspense>
 
-                </Box>
+                    </Box>
+                </Fade>
             </Modal>
         </React.Fragment>
 

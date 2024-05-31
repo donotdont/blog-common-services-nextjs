@@ -41,11 +41,11 @@ import CardContent from '@mui/material/CardContent';
 
 import SocialMedia from './SocialMedia';
 import BlogPostPaperSkeleton from './BlogPostPaperSkeleton';
-import BlogPostSoNice from './BlogPostSonice';
 import PageNotFound from './PageNotFound';
+import BlogPostSoNice from './BlogPostSoNice';
 
 type Props = {
-    dictionary: string;
+    dictionary: any;
     title: string;
 }
 
@@ -53,18 +53,36 @@ interface PostProps {
     children: React.ReactNode;
 }
 
+declare global {
+    interface Window {
+        jQuery: any;
+        $: any;
+    }
+    interface Global {
+        jQuery: any;
+    }
+}
+
+
 export default function BlogPostPaper({ dictionary, title }: Props) {
     const t = dictionary;
     //const lang = t['language-selected'].toLowerCase();
     const [slugurl, setSlugurl] = React.useState<string>(title);
 
-    useEffect(() => {
+    /*useEffect(() => {
         window.jQuery = $;
         window.$ = $;
         global.jQuery = $;
+    });*/
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            window.jQuery = $;
+            window.$ = $;
+        }
     });
 
-    const postQuery: TypedDocumentNode<Variables> = gql`query getPost($slugurl: String){
+    const postQuery: any = gql`query getPost($slugurl: String){
         posts(where: {slugurl_contains:$slugurl,active:true},limit:1){
           title
           seo_title
@@ -99,7 +117,7 @@ export default function BlogPostPaper({ dictionary, title }: Props) {
       }
     `;
 
-    function Result({ source, data }: { source: string; data: unknown }) {
+    function Result({ source, data }: { source: string; data: any }) {
         /*return (
           <div>
             <span>Source: {source}</span>
@@ -109,13 +127,13 @@ export default function BlogPostPaper({ dictionary, title }: Props) {
             </span>
           </div>
         );*/
-        const post = data ? data.posts[0] : null;
+        const post = (data && data.posts && data.posts.length > 0) ? data.posts[0] : null;
 
-        function dateFormat(_post: unknown) {
+        function dateFormat(_post: any) {
             return (<Moment format="D MMMM YYYY" titleFormat="DD MMMM YYYY" locale={t['language-selected'].toLowerCase()} withTitle>{_post.published}</Moment>)
         }
 
-        function removeAtENFR(name) {
+        function removeAtENFR(name: string) {
             return (t['language-selected'] == "FR") ? name.replace(/ @fr/g, '') : name.replace(/ @en/g, '');
         }
 
@@ -143,7 +161,9 @@ export default function BlogPostPaper({ dictionary, title }: Props) {
                             <CardActions>
                                 <CardContent>
                                     <Typography component={'span'} variant={'body2'}>
-                                        <ReactMarkdown className={'doc-markdown'} children={post.body} remarkPlugins={[remarkGfm, remarkParse, remarkRehype] as any} rehypePlugins={[rehypeRaw, rehypeStringify] as any} remarkRehypeOptions={{ passThrough: ['link'] }} urlTransform={(value: string) => { return (!value.includes('https://')) ? process.env.NEXT_PUBLIC_STRAPI + value : value }} />
+                                        <ReactMarkdown className={'doc-markdown'} remarkPlugins={[remarkGfm, remarkParse, remarkRehype] as any} rehypePlugins={[rehypeRaw, rehypeStringify] as any} remarkRehypeOptions={{ passThrough: ['link'] }} urlTransform={(value: string) => { return (!value.includes('https://')) ? process.env.NEXT_PUBLIC_STRAPI + value : value }} >
+                                            {post.body}
+                                        </ReactMarkdown>
                                     </Typography>
                                 </CardContent>
                             </CardActions>
@@ -153,7 +173,7 @@ export default function BlogPostPaper({ dictionary, title }: Props) {
                             )}
 
                             <CardActions>
-                                {post.categories.map((cat, keyCat) => {
+                                {post.categories.map((cat: any, keyCat: number) => {
                                     return <Chip variant="outlined" label={removeAtENFR(cat.name)} key={`chip-${keyCat}`} component="a" href={`/category/${cat.slug}`} clickable sx={{ margin: "8px" }} />;
                                 })}
                             </CardActions>
@@ -166,15 +186,14 @@ export default function BlogPostPaper({ dictionary, title }: Props) {
             </React.Fragment>)
     }
 
-    function SuspenseQueryPost({ children }: PostProps) {
+    function SuspenseQueryPost() {
         let result = useSuspenseQuery(postQuery, {
-            fetchPolicy: "no-cache",
+            fetchPolicy: "network-only",
             variables: { slugurl },
         }); //no-cache cache-first // fetchPolicy: "cache-first",
         return (
             <>
                 <Result key="result-post" source="useSuspenseQuery(postQuery)" data={result.data} />
-                <React.Fragment key="children">{children}</React.Fragment>
             </>
         );
     }

@@ -10,7 +10,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 
 type Props = {
-    dictionary: string;
+    dictionary: any;
 }
 
 interface TabPanelProps {

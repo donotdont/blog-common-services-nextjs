@@ -34,12 +34,10 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 interface Props {
     window?: () => Window;
-    children: React.ReactElement;
-    dictionary: string;
+    dictionary: any;
 }
 
-export default function Navigation(props: Props) {
-    const { children, window, dictionary } = props;
+export default function Navigation({ window, dictionary }: Props) {
     const pathName = usePathname();
     const segments = pathName.split("/");
     //const locale = useLocale();
@@ -72,10 +70,12 @@ export default function Navigation(props: Props) {
 
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="fixed" sx={{
+            <AppBar 
+            position="fixed" 
+            sx={{
                 background: '#ffffff',
-                backgroundColor: trigger ? "rgb(255, 255, 255, 0.75)" : '#ffffff',
-                backdropFilter: trigger ?? "blur(5px)"
+                bgcolor: trigger ? 'rgb(255, 255, 255, 0.75)' : '#ffffff',
+                backdropFilter: trigger ? 'blur(5px)' : 'none',
             }}
             >
                 <Container maxWidth="xl">
