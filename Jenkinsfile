@@ -2,7 +2,7 @@
 
 node {
     try {
-            agent { docker { image 'node:20.10.0-alpine3.19' } }
+            agent { docker { image 'node:20.14.0-alpine3.20' } }
             stage('Checkout GitHub') {
                 checkout scm
                 slackSend color: 'warning', message: "Started `${env.JOB_NAME}#${env.BUILD_NUMBER}`"
