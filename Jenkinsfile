@@ -37,8 +37,8 @@ node {
             }
 
             stage('Deploy to DigitalOcean') {
-                bat 'scp out.tar.gz donotdont@178.62.235.240:/home/donotdont/blog8next14cicd'
-                bat 'bash -c "ssh -t donotdont@178.62.235.240 \'cd blog8next14cicd;tar -xzvf out.tar.gz;exit;\'"'
+                bat 'scp out.tar.gz donotdont@168.183.208.194:/home/donotdont/blog8next14cicd'
+                bat 'bash -c "ssh -t donotdont@68.183.208.194 \'cd blog8next14cicd;tar -xzvf out.tar.gz;exit;\'"'
             }
 
             stage('Publish results') {
