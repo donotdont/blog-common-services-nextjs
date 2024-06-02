@@ -21,7 +21,7 @@ node {
                 stage('Build by NextJS') {
                     bat 'npm run build'
                 }
-            } catch (Exception e) {
+            } catch (e) {
                 slackSend color: 'warning', message: "`${env.JOB_NAME}` - Build # `${env.BUILD_NUMBER}` - FAILURE (`${e.message}`)!"
                 //throw e // rethrow so the build is considered failed
                 echo e // rethrow so the build is considered failed
