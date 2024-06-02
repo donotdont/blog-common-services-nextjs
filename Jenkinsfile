@@ -33,6 +33,9 @@ node {
 
     try {
             stage('Package gz') {
+                bat 'rm -rf out/cache/'
+                bat 'cp -r out/static out/server/app'
+                bat 'cp public/* out/server/app'
                 bat 'tar -czvf out.tar.gz -C out .'
             }
 
