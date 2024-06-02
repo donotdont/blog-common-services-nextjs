@@ -142,16 +142,16 @@ export default function SearchModal({ dictionary }: Props) {
     }
 `;
 
-    const keyDownHandler = React.useCallback((event: KeyboardEvent) => {
-        //console.log(`Pressed keyCode ${event ?? event.key}`,event ?? event.key);
-        if (event && ((event.key === 'k' || event.key === 'K') && event.ctrlKey == true)) {
-            // Do code here
-            handleOpen();
-            event.preventDefault();
-        }
-    }, []);
-
     useEffect(() => {
+        const keyDownHandler = (event: KeyboardEvent) => {
+            //console.log(`Pressed keyCode ${event ?? event.key}`,event ?? event.key);
+            if (event && ((event.key === 'k' || event.key === 'K') && event.ctrlKey == true)) {
+                // Do code here
+                handleOpen();
+                event.preventDefault();
+            }
+        };
+
         document.addEventListener("keydown", keyDownHandler);
 
         return () => document.removeEventListener("keydown", keyDownHandler);
