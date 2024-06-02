@@ -41,7 +41,7 @@ node {
 
             stage('Deploy to DigitalOcean') {
                 bat 'scp out.tar.gz donotdont@blog.common-services.com:/home/donotdont/blog8next14cicd'
-                bat 'bash -c "ssh -t donotdont@blog.common-services.com \'cd blog8next14cicd;tar -xzvf out.tar.gz;exit;\'"'
+                bat 'bash -c "ssh -t donotdont@blog.common-services.com \'cd blog8next14cicd;tar -xzvf out.tar.gz;sudo cp -rf server/app/* /home/ubuntu/blog8cicd;sudo chmod -R 775 /home/ubuntu/blog8cicd;sudo chown -R ubuntu:www-data /home/ubuntu/blog8cicd;exit;\'"'
             }
 
             stage('Publish results') {
