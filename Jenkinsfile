@@ -31,7 +31,7 @@ node {
         //echo e // rethrow so the build is considered failed
     }
 
-    /*try {
+    try {
             stage('Package gz') {
                 bat 'rm -rf out/cache/'
                 bat 'mkdir "out/server/app/_next"'
@@ -52,5 +52,5 @@ node {
     catch (err) {
             slackSend color: 'danger', message: "Build failed : face_with_head_bandage: \n`${env.JOB_NAME}#${env.BUILD_NUMBER}`"
             throw err
-    }*/
+    }
 }
