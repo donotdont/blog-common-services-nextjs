@@ -21,6 +21,10 @@ RUN adduser -S nextjs -u 1001
 USER nextjs
 
 
+RUN mkdir -p /app/out/server/app/_next
+COPY --from=builder /app/out/static ./out/server/app/_next
+COPY --from=builder public/* ./out/server/app/
+
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
