@@ -139,6 +139,10 @@ export default function SearchModal({ dictionary }: Props) {
                 slug
             }
         }
+        categories(where: { slug_contains: $lang }){
+            name
+            slug
+        }
     }
 `;
 
@@ -196,6 +200,21 @@ export default function SearchModal({ dictionary }: Props) {
 
         return (
             <React.Fragment>
+
+                {data && data.categories.length > 0 ? (<Stack direction="row" spacing={1} useFlexGap flexWrap="wrap" sx={{ padding: '8px' }}>
+                    {data.categories.map((category: any, keyCategory: number) => (
+                        <Chip
+                            key={keyCategory}
+                            label={removeAtENFR(category.name)}
+                            component="a"
+                            href={`${process.env.NODE_ENV === 'development' ? '' : process.env.NEXT_PUBLIC_HOST}/${t['language-selected'].toLowerCase()}/category/${category.slug}`}
+                            variant="outlined"
+                            size="small"
+                            clickable
+                        />
+                    ))}
+                </Stack>) : ""}
+
                 {data && data.posts.length > 0 ? (<MenuList>
                     {data.posts.map((post: any, keyPost: number) => {
                         var title = post.title;
@@ -292,12 +311,7 @@ export default function SearchModal({ dictionary }: Props) {
                                 </IconButton>
                             </Paper>
                         </>
-                        <Stack direction="row" spacing={1} sx={{ padding: '8px' }}>
-                            <Chip label="Amazon" size="small" variant="outlined" component="a" href="#basic-chip" clickable />
-                            <Chip label="Ebay" size="small" variant="outlined" component="a" href="#basic-chip" clickable />
-                            <Chip label="Cdiscount" size="small" variant="outlined" component="a" href="#basic-chip" clickable />
-                            <Chip label="Marketplace" size="small" variant="outlined" component="a" href="#basic-chip" clickable />
-                        </Stack>
+
                         <Suspense>
                             <SuspenseQuerySearchPosts search={search} />
                         </Suspense>

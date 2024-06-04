@@ -64,10 +64,10 @@ export async function generateMetadata(
   const previousImages = (await parent).openGraph?.images || []
 
   return {
-    title: post[0].seo_title,
-    description: post[0].meta_description,
+    title: post[0] ? post[0].seo_title : "Blog Common-Services",
+    description: post[0] ? post[0].meta_description : "Modules, extensions, addons, plugins for Prestashop, Oscommerce, Open Cart, Magento, Shopify.",
     openGraph: {
-      images: [process.env.NEXT_PUBLIC_STRAPI + post[0].medialibrary.file.url, ...previousImages],
+      images: (post[0] ? [process.env.NEXT_PUBLIC_STRAPI + post[0].medialibrary.file.url, ...previousImages] : ""),
     },
   }
 }

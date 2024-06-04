@@ -173,8 +173,8 @@ export default function BlogPostPaper({ dictionary, title }: Props) {
                             )}
 
                             <CardActions>
-                                {post.categories.map((cat: any, keyCat: number) => {
-                                    return <Chip variant="outlined" label={removeAtENFR(cat.name)} key={`chip-${keyCat}`} component="a" href={`/category/${cat.slug}`} clickable sx={{ margin: "8px" }} />;
+                                {post.categories.map((category: any, keyCategory: number) => {
+                                    return <Chip variant="outlined" label={removeAtENFR(category.name)} key={`chip-${keyCategory}`} component="a" href={`${process.env.NODE_ENV === 'development' ? '' : process.env.NEXT_PUBLIC_HOST}/${t['language-selected'].toLowerCase()}/category/${category.slug}`} clickable sx={{ margin: "8px" }} />;
                                 })}
                             </CardActions>
 

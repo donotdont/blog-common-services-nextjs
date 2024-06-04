@@ -1,14 +1,15 @@
-version: '3.8'
+version: '2.2'
 services:
   app:
-    image: openai-demo-app
+    image: blog-app
     build:
       context: ./
-      target: dev
+      target: production
       dockerfile: Dockerfile
     volumes:
         - .:/app
         - /app/node_modules
         - /app/.next
+        - /app/out
     ports:
-      - "3333:3333"
+      - "3000:3000"
