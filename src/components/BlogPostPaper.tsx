@@ -63,6 +63,14 @@ declare global {
     }
 }
 
+declare namespace NodeJS {
+    export interface Global {
+        jQuery: any;
+    }
+}
+
+declare var jQuery: any;
+
 
 export default function BlogPostPaper({ dictionary, title }: Props) {
     const t = dictionary;
@@ -79,7 +87,10 @@ export default function BlogPostPaper({ dictionary, title }: Props) {
         if (typeof window !== "undefined") {
             window.jQuery = $;
             window.$ = $;
-            global.jQuery = $;
+        }
+
+        if (typeof jQuery !== "undefined") {
+            jQuery = $;
         }
     });
 
