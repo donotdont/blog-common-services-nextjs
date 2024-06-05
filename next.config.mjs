@@ -4,7 +4,6 @@ const nextConfig = {
         domains: ["i0.wp.com"]
     },
     trailingSlash: true,
-    distDir: 'out',
 };
 
 export default nextConfig;

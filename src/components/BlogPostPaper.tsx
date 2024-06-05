@@ -79,8 +79,9 @@ export default function BlogPostPaper({ dictionary, title }: Props) {
         if (typeof window !== "undefined") {
             window.jQuery = $;
             window.$ = $;
+            global.jQuery = $;
         }
-    });
+    }, [window]);
 
     const postQuery: any = gql`query getPost($slugurl: String){
         posts(where: {slugurl_contains:$slugurl,active:true},limit:1){

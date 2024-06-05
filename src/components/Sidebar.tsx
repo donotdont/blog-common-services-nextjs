@@ -126,7 +126,7 @@ export default function Sidebar(props: Props) {
                                 {data.posts && data.posts.length > 0 && data.posts.map((post: any, keyPost: number) => {
 
                                     return (
-                                        <ListItemButton key={keyPost} divider={data.posts.length - 1 > keyPost} component="a" href={'/post/' + post.slugurl}>
+                                        <ListItemButton key={keyPost} divider={data.posts.length - 1 > keyPost} component="a" href={`${process.env.NODE_ENV === 'development' ? '' : process.env.NEXT_PUBLIC_HOST}/${getCurrentLng}/${post.slugurl}`}>
                                             <ListItemText primary={post.title} secondary={dateFormat(post)} />
                                         </ListItemButton>
                                     );
@@ -137,7 +137,7 @@ export default function Sidebar(props: Props) {
                             <List component="nav" sx={{ width: '100%', bgcolor: 'background.paper', paddingTop: 0, paddingBottom: 0 }}>
                                 {popularPosts && popularPosts.length > 0 && popularPosts.map((popular: any, keyPopular: number) => {
                                     return (
-                                        <ListItemButton key={keyPopular} divider={popularPosts.length - 1 > keyPopular} component="a" href={'/post/' + popular.slugurl}>
+                                        <ListItemButton key={keyPopular} divider={popularPosts.length - 1 > keyPopular} component="a" href={`${process.env.NODE_ENV === 'development' ? '' : process.env.NEXT_PUBLIC_HOST}/${getCurrentLng}/${popular.slugurl}`}>
                                             <ListItemText primary={popular.title} secondary={dateFormat(popular)} />
                                         </ListItemButton>
                                     );
@@ -160,7 +160,7 @@ export default function Sidebar(props: Props) {
                     >
                         {data.pages && data.pages.length > 0 && data.pages.map((page: any, keyPage: number) => {
                             return (
-                                <ListItemButton key={keyPage} divider={data.pages.length - 1 > keyPage} component="a" href={`/${getCurrentLng}/company/${page.slug}`}>
+                                <ListItemButton key={keyPage} divider={data.pages.length - 1 > keyPage} component="a" href={`${process.env.NODE_ENV === 'development' ? '' : process.env.NEXT_PUBLIC_HOST}/${getCurrentLng}/company/${page.slug}`}>
                                     <ListItemText primary={page["title_" + getCurrentLng]} />
                                 </ListItemButton>
                             );
@@ -181,7 +181,7 @@ export default function Sidebar(props: Props) {
                     >
                         {data.translationCategories && data.translationCategories.length > 0 && data.translationCategories.map((category: any, keyCategory: number) => {
                             return (
-                                <ListItemButton key={keyCategory} divider={data.translationCategories.length - 1 > keyCategory} component="a" href={`/${getCurrentLng}/category/` + ((category && category["category_" + getCurrentLng] != null) ? category["category_" + getCurrentLng].slug : '')}>
+                                <ListItemButton key={keyCategory} divider={data.translationCategories.length - 1 > keyCategory} component="a" href={`${process.env.NODE_ENV === 'development' ? '' : process.env.NEXT_PUBLIC_HOST}/${getCurrentLng}/category/` + ((category && category["category_" + getCurrentLng] != null) ? category["category_" + getCurrentLng].slug : '')}>
                                     <ListItemText primary={removeAtEN((category && category["category_" + getCurrentLng] != null) ? category["category_" + getCurrentLng].name : '')} />
                                 </ListItemButton>
                             );
