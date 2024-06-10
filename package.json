@@ -24,7 +24,9 @@
     "@mui/material-nextjs": "latest",
     "@playwright/test": "^1.44.1",
     "@types/negotiator": "^0.6.3",
+    "@types/rss": "^0.0.32",
     "axios": "^1.7.2",
+    "fs": "^0.0.1-security",
     "html-differ": "^1.4.0",
     "js-cookie": "^3.0.5",
     "negotiator": "^0.6.3",
@@ -41,6 +43,7 @@
     "remark-gfm": "^4.0.0",
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.0",
+    "rss": "^1.2.2",
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
