@@ -1,3 +1,6 @@
+import { InferGetStaticPropsType } from 'next'
+import { GetStaticProps } from 'next'
+
 import { getDictionary } from "../../get-dictionary";
 import { Locale } from "../../i18n-config";
 import BlogPostCard from "@/components/BlogPostCard";
