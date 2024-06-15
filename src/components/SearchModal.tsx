@@ -39,6 +39,7 @@ import Stack from '@mui/material/Stack';
 import { gql, TypedDocumentNode } from "@apollo/client";
 import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
 import Link from 'next/link';
+import SearchModalSkeleton from './SearchModalSkeleton';
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -88,7 +89,8 @@ export default function SearchModal({ dictionary }: Props) {
     const [open, setOpen] = React.useState(false);
     const [keyword, setKeyword] = React.useState('');
     const [search, setSearch] = React.useState('');
-    const [loading, setLoading] = React.useState<boolean>(false);
+    const [loading, setLoading] = React.useState<boolean>(true);
+    const [searchCountdownInterval, setSearchCountdownInterval] = React.useState<any>(null);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const rootRef = React.useRef<HTMLDivElement>(null);
@@ -96,15 +98,17 @@ export default function SearchModal({ dictionary }: Props) {
     useEffect(() => {
         /*const timeOutId = setTimeout(() => setDisplayMessage(search), 500);
         return () => clearTimeout(timeOutId);*/
-        const searchCountdownInterval = setTimeout(() => {
+        setLoading(true);
+        const searchCountdownInterval2 = setTimeout(() => {
             // Decrease the countdown value every second
+            setLoading(true);
             startTransition(() => {
                 setSearch(keyword);
             });
         }, 2000);
 
         // Cleanup function to clear the interval when the component unmounts
-        return () => clearTimeout(searchCountdownInterval);
+        return () => clearTimeout(searchCountdownInterval2);
 
     }, [keyword]);
 
@@ -113,6 +117,11 @@ export default function SearchModal({ dictionary }: Props) {
             setSearch(event.target.value);
         });*/
         setLoading(true);
+        /*if (searchCountdownInterval)
+            clearTimeout(searchCountdownInterval);
+        setSearchCountdownInterval(window.setTimeout(() => {
+            setLoading(true);
+        }, 1500));*/
         setKeyword(event.target.value);
     };
 
@@ -121,6 +130,11 @@ export default function SearchModal({ dictionary }: Props) {
             setSearch(event.target.value);
         });*/
         setLoading(true);
+        /*if (searchCountdownInterval)
+            clearTimeout(searchCountdownInterval);
+        setSearchCountdownInterval(window.setTimeout(() => {
+            setLoading(true);
+        }, 1500));*/
         setKeyword(keyword);
     };
 
@@ -187,7 +201,7 @@ export default function SearchModal({ dictionary }: Props) {
     }
 
     function Result({ source, data }: { source: string; data: any }) {
-        setLoading(false);
+
         /*return (
           <div>
             <span>Source: {source}</span>
@@ -200,7 +214,6 @@ export default function SearchModal({ dictionary }: Props) {
 
         return (
             <React.Fragment>
-
                 {data && data.categories.length > 0 ? (<Stack direction="row" spacing={1} useFlexGap flexWrap="wrap" sx={{ padding: '8px' }}>
                     {data.categories.map((category: any, keyCategory: number) => (
                         <Chip
@@ -223,7 +236,7 @@ export default function SearchModal({ dictionary }: Props) {
                             title.substring(0, length - 3) + "..." :
                             title;
                         return (
-                            <Link key={keyPost} href={`/${t['language-selected'].toLowerCase()}/${post.slugurl}`}>
+                            <Link key={keyPost} href={`${process.env.NODE_ENV === 'development' ? '' : process.env.NEXT_PUBLIC_HOST}/${t['language-selected'].toLowerCase()}/${post.slugurl}`}>
                                 <MenuItem key={keyPost}>
                                     <ListItemIcon>
                                         <ArticleIcon fontSize="small" />
@@ -245,15 +258,17 @@ export default function SearchModal({ dictionary }: Props) {
             fetchPolicy: "no-cache",
             variables: { search, lang: t['language-selected'] },
         }); //no-cache cache-first // fetchPolicy: "cache-first",
+
+        if (result && result.data)
+            window.setTimeout(() => {
+                setLoading(false);
+            }, 1500);
+
         return (
             <React.Fragment>
                 <Result source="useSuspenseQuery(searchPostsQuery)" data={result && result.data ? result.data : null} />
             </React.Fragment>
         );
-    }
-
-    function Loading() {
-        return setLoading(true);
     }
 
     return (
@@ -287,7 +302,7 @@ export default function SearchModal({ dictionary }: Props) {
             >
                 <Fade in={open}>
                     <Box sx={style}>
-                        <>
+                        <React.Fragment>
                             <Paper
                                 component="form"
                                 sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '100%', borderRadius: 0 }}
@@ -310,9 +325,9 @@ export default function SearchModal({ dictionary }: Props) {
                                     <HighlightOffRoundedIcon />
                                 </IconButton>
                             </Paper>
-                        </>
+                        </React.Fragment>
 
-                        <Suspense>
+                        <Suspense fallback={<SearchModalSkeleton />}>
                             <SuspenseQuerySearchPosts search={search} />
                         </Suspense>
 

@@ -122,7 +122,7 @@ export default function BlogPostCard({ dictionary }: Props) {
       </div>
     );*/
     return (
-      <>
+      <React.Fragment>
         {/*JSON.stringify(data.postsConnection.values)*/}
         {/*<BlogPostCardSkeleton />*/}
         {data && data.postsConnection && data.postsConnection.values.map((post: any, keyPost: number) => {
@@ -197,7 +197,7 @@ export default function BlogPostCard({ dictionary }: Props) {
             <Pagination count={(Math.ceil(data.postsConnection.aggregate.count / 10))} page={page} variant="outlined" color="primary" onChange={handleChange} />
           </Grid>
         </Grid>
-      </>
+      </React.Fragment>
     );
   }
 
@@ -207,9 +207,9 @@ export default function BlogPostCard({ dictionary }: Props) {
       variables: { page: (page - 1) },
     }); //no-cache cache-first // fetchPolicy: "cache-first",
     return (
-      <>
+      <React.Fragment>
         <Result source="useSuspenseQuery(postsQuery)" data={result.data} />
-      </>
+      </React.Fragment>
     );
   }
 
