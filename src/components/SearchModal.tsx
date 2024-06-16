@@ -327,8 +327,8 @@ export default function SearchModal({ dictionary }: Props) {
                             </Paper>
                         </React.Fragment>
 
-                        {loading && (<LinearProgress />)}
-                        
+                        {loading && (<LinearProgress sx={{ height: 2 }} />)}
+
                         <Suspense fallback={<SearchModalSkeleton />}>
                             <SuspenseQuerySearchPosts search={search} />
                         </Suspense>
