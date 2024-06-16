@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import SearchIcon from '@mui/icons-material/Search';
 import styled from '@emotion/styled';
-import { Alert, CircularProgress, Fade, FormLabel, Input, OutlinedInput } from '@mui/material';
+import { Alert, CircularProgress, Fade, FormLabel, Input, LinearProgress, OutlinedInput } from '@mui/material';
 import { WidthFull } from '@mui/icons-material';
 
 //import * as React from 'react';
@@ -259,10 +259,10 @@ export default function SearchModal({ dictionary }: Props) {
             variables: { search, lang: t['language-selected'] },
         }); //no-cache cache-first // fetchPolicy: "cache-first",
 
-        if (result && result.data)
+        if (result && result.data && search == keyword)
             window.setTimeout(() => {
                 setLoading(false);
-            }, 1500);
+            }, 500);
 
         return (
             <React.Fragment>
@@ -327,6 +327,8 @@ export default function SearchModal({ dictionary }: Props) {
                             </Paper>
                         </React.Fragment>
 
+                        {loading && (<LinearProgress />)}
+                        
                         <Suspense fallback={<SearchModalSkeleton />}>
                             <SuspenseQuerySearchPosts search={search} />
                         </Suspense>
