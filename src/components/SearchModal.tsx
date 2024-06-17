@@ -317,7 +317,10 @@ export default function SearchModal({ dictionary }: Props) {
                                     placeholder="Search Blog"
                                     inputProps={{ 'aria-label': 'search blog' }}
                                     autoFocus={true}
-                                    inputRef={(input: any) => input && input.focus()}
+                                    inputRef={(input: any) => {
+                                        if (input)
+                                            setTimeout(() => { input.focus(); }, 500);
+                                    }}
                                 />
                                 <IconButton type="button" sx={{ p: '10px' }} aria-label="search" onClick={handleSearch}>
                                     <SearchIcon />
