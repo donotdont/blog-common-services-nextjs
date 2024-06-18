@@ -1,7 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ["i0.wp.com"]
+        domains: ["i0.wp.com"],
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'i0.wp.com',
+                pathname: '**',
+            },
+        ],
     },
     trailingSlash: true,
 };

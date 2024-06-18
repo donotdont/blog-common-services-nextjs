@@ -317,7 +317,7 @@ export default function SearchModal({ dictionary }: Props) {
                                     placeholder="Search Blog"
                                     inputProps={{ 'aria-label': 'search blog' }}
                                     autoFocus={true}
-                                    inputRef={(input: any) => {
+                                    inputRef={(input: HTMLInputElement) => {
                                         if (input)
                                             setTimeout(() => { input.focus(); }, 500);
                                     }}
