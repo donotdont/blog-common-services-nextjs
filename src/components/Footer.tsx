@@ -1,5 +1,6 @@
 
 "use client";
+
 import Link from "next/link";
 import Image from 'next/image';
 import Typography from "@mui/material/Typography";
@@ -12,6 +13,9 @@ import GoogleAnalytics from "./GoogleAnalytics";
 
 /* Userback */
 import Userback from "./Userback";
+
+/* Go to Top */
+import ScrollToTopButton from "./ScrollToTopButton";
 
 type Props = {
     dictionary: any;
@@ -52,6 +56,7 @@ export default function Footer({ dictionary }: Props) {
                         </Typography>
                     </Grid>
                 </Grid>
+                <ScrollToTopButton />
                 <GoogleAnalytics />
                 <Userback />
             </footer>
