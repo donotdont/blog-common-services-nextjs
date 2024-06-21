@@ -10,7 +10,7 @@ import Tooltip from "@mui/material/Tooltip";
 export default function ScrollToTopButton() {
 
     const isBrowser = () => typeof window !== 'undefined'; //The approach recommended by Next.js
-    const [isVisible, setIsVisible] = useState(false);
+    const [isVisible, setIsVisible] = useState<boolean>(false);
 
     function scrollToTop() {
         if (!isBrowser()) return;
