@@ -33,16 +33,17 @@ node {
 
     try {
             stage('Package gz') {
-                bat 'rm -rf out/cache/'
+                /*bat 'rm -rf out/cache/'
                 bat 'mkdir "out/server/app/_next"'
                 bat 'cp -r out/static out/server/app/_next'
                 bat 'cp public/* out/server/app/'
-                bat 'tar -czvf out.tar.gz -C out .'
+                bat 'tar -czvf out.tar.gz -C out .'*/
+                bat 'zip -r blog.common-services.com.zip .next/ .swc/ dictionaries/ public/ src/ .env .eslintrc.json .gitignore docker-compose.yml Dockerfile get-dictionary.ts i18n-config.ts jest.config.ts middleware.ts next.config.mjs next-env.d.ts package.json playwright.config.ts tsconfig.json'
             }
 
             stage('Deploy to DigitalOcean') {
-                bat 'scp out.tar.gz donotdont@blog.common-services.com:/home/donotdont/blog8next14cicd'
-                bat 'bash -c "ssh -t donotdont@blog.common-services.com \'cd blog8next14cicd;tar -xzvf out.tar.gz;sudo cp -rf server/app/* /home/ubuntu/blog8cicd;sudo chmod -R 775 /home/ubuntu/blog8cicd;sudo chown -R ubuntu:www-data /home/ubuntu/blog8cicd;exit;\'"'
+                bat 'scp blog.common-services.com.zip donotdont@blog.common-services.com:/home/donotdont/blog8next'
+                bat 'bash -c "ssh -t donotdont@blog.common-services.com \'cd blog8next;unzip -f blog.common-services.com.zip;exit;\'"'
             }
 
             stage('Publish results') {
