@@ -173,7 +173,7 @@ export default function BlogPostCategoryCard({ dictionary, slug }: Props) {
                           key={KeyCategory}
                           label={removeAtENFR(category.name)}
                           component="a"
-                          href={"/category/" + category.slug}
+                          href={`${t['language-selected'].toLowerCase()}/category/${category.slug}`}
                           variant="outlined"
                           size="small"
                           clickable
@@ -210,7 +210,7 @@ export default function BlogPostCategoryCard({ dictionary, slug }: Props) {
   function SuspenseQueryPosts({ page, category }: PostProps) {
     let result = useSuspenseQuery(postsQuery, {
       fetchPolicy: "network-only",
-      variables: { page: (page-1), category },
+      variables: { page: (page - 1), category },
     }); //no-cache cache-first // fetchPolicy: "cache-first",
     return (
       <>

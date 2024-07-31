@@ -11,7 +11,7 @@ export default function BlogPostCardSkeleton() {
     const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     return (
         <React.Fragment>
-            {numbers && numbers.length > 0 && numbers.map((num, keyNum) => {
+            {numbers && numbers.length > 0 && numbers.map((num: any, keyNum: number) => {
                 return (<Grid key={keyNum} item md={4}>
                     <Card>
                         <CardHeader
