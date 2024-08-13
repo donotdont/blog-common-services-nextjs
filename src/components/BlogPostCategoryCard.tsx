@@ -173,7 +173,7 @@ export default function BlogPostCategoryCard({ dictionary, slug }: Props) {
                           key={KeyCategory}
                           label={removeAtENFR(category.name)}
                           component="a"
-                          href={`${t['language-selected'].toLowerCase()}/category/${category.slug}`}
+                          href={`${process.env.NODE_ENV === 'development' ? '' : process.env.NEXT_PUBLIC_HOST}/${t['language-selected'].toLowerCase()}/category/${category.slug}`}
                           variant="outlined"
                           size="small"
                           clickable
