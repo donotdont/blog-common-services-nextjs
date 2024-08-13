@@ -39,7 +39,7 @@ node {
                 bat 'cp public/* out/server/app/'
                 bat 'tar -czvf out.tar.gz -C out .'
                 bat 'zip -r blog.common-services.com.zip .next/ .swc/ dictionaries/ public/ src/ .env .eslintrc.json .gitignore docker-compose.yml Dockerfile get-dictionary.ts i18n-config.ts jest.config.ts middleware.ts next.config.mjs next-env.d.ts package.json playwright.config.ts tsconfig.json'*/
-                bat 'tar -czvf src.tar.gz src/'
+                bat 'tar -czvf src.tar.gz src'
             }
 
             stage('Deploy to DigitalOcean') {
